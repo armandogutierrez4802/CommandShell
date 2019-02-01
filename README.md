@@ -1,5 +1,5 @@
 # CS 100 Programming Project
-Winter 2019
+Winter 2019\n
 Armando Gutierrez 861213968
 Nhat Nguyen 862119873
 
