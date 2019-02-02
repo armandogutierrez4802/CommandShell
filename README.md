@@ -15,9 +15,9 @@ In addition, this project will be implemented using the composite pattern as the
 ![UML Diagram](https://github.com/cs100/assignment-cs_100_aa_assignment_1/blob/master/Images/Assignment_1_UML.jpeg?raw=true)
 
 # Classes
-* Base\
+* Base
   * Serves as the primary interface that classes in the composite pattern inherit from. Implements two functions that each subclass must implement: Print() and ReadLine().
-* Command\
+* Command
   * Handles the execution of commands such as: fork, execvp, and waitpid.
 * Connector
   * *And*\
@@ -26,7 +26,7 @@ Has two private member variables: leftChild and rightChild (Base pointers). And 
 Has two private member variables: leftChild and rightChild (Base pointers). Or handles two commands, in which the following command is executed only if the first command (leftChild) fails.
   * *Semicolon*\
 Has two private member variables: leftChild and rightChild (Base pointers). Semicolon handles two commands, in which the following command is executed regardless if the first is successfully completed or fails.
-* *Command Line*\
+* *Command Line*
   * Holds multiple commands seperated by connectors that is to be executed.
 # Prototypes/Research
 
