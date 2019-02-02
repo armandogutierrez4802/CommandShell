@@ -20,11 +20,11 @@ Serves as the primary interface that classes in the composite pattern inherit fr
 * Command\
 Handles the execution of commands such as: fork, execvp, and waitpid.
 * Connector\
-  *And\
+  * And\
     Has two private member variables: leftChild and rightChild (Base pointers). And handles two commands, in which the following command is executed only if the first command (leftChild) is successfully completed.\
-  *Or\
+  * Or\
     Has two private member variables: leftChild and rightChild (Base pointers). Or handles two commands, in which the following command is executed only if the first command (leftChild) fails.\
-  *Semicolon\
+  * Semicolon\
     Has two private member variables: leftChild and rightChild (Base pointers). Semicolon handles two commands, in which the following command is executed regardless if the first is successfully completed or fails.\
 * Command Line\
 Holds multiple commands seperated by connectors that is to be executed.
