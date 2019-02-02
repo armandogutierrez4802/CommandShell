@@ -41,3 +41,10 @@ Has two private member variables: leftChild and rightChild (Base pointers). Semi
 6. Or
 7. Semicolon
 * Unit and Integration tests:
+1. Command Unit Test
+2. Connector Unit Test and Integration Test
+3. Command Line Unit and Integration Test
+4. And Unit Test
+5. Or Unit Test
+6. Semicolon Unit Test
+
