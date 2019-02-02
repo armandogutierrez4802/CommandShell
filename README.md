@@ -19,7 +19,7 @@ In addition, this project will be implemented using the composite pattern as the
 Serves as the primary interface that classes in the composite pattern inherit from. Implements two functions that each subclass must implement: Print() and ReadLine().
 * Command\
 Handles the execution of commands such as: fork, execvp, and waitpid.
-* Connector\
+* Connector
   * And\
 Has two private member variables: leftChild and rightChild (Base pointers). And handles two commands, in which the following command is executed only if the first command (leftChild) is successfully completed.\
   * Or\
