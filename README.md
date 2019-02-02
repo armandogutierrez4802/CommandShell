@@ -15,13 +15,13 @@ In addition, this project will be implemented using the composite pattern as the
 ![UML Diagram](https://github.com/cs100/assignment-cs_100_aa_assignment_1/blob/master/Images/Assignment_1_UML.jpeg?raw=true)
 
 # Classes
-## Base
+###### Base
 
-## Command
+###### Command
 
-## Connector
+###### Connector
 
-## Command Line
+###### Command Line
 
 * And
 * Or
