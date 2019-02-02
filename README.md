@@ -32,7 +32,7 @@ Has two private member variables: leftChild and rightChild (Base pointers). Semi
 
 # Development and Testing Roadmap
 ### Tasks to be completed:
-* Class implementations:
+##### Class implementations:
 1. Base
 2. Command
 3. Connector
