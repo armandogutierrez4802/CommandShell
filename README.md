@@ -31,3 +31,13 @@ Has two private member variables: leftChild and rightChild (Base pointers). Semi
 # Prototypes/Research
 
 # Development and Testing Roadmap
+### Tasks to be completed:
+* Class implementations:
+  1. Base
+  2. Command
+  3. Connector
+  4. Command Line
+  5. And
+  6. Or
+  7. Semicolon
+* Unit and Integration tests:
