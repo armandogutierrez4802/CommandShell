@@ -16,18 +16,18 @@ In addition, this project will be implemented using the composite pattern as the
 
 # Classes
 * Base\
-Serves as the primary interface that classes in the composite pattern inherit from. Implements two functions that each subclass must implement: Print() and ReadLine().
+  * Serves as the primary interface that classes in the composite pattern inherit from. Implements two functions that each subclass must implement: Print() and ReadLine().
 * Command\
-Handles the execution of commands such as: fork, execvp, and waitpid.
+  * Handles the execution of commands such as: fork, execvp, and waitpid.
 * Connector
-  * And\
+  * *And*\
 Has two private member variables: leftChild and rightChild (Base pointers). And handles two commands, in which the following command is executed only if the first command (leftChild) is successfully completed.
-  * Or\
+  * *Or*\
 Has two private member variables: leftChild and rightChild (Base pointers). Or handles two commands, in which the following command is executed only if the first command (leftChild) fails.
-  * Semicolon\
+  * *Semicolon*\
 Has two private member variables: leftChild and rightChild (Base pointers). Semicolon handles two commands, in which the following command is executed regardless if the first is successfully completed or fails.
-* Command Line\
-Holds multiple commands seperated by connectors that is to be executed.
+* *Command Line*\
+  * Holds multiple commands seperated by connectors that is to be executed.
 # Prototypes/Research
 
 # Development and Testing Roadmap
