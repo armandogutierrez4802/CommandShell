@@ -1,21 +1,32 @@
-#include "unistd.h"
-#include "sys/types.h"
-#include "sys/wait.h"
+#include <iostream>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <stdlib.h>
 
-int main() {
-    pid_t pid;
-    int status;
-    
-    char* cmdLine[3] = { ;
-    cmdLine[0] = "cd";
-    cmdLine[1] = "..";
-    cmdLine[2] = NULL;
-    
-    pid = fork();
-    if(pid == 0) {
-        execvp("cd", cmdLine);
-    } else {
-        wp = waitpid(pid, &status, 0);
-        execvp("cd", cmdLine);
-    }
+using namespace std;
+
+int main(){
+        char* args[3];
+        string str1 = "Hello";
+        string str2 = "World";
+        args[0] = (char*) str1.c_str();
+        args[1] = (char*) str2.c_str();
+        args[2] = NULL;
+
+        pid_t pid = fork();
+        if(pid == 0){//Child process
+                cout << "In the child" << endl;
+                if(execvp(args[0],args) == -1){
+                        perror("exec");
+                }
+        }
+
+        if(pid > 0){//Parent process
+                waitpid(pid,NULL,0);
+                cout << "In the parent" << endl;
+
+        }
+
 }
