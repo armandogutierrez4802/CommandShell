@@ -29,6 +29,8 @@ Has two private member variables: leftChild and rightChild (Base pointers). Semi
 * Command Line
   * Holds multiple commands seperated by connectors that is to be executed.
 # Prototypes/Research
+The purpose of the prototype is to apply what we have researched and learned about the functions waitpid(), execvp() and fork(). The execvp() function takes in two arguments. The first of which is the name of the file that is going to be executed. Once the first argument is loaded into the caller's address space and over-writes the program, then the second argument will be provided to the program right before it executes. The fork() function creats an identical process to the one being ran. The two processes are called the Child and the Parent. These two processes will run simultaneously unless a wait() function is called. The waitpid() function, if called in the parent process, will cause the parent process to wait until the specified, usually once the child process is terminated. \
+These functions will be useful in our assignment because our connectors determine how two variables on either side of it will relate to one another. Depending on whether the connector is and &&, ||, or semicolon, we may or many not want/need to execute the parent process by the results of execution of the child process.
 
 # Development and Testing Roadmap
 ### Tasks to be completed:
