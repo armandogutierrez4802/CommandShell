@@ -3,6 +3,11 @@
 
 #include "commandLine.h"
 #include <string>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <stdlib.h>
 
 class Executable: public CommandLine  {
 private:
