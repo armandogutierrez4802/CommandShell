@@ -7,10 +7,12 @@
 
 class Input: public CommandLine  {
 protected:
+	std::string userInput;
         vector<std::string*> result;
 	vector<CommandLine*> commandline;
 	vector<CommandLine*> argList;
 public:
+	Input(std::string userInput);
         bool execute();
         std::string parse();
 	void singleCommand();
