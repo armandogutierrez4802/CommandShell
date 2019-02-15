@@ -2,7 +2,6 @@
 #define semicolon_h
 
 #include "commandLine.h"
-#include <string>
 
 class Semicolon: public Connectors  {
 public:

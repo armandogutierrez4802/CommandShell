@@ -2,7 +2,6 @@
 #define connector_h
 
 #include "commandLine.h"
-#include <string>
 
 class Connectors: public CommandLine  {
 protected:
