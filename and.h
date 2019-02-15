@@ -5,9 +5,9 @@
 
 class And: public Connectors  {
 public:
+	And(CommandLine* leftChild, CommandLine* rightChild);
         bool execute();
-        void addLeftChild();
-	void addRightChild();
+  
 };
 
 #endif /* and_h */

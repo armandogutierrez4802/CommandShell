@@ -6,9 +6,9 @@
 
 class Semicolon: public Connectors  {
 public:
-        bool execute();
-        void addLeftChild();
-	void addRightChild();
+	Semicolon(CommandLine* leftChild, CommandLine* rightChild);
+        bool executre()
+
 };
 
 #endif /* semicolon_h */

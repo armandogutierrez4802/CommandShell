@@ -3,11 +3,10 @@
 
 #include "connectors.h"
 
-class Or: public Connectors  {
+class Or : public Connectors  {
 public:
+	Or(CommandLine* leftChild, CommandLine* rightChild);
         bool execute();
-        void addLeftChild();
-	void addRightChild();
 };
 
 #endif /* or_h */

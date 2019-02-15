@@ -1,5 +1,5 @@
-#ifndef connector_h
-#define connector_h
+#ifndef connectors_h
+#define connectors_h
 
 #include "commandLine.h"
 #include <string>
@@ -8,12 +8,10 @@ class Connectors: public CommandLine  {
 protected:
         CommandLine* leftChild;
 	CommandLine* rightChild;
-	CommandLine* command;
 public:
-        bool execute();
-        virtual void addLeftChild();
-	virtual void addRightChild();
-	virtual void addCommand();
+        Connectors(CommandLine* leftChild, CommandLine* rightChild);
+	bool execute();
+        
 };
 
-#endif /* connector_h */
+#endif /* connectors_h */

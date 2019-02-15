@@ -6,13 +6,14 @@
 
 class Executable: public CommandLine  {
 private:
-	std::string arg;
+	std::string argument;
 	int numArg;
 	std::string temp;
 	char** charArg;
 public:
+	Executable(string argument, int numArguments)
 	bool execute();
-	void createArgList(string);
+	//void createArgList(string);
 };
 
 #endif /* executable_h */
