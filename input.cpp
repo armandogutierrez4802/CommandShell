@@ -54,7 +54,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			//Push_back the connector on the connectorTokens 
 		}
 
-        	token = strtok(NULL,delim);
+        	token = strtok(NULL," ");
 	}
 
 	//instantiate a command object with commandTokens and push_back it onto commandObjects
