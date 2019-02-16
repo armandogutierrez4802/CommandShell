@@ -45,27 +45,23 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		
 			//Push_back the connector on the connectorTokens 
 		
-		
-			
-				
-		
-		
-		
-		
-		
-		//Check size lists (command = 2 & connector = 1)
-		//Assign first command as connectors left child and second command as connectors right child
-		//CommandList should now be empty
-		//Push the connector onto the commandClass
-		
-		//Need to check if it is a command or connector
-		
-		//If command, then instantiate a command object, then push that command object onto commandList
-		//If connector, then instantiate a connector object and push that connector object onto connectorList
-		
-        	
+
         	token = strtok(NULL,delim);
 	}
 
+	//instantiate a command object with commandTokens and push_back it onto commandObjects
+	//If commandObjects size == 2 
+		//then instantiate a connector by passing in the two commandObjects
+		//Use if elses to determine what kind of connector it is (this is connectorTokens)
+		//Push this new connector object onto connectorObjects
+		//Empty the commandObjects vector
+		//Move the connector Object into the commandObject list
+		//Pop connector Object
+	//Pop connectorTokens
+		
+	
+	//We now have our entire tree in the first element of our commandObjects
+	
+	
 }
 
