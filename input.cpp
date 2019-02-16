@@ -17,7 +17,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			if(this->userInput[i+1] == " " && (i+1) != this->userInput.size()){
 				newUserInput += " ";
 			}
-			newUserInput += this->userInput[i]; 
+			newUserInput += this->userInput[i];
 		}	
 	}
 	
@@ -79,18 +79,35 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		}
 
         	token = strtok(NULL," ");
-	}
+	}//end while loop
 
-	//instantiate a command object with commandTokens and push_back it onto commandObjects
+	//instantiate a command object with commandTokens
+	//push_back it onto commandObjects
+	object = new Executable(commandTokens,commandTokens.size());
+	commandObjects.push_back(object);
 	//If commandObjects size == 2 
+	if(commandObjects.size() == 2){
 		//then instantiate a connector by passing in the two commandObjects
 		//Use if elses to determine what kind of connector it is (this is connectorTokens)
+		if((std::strcmp(token, orCmp) == 0)){
+			object = new Or(commandObjects.front(),commandObjects.back());
+		} else if((std::strcmp(token, andCmp) == 0)){
+			object = new And(commandObjects.front(),commandObjects.back());
+		} else if((std::strcmp(token, semiCmp) == 0)){
+			object = new Semi(commandObjects.front(),commandObjects.back());
+		}
 		//Push this new connector object onto connectorObjects
+		connectorObjects.push_back(object);
 		//Empty the commandObjects vector
+		commandObjects.pop_back();
+		commandObjects.pop_back();
 		//Move the connector Object into the commandObject list
+		commandObjects.push_back(connectorObjects);
 		//Pop connector Object
+		connectorObjects.pop_back();
+	}
 	//Pop connectorTokens
-		
+	connectorTokens.pop_back();
 	
 	//We now have our entire tree in the first element of our commandObjects
 	
