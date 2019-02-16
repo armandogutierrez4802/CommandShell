@@ -12,7 +12,7 @@
 class Executable: public CommandLine  {
 private:
 	vector<char*> comTokens;
-	int numArg;
+	int numArguments;
 	std::string temp;
 	char** charArg;
 public:
