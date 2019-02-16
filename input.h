@@ -2,9 +2,15 @@
 #define input_h
 
 #include "commandLine.h"
+#include "executable.h"
+#include "connectors.h"
+#include "or.h"
+#include "and.h"
+#include "semicolon.h"
 #include <string>
 #include <string.h>
 #include <vector>
+
 using namespace std;
 class Input: public CommandLine  {
 protected:
@@ -13,7 +19,7 @@ protected:
 	vector<char*> commandTokens;
 	vector<char*> connectorTokens;
 	vector<CommandLine*> commandObjects;
-	vector<CommandLine*> connectObjects;
+	vector<CommandLine*> connectorObjects;
 public:
 	Input(std::string userInput);
         bool execute();

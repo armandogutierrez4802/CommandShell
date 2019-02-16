@@ -5,7 +5,7 @@ Executable::Executable(vector<char*> cmTokens, int numArguments){
 	this->numArguments = numArguments;
 }
 
-bool Executable:execute(){
+bool Executable::execute(){
 	char* args[numArguments+1];
 	bool returnValue;
 	
@@ -13,7 +13,7 @@ bool Executable:execute(){
 		args[i] = cmTokens.at(i);
 	}
 	
-	args[i] = NULL;
+	args[numArguments] = NULL;
 		
 	pid_t pid = fork();
 	if(pid == -1){

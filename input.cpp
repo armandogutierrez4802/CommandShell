@@ -1,8 +1,8 @@
 #include "input.h"
 #include <string>
+#include <cstring>
 
-
-Input(std::string userInput){
+Input::Input(std::string userInput){
 	this->userInput = userInput;
 }
 
@@ -13,9 +13,9 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	for(int i = 0; i < this->userInput.size(); i++){//Handle the comments and adding spaces before semicolon
 		if(this->userInput[i] == '#'){
 			break;
-		} else{ 
-			if(this->userInput[i+1] == " " && (i+1) != this->userInput.size()){
-				newUserInput += " ";
+		} else{
+			if(this->userInput[i+1] == ' ' && (i+1) != this->userInput.size()){
+				newUserInput += ' ';
 			}
 			newUserInput += this->userInput[i];
 		}	
@@ -26,18 +26,27 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	
 	
 	//Now we build our tree as we tokenize
+	char *c = new char [newUserInput.length()+1];
+	strcpy(c, newUserInput.c_str());
+	char *token = strtok(c," ");
+	string orString = "||";
+	string andString = "&&";
+	string semiString = ";";
 	
-	char *token = strtok(newUserString," ");
-	char* orCmp = "||";
-	char* andCmp = "&&";
-	char* semiCmp = ";";
+	char* orCmp = new char[orString.length()+1];
+	strcpy(orCmp, orString.c_str());
+	char* andCmp = new char[andString.length()+1];
+	strcpy(andCmp, andString.c_str());
+	char* semiCmp = new char[semiString.length()+1];
+	strcpy(semiCmp, semiString.c_str());
+
 	CommandLine* object;
 		
 		
     	while (token)
     	{
 		//if token is command, then push_back onto commandTokens
-		if((std::strcmp(token, orCmp) != 0) || std::strcmp(token, andCmp) != 0) ||std::strcmp(token, semiCmp) != 0)){
+		if((strcmp(token, orCmp) != 0) || (strcmp(token, andCmp) != 0) || (strcmp(token, semiCmp) != 0)){
 			commandTokens.push_back(token);
 		}
 		else{//if token is connector,
@@ -53,12 +62,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			if(commandObjects.size() == 2){
 				//then instantiate a connector by passing in the two commandObjects
 				//Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
-				if((std::strcmp(token, orCmp) == 0)){
+				if((strcmp(token, orCmp) == 0)){
 					object = new Or(commandObjects.front(),commandObjects.back());
-				} else if((std::strcmp(token, andCmp) == 0)){
+				} else if((strcmp(token, andCmp) == 0)){
 					object = new And(commandObjects.front(),commandObjects.back());
-				} else if((std::strcmp(token, semiCmp) == 0)){
-					object = new Semi(commandObjects.front(),commandObjects.back());
+				} else if((strcmp(token, semiCmp) == 0)){
+					object = new Semicolon(commandObjects.front(),commandObjects.back());
 				}
 				//Push this new connector object onto connectorObjects
 				connectorObjects.push_back(object);
@@ -66,7 +75,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 				commandObjects.pop_back();
 				commandObjects.pop_back();
 				//Move the connector Object into the commandObject list
-				commandObjects.push_back(connectorObjects);
+				commandObjects.push_back(connectorObjects.at(0));
 				//Pop connector Object
 				connectorObjects.pop_back();
 				//Pop connectorTokens 
@@ -89,12 +98,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	if(commandObjects.size() == 2){
 		//then instantiate a connector by passing in the two commandObjects
 		//Use if elses to determine what kind of connector it is (this is connectorTokens)
-		if((std::strcmp(token, orCmp) == 0)){
+		if((strcmp(token, orCmp) == 0)){
 			object = new Or(commandObjects.front(),commandObjects.back());
-		} else if((std::strcmp(token, andCmp) == 0)){
+		} else if((strcmp(token, andCmp) == 0)){
 			object = new And(commandObjects.front(),commandObjects.back());
-		} else if((std::strcmp(token, semiCmp) == 0)){
-			object = new Semi(commandObjects.front(),commandObjects.back());
+		} else if((strcmp(token, semiCmp) == 0)){
+			object = new Semicolon(commandObjects.front(),commandObjects.back());
 		}
 		//Push this new connector object onto connectorObjects
 		connectorObjects.push_back(object);
@@ -102,7 +111,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		commandObjects.pop_back();
 		commandObjects.pop_back();
 		//Move the connector Object into the commandObject list
-		commandObjects.push_back(connectorObjects);
+		commandObjects.push_back(connectorObjects.at(0));
 		//Pop connector Object
 		connectorObjects.pop_back();
 	}

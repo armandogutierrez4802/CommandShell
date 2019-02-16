@@ -1,8 +1,8 @@
 #include "connectors.h"
 
-Connectors::Connectors(CommandLine* leftChild, CommandLine* rightChild){	
-	this->leftChild = leftChild;
-	this->rightChild = rightChild;
+Connectors::Connectors(){	
+	//this->leftChild = leftChild;
+	//this->rightChild = rightChild;
 }
 
  bool Connectors::execute(){}

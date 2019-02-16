@@ -8,7 +8,8 @@ protected:
         CommandLine* leftChild;
 	CommandLine* rightChild;
 public:
-        Connectors(CommandLine* leftChild, CommandLine* rightChild);
+	Connectors();
+        //Connectors(CommandLine* leftChild, CommandLine* rightChild);
 	bool execute();
         
 };

@@ -1,7 +1,7 @@
 #ifndef semicolon_h
 #define semicolon_h
 
-#include "commandLine.h"
+#include "connectors.h"
 
 class Semicolon: public Connectors  {
 public:
