@@ -31,7 +31,9 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	char* orCmp = "||";
 	char* andCmp = "&&";
 	char* semiCmp = ";";
-	
+	CommandLine* object;
+		
+		
     	while (token)
     	{
 		//if token is command, then push_back onto commandTokens
@@ -39,19 +41,41 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			commandTokens.push_back(token);
 		}
 		else{//if token is connector,
-			//instantiate a command object with commandTokens and push_back it onto commandObjects
-			
+			//instantiate a command object with commandTokens
+			object = new Executable(commandTokens,commandTokens.size());
+			//push_back it onto commandObjects
+			commandObjects.push_back(object);
 			//empty commandTokens???
+			commandTokens.pop_back();
+			commandTokens.pop_back();
+			
 			//If commandObjects size == 2 
+			if(commandObjects.size() == 2){
 				//then instantiate a connector by passing in the two commandObjects
-				//Use if elses to determine what kind of connector it is (this is connectorTokens)
+				//Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
+				if((std::strcmp(token, orCmp) == 0)){
+					object = new Or(commandObjects.front(),commandObjects.back());
+				} else if((std::strcmp(token, andCmp) == 0)){
+					object = new And(commandObjects.front(),commandObjects.back());
+				} else if((std::strcmp(token, semiCmp) == 0)){
+					object = new Semi(commandObjects.front(),commandObjects.back());
+				}
 				//Push this new connector object onto connectorObjects
+				connectorObjects.push_back(object);
 				//Empty the commandObjects vector
+				commandObjects.pop_back();
+				commandObjects.pop_back();
 				//Move the connector Object into the commandObject list
+				commandObjects.push_back(connectorObjects);
 				//Pop connector Object
+				connectorObjects.pop_back();
 				//Pop connectorTokens 
-		
+				connectorTokens.pop_back();
+			}
 			//Push_back the connector on the connectorTokens 
+			//LOL WAIT WHAT IS THIS???
+			//Oh ya this is if we are at a connector, so now we push it before looping again
+			connectorTokens.push_back(token);
 		}
 
         	token = strtok(NULL," ");
