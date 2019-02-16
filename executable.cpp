@@ -1,24 +1,17 @@
 #include "executable.h"
 
-Executable::Executable(string argument, int numArguments){
-	this->arg = argument;
-	this->numArg = numArguments;
+Executable::Executable(vector<char*> cmTokens, int numArguments){
+	this->cmTokens = cmTokens;
+	this->numArguments = numArguments;
 }
 
 bool Executable:execute(){
-	char* args[numArg+1];
-	string delimiter = " ";
-	size_t pos = 0;
-	string token;
-	int i = 0;
+	char* args[numArguments+1];
 	bool returnValue;
 	
-	while((pos = s.find(delimiter)) != std::string::npos){
-		token = s.substr(0,pos);
-		args[i] = (char*)token.c_str();	
-		s.erase(0,pos + delimiter.length());
-		i++;
-	}	
+	for(int i = 0; i < numArguments; i++){
+		args[i] = cmTokens.at(i);
+	}
 	
 	args[i] = NULL;
 		
