@@ -10,7 +10,7 @@ protected:
 	std::string userInput;
         vector<std::string*> result;
 	vector<CommandLine*> commandList;
-	vector<CommandLine*> argList;
+	vector<CommandLine*> connectorList;
 public:
 	Input(std::string userInput);
         bool execute();
