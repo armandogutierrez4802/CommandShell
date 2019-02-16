@@ -1,9 +1,9 @@
 #include "input.h"
+#include <string>
 
 
 Input(std::string userInput){
 	this->userInput = userInput;
-
 }
 
 bool Input::execute(){//Here we parse the string and make a tree out of objects
@@ -28,11 +28,19 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	//Now we build our tree as we tokenize
 	
 	char *token = strtok(newUserString," ");
+	char* orCmp = "||";
+	char* andCmp = "&&";
+	char* semiCmp = ";";
+	
     	while (token)
     	{
 		//if token is command, then push_back onto commandTokens
-		//if token is connector,
+		if((std::strcmp(token, orCmp) != 0) || std::strcmp(token, andCmp) != 0) ||std::strcmp(token, semiCmp) != 0)){
+			commandTokens.push_back(token);
+		}
+		else{//if token is connector,
 			//instantiate a command object with commandTokens and push_back it onto commandObjects
+			
 			//empty commandTokens???
 			//If commandObjects size == 2 
 				//then instantiate a connector by passing in the two commandObjects
@@ -44,7 +52,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 				//Pop connectorTokens 
 		
 			//Push_back the connector on the connectorTokens 
-		
+		}
 
         	token = strtok(NULL,delim);
 	}
