@@ -13,7 +13,6 @@ protected:
 	vector<char*> connectorTokens;
 	vector<CommandLine*> commandObjects;
 	vector<CommandLine*> connectObjects;
-	vector<CommandLine*> tree;
 public:
 	Input(std::string userInput);
         bool execute();
