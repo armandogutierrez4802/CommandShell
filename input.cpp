@@ -53,15 +53,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     	while (token)
     	{
 		cout << "TOKEN IS: " << token << endl;
-		cout << (strcmp(token, semiCmp) != 0) << endl;
-		cout << (strcmp(token, andCmp) != 0) << endl;
-		cout << (strcmp(token, orCmp) != 0) << endl;
+		cout << (strcmp(token, semiCmp) == 0) << endl;
+		cout << (strcmp(token, andCmp) == 0) << endl;
+		cout << (strcmp(token, orCmp) == 0) << endl;
 		cout << endl;
-		//if token is command, then push_back onto commandTokens
-		if((strcmp(token, semiCmp)) != 0 || (strcmp(token, andCmp) != 0) || (strcmp(token, orCmp) != 0)){
-			commandTokens.push_back(token);
-		}
-		else{//if token is connector,
+		//If token is connector
+		if((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0)){
 			cout << "COMMAND TOKENS SIZE = " << commandTokens.size() << endl;
 			//instantiate a command object with commandTokens
 			object = new Executable(commandTokens,commandTokens.size());
@@ -98,7 +95,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			//LOL WAIT WHAT IS THIS???
 			//Oh ya this is if we are at a connector, so now we push it before looping again
 			connectorTokens.push_back(token);
-		}
+		} 
+		//else token is command, then push_back onto commandTokens
+		else{
+			commandTokens.push_back(token);
+		}	
 
         	token = strtok(NULL," ");
 	}//end while loop
