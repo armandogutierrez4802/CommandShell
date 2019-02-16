@@ -30,6 +30,17 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	char *token = strtok(newUserString," ");
     	while (token)
     	{
+		//if token is command, then push_back onto commandTokens
+		//if token is connector,
+			//create a command object with commandTokens and push it onto commandObjects
+				//Empty vector once the command object is made
+			//then push_back connector onto connectorTokens
+				
+		
+		
+		
+		
+		
 		//Check size lists (command = 2 & connector = 1)
 		//Assign first command as connectors left child and second command as connectors right child
 		//CommandList should now be empty
@@ -39,6 +50,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		
 		//If command, then instantiate a command object, then push that command object onto commandList
 		//If connector, then instantiate a connector object and push that connector object onto connectorList
+		
         	
         	token = strtok(NULL,delim);
 	}
