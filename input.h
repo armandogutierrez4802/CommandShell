@@ -10,6 +10,7 @@ protected:
 	std::string userInput;
         //vector<std::string*> result;
 	vector<char*> commandTokens;
+	vector<char*> connectorTokens;
 	vector<CommandLine*> commandObjects;
 	vector<CommandLine*> connectObjects;
 public:
