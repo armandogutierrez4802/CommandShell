@@ -1,4 +1,4 @@
-MAKE_MINIMUM_REQUIRED(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 ADD_SUBDIRECTORY(googletest)
 
@@ -6,6 +6,13 @@ SET(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(c-echo
     main.cpp
+    connectors.cpp
+    or.cpp
+    and.cpp
+    semicolon.cpp
+    executable.cpp
+    input.cpp
+    
 )
 
 ADD_EXECUTABLE(test

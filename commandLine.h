@@ -1,3 +1,4 @@
+using namespace std;
 #ifndef commandLine_h
 #define commandLine_h
 

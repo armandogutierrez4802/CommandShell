@@ -3,8 +3,9 @@
 
 #include "commandLine.h"
 #include <string>
+#include <string.h>
 #include <vector>
-
+using namespace std;
 class Input: public CommandLine  {
 protected:
 	std::string userInput;

@@ -5,4 +5,4 @@ Connectors::Connectors(CommandLine* leftChild, CommandLine* rightChild){
 	this->rightChild = rightChild;
 }
 
-virtual bool Connectors::execute(){}
+ bool Connectors::execute(){}
