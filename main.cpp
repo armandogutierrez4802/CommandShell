@@ -13,9 +13,10 @@ int main() {
 //	int continue;
 //	while(continue){
 	cout << "$ ";
-	cin >> userInput;
+	getline(cin,userInput);
 	Input* object  = new Input(userInput);
+	object->execute();
 //	}
-
+	cout << "THIS IS THE END OF THE PROGRAM" << endl;
 
 }

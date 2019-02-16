@@ -4,7 +4,7 @@ using namespace std;
 
 class CommandLine {
 public:
-    virtual bool execute();
+    virtual bool execute() = 0;
 };
 
 #endif /* commandLine_h */
