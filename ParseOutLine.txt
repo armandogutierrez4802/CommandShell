@@ -1,0 +1,86 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main()
+{
+    char str[] = "COMMAND 1 || COMMAND 2 && COMMAND 3 ; COMMAND 4 && COMMAND 5";
+    vector<string> connectors;
+    vector<string> commands;
+    
+    // Push connectors onto vector
+    char key[] = "|&;";
+    char* c;
+    c = strpbrk (str, key);
+    while (c != NULL)
+    {
+        if (*c == '&') {
+            connectors.push_back("&&");
+            c = strpbrk (c+2,key);
+        }
+        else if (*c == '|') {
+            connectors.push_back("||");
+            c = strpbrk (c+2,key);
+        }
+        else if (*c == ';') {
+            connectors.push_back(";");
+            c = strpbrk (c+1,key);
+        }
+    }
+    
+    for(int i = 0; i < connectors.size() ; i++) {
+        cout << connectors[i] << endl;
+    }
+    
+    cout << endl;
+
+    char *token = strtok(str, "||&&;");
+    
+    // Keep printing tokens while one of the
+    // delimiters present in str[].
+    while (token != NULL)
+    {
+        //printf("%s\n", token);
+        //cout << token << endl;
+        commands.push_back(token);
+        token = strtok(NULL, "&&||;");
+    }
+    
+    std::reverse(commands.begin(), commands.end());
+    for(int i = 0; i < commands.size() ; i++) {
+        cout << commands[i] << endl;
+    }
+    
+    
+    
+    
+    stack<string> tree;
+    
+    //Create the Tree
+    while (!connectors.empty() && !commands.empty()) {
+        if (connectors.empty()) {
+            tree.push(commands.front());
+            commands.erase(commands.begin());
+        } else {
+            tree.push(connectors.front());
+            connectors.erase(connectors.begin());
+            tree.push(commands.front());
+            commands.erase(commands.begin());
+        }
+    }
+    
+    //stack<CommandLine*> realTree;
+    
+    while (!tree.empty()) {
+        //NodeRightChild = tree.top();
+        //tree.pop()
+        //NodeLeftChild = tree.top();
+        //tree.pop()
+        //CommandLine* node = new CommandLine(NodeLeftChild, NodeRightChild);
+        
+    }
+    
+    return 0;
+}
