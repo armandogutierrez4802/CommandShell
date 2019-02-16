@@ -33,6 +33,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		//if token is command, then push_back onto commandTokens
 		//if token is connector,
 			//instantiate a command object with commandTokens and push_back it onto commandObjects
+			//empty commandTokens???
 			//If commandObjects size == 2 
 				//then instantiate a connector by passing in the two commandObjects
 				//Use if elses to determine what kind of connector it is (this is connectorTokens)
