@@ -9,8 +9,10 @@ class Input: public CommandLine  {
 protected:
 	std::string userInput;
         //vector<std::string*> result;
-	vector<CommandLine*> commandList;
-	vector<CommandLine*> connectorList;
+	vector<char*> commandTokens; 
+	vector<char*> connectorTokens;
+	vector<CommandLine*> commandObjects;
+	vector<CommandLine*> connectObjects;
 	vector<CommandLine*> tree;
 public:
 	Input(std::string userInput);
