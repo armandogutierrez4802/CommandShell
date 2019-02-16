@@ -13,8 +13,8 @@ class Executable: public CommandLine  {
 private:
 	vector<char*> cmTokens;
 	int numArguments;
-	std::string temp;
-	char** charArg;
+	//std::string temp;
+	//char** charArg;
 public:
 	Executable(vector<char*> cmTokens, int numArguments);
 	bool execute();
