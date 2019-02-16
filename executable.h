@@ -16,7 +16,7 @@ private:
 	std::string temp;
 	char** charArg;
 public:
-	Executable(vector<char*> cmTokens, int vectorSize);
+	Executable(vector<char*> cmTokens, int numArguments);
 	bool execute();
 	//void createArgList(string);
 };
