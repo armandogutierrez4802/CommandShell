@@ -5,6 +5,12 @@ Executable::Executable(vector<char*> cmTokens, int numArguments){
 	this->numArguments = numArguments;
 }
 
+void Executable::display(){
+	for(int i = 0; i < numArguments; i++{
+		cout << cmTokens[i] << " ";	
+	}
+}
+
 bool Executable::execute(){
 	char* args[numArguments+1];
 	bool returnValue;
