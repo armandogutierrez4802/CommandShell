@@ -9,18 +9,13 @@ Input::Input(std::string userInput){
 
 bool Input::execute(){//Here we parse the string and make a tree out of objects
     std::string newUserInput = "";
-    //this->userInput += "\0" //Do we need this or does every string end in /0 ??
-    //cout << "A" << endl;
     for(int i = 0; i < this->userInput.size(); i++){//Handle the comments and adding spaces before semicolon
         if(this->userInput[i] == '#'){
             break;
         } else{
-            //cout << "B" << endl;
             if(this->userInput[i] == ';'){// && (i+1) != this->userInput.size()){
-                //cout << "C" << endl;
                 newUserInput += ' ';
             }
-            //cout << "D" << endl;
             newUserInput += this->userInput[i];
         }
     }
@@ -28,8 +23,6 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     
     //Now our new user input string accounts for comments, and now everything is separated by a space
     
-    //cout << "NEW USER INPUT STRING: " << newUserInput << endl;
-    //cout << "SIZE OF NEW INPUT: " << newUserInput.size() << endl;
     //Now we build our tree as we tokenize
     char *c = new char [newUserInput.length()+1];
     strcpy(c, newUserInput.c_str());
@@ -53,16 +46,21 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     {
         //If token is connector
         if((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0)){
-           // cout << "COMMAND TOKENS SIZE = " << commandTokens.size() << endl;
             //instantiate a command object with commandTokens
             object = new Executable(commandTokens,commandTokens.size());
+            
+            cout << "Command Object ";
+            for(int i = 0; i < commandTokens.size(); i++){
+                cout << commandTokens.at(i) << " ";
+            }
+            cout << "was just created" << endl;
+            
             //push_back it onto commandObjects
             commandObjects.push_back(object);
             //empty commandTokens
             while(commandTokens.size() != 0){
                 commandTokens.pop_back();
             }
-            
             
             //If commandObjects size == 2
             if(commandObjects.size() == 2){
@@ -75,6 +73,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 } else if((strcmp(token, semiCmp) == 0)){
                     object = new Semicolon(commandObjects.front(),commandObjects.back());
                 }
+                
+                cout << "Connector Object " << token << " was just created" << endl;
+                cout << "Left Child = " <<  << endl;
+                cout << "Right Child = " <<  << endl;
+                 
+                
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
                 //Empty the commandObjects vector
@@ -121,6 +125,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             object = new Semicolon(commandObjects.front(),commandObjects.back());
         }
         cout << "E" << endl;
+        
+        cout << "Connector Object " << token << " was just created" << endl;
+        cout << "Left Child = " <<  << endl;
+        cout << "Right Child = " <<  << endl;
+        
         //Push this new connector object onto connectorObjects
         connectorObjects.push_back(object);
         //Empty the commandObjects vector
