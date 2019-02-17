@@ -133,17 +133,23 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         }
         token = strtok(NULL," ");
    }//end while loop
-
+    
+    
+    //We are always gauranteed to need to create a command object for our last command to execute
     //instantiate a command object with commandTokens
     //push_back it onto commandObjects
     object = new Executable(commandTokens,commandTokens.size());
     commandObjects.push_back(object);
+    
+    //empty commandTokens
+    while(commandTokens.size() != 0){
+    	commandTokens.pop_back();
+    }
 
     //If commandObjects size == 2
     if(commandObjects.size() == 2){
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
-        cout << token << endl;
         cout << "A" << endl;
         if((strcmp(connectorTokens.at(0), orCmp) == 0)){
             cout << "B" << endl;
@@ -155,7 +161,6 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             cout << "D" << endl;
             object = new Semicolon(commandObjects.front(),commandObjects.back());
         }
-        cout << "E" << endl;
         
         //TESTING BLOCK OPEN
 	/*
@@ -170,19 +175,22 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         //Push this new connector object onto connectorObjects
         connectorObjects.push_back(object);
         //Empty the commandObjects vector
+        //cout << " CMO SIZE = " << commandObjects.size() << "*" << endl;
         commandObjects.pop_back();
         commandObjects.pop_back();
         //Move the connector Object into the commandObject list
         commandObjects.push_back(connectorObjects.at(0));
-        //Pop connector Object
+       // cout << " CMO SIZE = " << commandObjects.size() << "**" << endl;
+	//Pop connector Object
+	//cout << " CNO SIZE = " << connectorObjects.size() << "**" << endl;
         connectorObjects.pop_back();
     }
-    //cout << "AAAHHH" << endl;
+    
+    //cout << " CNT SIZE = " << connectorTokens.size() << "**" << endl;
     //Pop connectorTokens
     connectorTokens.pop_back();
     
-    //cout << "WE MADE IT " << endl; 
-
+    
     //We now have our entire tree in the first element of our commandObjects
     commandObjects[0]->execute();
     
