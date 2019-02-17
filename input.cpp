@@ -174,9 +174,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         //Pop connector Object
         connectorObjects.pop_back();
     }
+    cout << "AAAHHH" << endl;
     //Pop connectorTokens
     connectorTokens.pop_back();
     
+    cout << "WE MADE IT " << endl; 
+
     //We now have our entire tree in the first element of our commandObjects
     commandObjects[0]->execute();
     
