@@ -6,7 +6,7 @@ Executable::Executable(vector<char*> cmTokens, int numArguments){
 }
 
 void Executable::display(){
-	for(int i = 0; i < numArguments; i++{
+	for(int i = 0; i < numArguments; i++){
 		cout << cmTokens[i] << " ";	
 	}
 }

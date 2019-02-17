@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <vector>
+#include <iostream>
 using namespace std;
 class Executable: public CommandLine  {
 private:

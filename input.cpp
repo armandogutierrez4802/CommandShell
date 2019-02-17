@@ -43,8 +43,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     CommandLine* object;
     
     
-    CommandLine* leftChild;//For outputting and testing purposes
-    CommandLine* rightChild;//For outputting and testing purposes
+    Executable* leftChild;//For outputting and testing purposes
+    Executable* rightChild;//For outputting and testing purposes
     
     
     while (token)
@@ -100,8 +100,10 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 
                 //TESTING BLOCK OPEN
                 cout << "Connector Object " << token << " was just created" << endl;
-                cout << "Left Child = " << leftChild->display() << endl;
-                cout << "Right Child = " << rightChild->display() << endl;
+                cout << "Left Child = ";
+        	leftChild->display();
+        	cout << "Right Child = ";       
+     	   	rightChild->display();
                 //TESTING BLOCK CLOSE
                 
                 //Push this new connector object onto connectorObjects
@@ -126,8 +128,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             commandTokens.push_back(token);
         }
         token = strtok(NULL," ");
-    }//end while loop
-    
+	cout << "**" << endl;
+   }//end while loop
+
+    cout << "***" << endl;
+
     //instantiate a command object with commandTokens
     //push_back it onto commandObjects
     object = new Executable(commandTokens,commandTokens.size());
@@ -153,8 +158,10 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         
         //TESTING BLOCK OPEN
         cout << "Connector Object " << token << " was just created" << endl;
-        cout << "Left Child = " << leftChild->display() << endl;
-        cout << "Right Child = " << rightChild->display() << endl;
+        cout << "Left Child = ";
+	leftChild->display();
+        cout << "Right Child = ";
+	rightChild->display();
         //TESTING BLOCK CLOSE
         
         //Push this new connector object onto connectorObjects
