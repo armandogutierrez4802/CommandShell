@@ -13,7 +13,7 @@
 
 using namespace std;
 class Input: public CommandLine  {
-protected:
+private:
 	std::string userInput;
         //vector<std::string*> result;
 	vector<char*> commandTokens;
