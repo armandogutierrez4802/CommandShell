@@ -1,10 +1,10 @@
-#include "commandLine.h"
-#include "connectors.h"
-#include "and.h"
-#include "or.h"
-#include "semicolon.h"
-#include "executable.h"
-#include "input.h"
+#include "../header/commandLine.h"
+#include "../header/connectors.h"
+#include "../header/and.h"
+#include "../header/or.h"
+#include "../header/semicolon.h"
+#include "../header/executable.h"
+#include "../header/input.h"
 #include <iostream>
 
 using namespace std;

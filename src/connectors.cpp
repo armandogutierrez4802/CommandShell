@@ -1,4 +1,4 @@
-#include "connectors.h"
+#include "../header/connectors.h"
 
 Connectors::Connectors(){	
 	//this->leftChild = leftChild;

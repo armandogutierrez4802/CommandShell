@@ -1,4 +1,4 @@
-#include "executable.h"
+#include "../header/executable.h"
 
 Executable::Executable(vector<char*> cmTokens, int numArguments){
 	this->cmTokens = cmTokens;
