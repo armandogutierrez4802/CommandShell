@@ -112,11 +112,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	if(commandObjects.size() == 2){
 		//then instantiate a connector by passing in the two commandObjects
 		//Use if elses to determine what kind of connector it is (this is connectorTokens)
-		if((strcmp(token, orCmp) == 0)){
+		if((strcmp(connectorTokens.at(0), orCmp) == 0)){
 			object = new Or(commandObjects.front(),commandObjects.back());
-		} else if((strcmp(token, andCmp) == 0)){
+		} else if((strcmp(connectorTokens.at(0), andCmp) == 0)){
 			object = new And(commandObjects.front(),commandObjects.back());
-		} else if((strcmp(token, semiCmp) == 0)){
+		} else if((strcmp(connectorTokens.at(0), semiCmp) == 0)){
 			object = new Semicolon(commandObjects.front(),commandObjects.back());
 		}
 		//Push this new connector object onto connectorObjects
