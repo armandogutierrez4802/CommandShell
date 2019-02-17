@@ -13,7 +13,6 @@ void Executable::display(){
 
 bool Executable::execute(){
 	char* args[numArguments+1];
-	bool returnValue;
 	
 	for(int i = 0; i < numArguments; i++){
 		args[i] = cmTokens.at(i);
@@ -24,11 +23,11 @@ bool Executable::execute(){
 	pid_t pid = fork();
 	if(pid == -1){
 		perror("error in fork");
+		exit(EXIT_FAILURE);
 	} else if(pid == 0){//Child Process
-		if(execvp(args[0], args) == -1){
-		returnValue = false;
-		perror("error in execvp");
-		exit(1);
+		if(execvp(args[0], args) == -1){	
+			perror("error in execvp");
+			exit(EXIT_FAILURE);
 		}
 	} else if(pid > 0){//Parent Process
 		int status;
@@ -36,7 +35,7 @@ bool Executable::execute(){
           		perror("Error in parent wait");
 		}
 	}
-	return returnValue;
+	return true;
 }
 
 

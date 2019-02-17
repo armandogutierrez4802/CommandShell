@@ -57,28 +57,34 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             
             
             //TESTING BLOCK OPEN
-	    /*
-            cout << "Command Object ";
+	    //This is to tell us what command object we created
+            /*
+	    cout << "Command Object ";
             for(int i = 0; i < commandTokens.size(); i++){
                 cout << commandTokens.at(i) << " ";
             }
             cout << "was just created" << endl;
-            //TESTING BLOCK CLOSE
             */
+	    //TESTING BLOCK CLOSE
+            
             
             //push_back it onto commandObjects
             commandObjects.push_back(object);
             
             
             //TESTING BLOCK OPEN
-	    /*
-            if(commandObjects.size() == 0){
+	    //This is how we know if our ommand is on the left or right side of the connector
+            /*
+	    if(commandObjects.size() == 1){
+		cout << "We declared the left child" << endl;
                 leftChild = new Executable(commandTokens,commandTokens.size());
-            } else if(commandObjects.size() == 1){
+            } else if(commandObjects.size() == 2){
+		cout << "We declared the right child" << endl;
                 rightChild = new Executable(commandTokens,commandTokens.size());
             }    
-            //TESTING BLOCK CLOSE
 	    */
+            //TESTING BLOCK CLOSE
+	    
             
             
             
@@ -92,12 +98,15 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             if(commandObjects.size() == 2){
                 //then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
-                if((strcmp(token, orCmp) == 0)){
-                    object = new Or(commandObjects.front(),commandObjects.back());
-                } else if((strcmp(token, andCmp) == 0)){
-                    object = new And(commandObjects.front(),commandObjects.back());
-                } else if((strcmp(token, semiCmp) == 0)){
-                    object = new Semicolon(commandObjects.front(),commandObjects.back());
+                if((strcmp(connectorTokens.at(0), orCmp) == 0)){
+                	//cout << "X" << endl; 
+			object = new Or(commandObjects.front(),commandObjects.back());
+                } else if((strcmp(connectorTokens.at(0), andCmp) == 0)){
+                    	//cout << "Y" << endl;
+			object = new And(commandObjects.front(),commandObjects.back());
+                } else if((strcmp(connectorTokens.at(0), semiCmp) == 0)){
+			//cout << "Z" << endl;
+                    	object = new Semicolon(commandObjects.front(),commandObjects.back());
                 }
                 
                 //TESTING BLOCK OPEN
@@ -105,8 +114,10 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 cout << "Connector Object " << token << " was just created" << endl;
                 cout << "Left Child = ";
         	leftChild->display();
+		cout << endl;
         	cout << "Right Child = ";       
      	   	rightChild->display();
+		cout << endl;
 		*/
                 //TESTING BLOCK CLOSE
                 
@@ -121,12 +132,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 connectorObjects.pop_back();
                 //Pop connectorTokens
                 connectorTokens.pop_back();
-            }
-            //Push_back the connector on the connectorTokens
-            //LOL WAIT WHAT IS THIS???
-            //Oh ya this is if we are at a connector, so now we push it before looping again
-            connectorTokens.push_back(token);
-        }
+		}
+		//Push_back the connector on the connectorTokens
+		//LOL WAIT WHAT IS THIS???
+		//Oh ya this is if we are at a connector, so now we push it before looping again
+		connectorTokens.push_back(token);
+	}
         //else token is command, then push_back onto commandTokens
         else{
             commandTokens.push_back(token);
@@ -140,7 +151,14 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     //push_back it onto commandObjects
     object = new Executable(commandTokens,commandTokens.size());
     commandObjects.push_back(object);
-    
+   /*
+    cout << "Command Object ";
+	for(int i = 0; i < commandTokens.size(); i++){
+             cout << commandTokens.at(i) << " ";
+        }
+    cout << "was just created" << endl; 
+    */
+
     //empty commandTokens
     while(commandTokens.size() != 0){
     	commandTokens.pop_back();
@@ -150,15 +168,15 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     if(commandObjects.size() == 2){
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
-        cout << "A" << endl;
+        //cout << "A" << endl;
         if((strcmp(connectorTokens.at(0), orCmp) == 0)){
-            cout << "B" << endl;
+            //cout << "B" << endl;
             object = new Or(commandObjects.front(),commandObjects.back());
         } else if((strcmp(connectorTokens.at(0), andCmp) == 0)){
-            cout << "C" << endl;
+            //cout << "C" << endl;
             object = new And(commandObjects.front(),commandObjects.back());
         } else if((strcmp(connectorTokens.at(0), semiCmp) == 0)){
-            cout << "D" << endl;
+            //cout << "D" << endl;
             object = new Semicolon(commandObjects.front(),commandObjects.back());
         }
         
@@ -191,8 +209,9 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     connectorTokens.pop_back();
     
     
+    //cout << "FINAL COMMAND OBJECTS SIZE = " << commandObjects.size() << endl;
     //We now have our entire tree in the first element of our commandObjects
-    commandObjects[0]->execute();
+    commandObjects.at(0)->execute();
     
     
     
