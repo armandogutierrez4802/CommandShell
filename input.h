@@ -23,10 +23,6 @@ private:
 public:
 	Input(std::string userInput);
         bool execute();
-        std::string parse();
-	void singleCommand();
-	void createTree();
-	void initShell();
 };
 
 #endif /* input_h */
