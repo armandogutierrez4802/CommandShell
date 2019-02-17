@@ -12,7 +12,7 @@ This project involves implementing a RShell, a basic command shell written in C+
 In addition, this project will be implemented using the composite pattern as the core design principle.
 
 # Diagram
-![UML Diagram](https://github.com/cs100/assignment-cs_100_aa_assignment_1/blob/master/Images/Assignment_1_UML.jpeg?raw=true)
+![UML Diagram](https://github.com/cs100/assignment-cs_100_aa_assignment_2/blob/master/Images/Assignment_1_UML.jpeg?raw=true)
 
 # Classes
 * Base
