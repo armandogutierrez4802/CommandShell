@@ -52,6 +52,9 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             //instantiate a command object with commandTokens
             object = new Executable(commandTokens,commandTokens.size());
             
+            
+            
+            
             cout << "Command Object ";
             for(int i = 0; i < commandTokens.size(); i++){
                 cout << commandTokens.at(i) << " ";
