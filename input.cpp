@@ -103,8 +103,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     //push_back it onto commandObjects
     object = new Executable(commandTokens,commandTokens.size());
     commandObjects.push_back(object);
+
     //If commandObjects size == 2
-    //
     if(commandObjects.size() == 2){
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
