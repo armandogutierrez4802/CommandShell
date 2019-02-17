@@ -41,6 +41,9 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     strcpy(semiCmp, semiString.c_str());
     
     CommandLine* object;
+    char* leftChild;//For outputting and testing purposes
+    char* rightChild;//For outputting and testing purposes
+    
     
     while (token)
     {
@@ -57,6 +60,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             
             //push_back it onto commandObjects
             commandObjects.push_back(object);
+            
+            
+            
+            
+            
             //empty commandTokens
             while(commandTokens.size() != 0){
                 commandTokens.pop_back();
