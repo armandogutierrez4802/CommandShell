@@ -41,8 +41,10 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     strcpy(semiCmp, semiString.c_str());
     
     CommandLine* object;
-    char* leftChild;//For outputting and testing purposes
-    char* rightChild;//For outputting and testing purposes
+    
+    
+    CommandLine* leftChild;//For outputting and testing purposes
+    CommandLine* rightChild;//For outputting and testing purposes
     
     
     while (token)
@@ -54,16 +56,27 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             
             
             
-            
+            //TESTING BLOCK OPEN
             cout << "Command Object ";
             for(int i = 0; i < commandTokens.size(); i++){
                 cout << commandTokens.at(i) << " ";
             }
             cout << "was just created" << endl;
+            //TESTING BLOCK CLOSE
+            
             
             //push_back it onto commandObjects
             commandObjects.push_back(object);
             
+            
+            //TESTING BLOCK OPEN
+            if(commandObjects.size() == 0){
+                leftChild = new Executable(commandTokens,commandTokens.size());
+            } else if(commandObjects.size() == 1){
+                rightChild = new Executable(commandTokens,commandTokens.size());
+            }    
+            
+            //TESTING BLOCK CLOSE
             
             
             
@@ -85,10 +98,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                     object = new Semicolon(commandObjects.front(),commandObjects.back());
                 }
                 
+                //TESTING BLOCK OPEN
                 cout << "Connector Object " << token << " was just created" << endl;
-                cout << "Left Child = " <<  << endl;
-                cout << "Right Child = " <<  << endl;
-                 
+                cout << "Left Child = " << leftChild->display() << endl;
+                cout << "Right Child = " << rightChild->display() << endl;
+                //TESTING BLOCK CLOSE
                 
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
@@ -137,9 +151,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         }
         cout << "E" << endl;
         
+        //TESTING BLOCK OPEN
         cout << "Connector Object " << token << " was just created" << endl;
-        cout << "Left Child = " <<  << endl;
-        cout << "Right Child = " <<  << endl;
+        cout << "Left Child = " << leftChild->display() << endl;
+        cout << "Right Child = " << rightChild->display() << endl;
+        //TESTING BLOCK CLOSE
         
         //Push this new connector object onto connectorObjects
         connectorObjects.push_back(object);
