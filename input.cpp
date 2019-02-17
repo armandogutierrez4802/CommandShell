@@ -53,7 +53,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     {
         //If token is connector
         if((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0)){
-            cout << "COMMAND TOKENS SIZE = " << commandTokens.size() << endl;
+           // cout << "COMMAND TOKENS SIZE = " << commandTokens.size() << endl;
             //instantiate a command object with commandTokens
             object = new Executable(commandTokens,commandTokens.size());
             //push_back it onto commandObjects
@@ -110,13 +110,13 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
         cout << token << endl;
         cout << "A" << endl;
-        if((strcmp(token, orCmp) == 0)){
+        if((strcmp(connectorTokens.at(0), orCmp) == 0)){
             cout << "B" << endl;
             object = new Or(commandObjects.front(),commandObjects.back());
-        } else if((strcmp(token, andCmp) == 0)){
+        } else if((strcmp(connectorTokens.at(0), andCmp) == 0)){
             cout << "C" << endl;
             object = new And(commandObjects.front(),commandObjects.back());
-        } else if((strcmp(token, semiCmp) == 0)){
+        } else if((strcmp(connectorTokens.at(0), semiCmp) == 0)){
             cout << "D" << endl;
             object = new Semicolon(commandObjects.front(),commandObjects.back());
         }
