@@ -57,26 +57,28 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             
             
             //TESTING BLOCK OPEN
+	    /*
             cout << "Command Object ";
             for(int i = 0; i < commandTokens.size(); i++){
                 cout << commandTokens.at(i) << " ";
             }
             cout << "was just created" << endl;
             //TESTING BLOCK CLOSE
-            
+            */
             
             //push_back it onto commandObjects
             commandObjects.push_back(object);
             
             
             //TESTING BLOCK OPEN
+	    /*
             if(commandObjects.size() == 0){
                 leftChild = new Executable(commandTokens,commandTokens.size());
             } else if(commandObjects.size() == 1){
                 rightChild = new Executable(commandTokens,commandTokens.size());
             }    
-            
             //TESTING BLOCK CLOSE
+	    */
             
             
             
@@ -99,11 +101,13 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 }
                 
                 //TESTING BLOCK OPEN
+		/*
                 cout << "Connector Object " << token << " was just created" << endl;
                 cout << "Left Child = ";
         	leftChild->display();
         	cout << "Right Child = ";       
      	   	rightChild->display();
+		*/
                 //TESTING BLOCK CLOSE
                 
                 //Push this new connector object onto connectorObjects
@@ -128,10 +132,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             commandTokens.push_back(token);
         }
         token = strtok(NULL," ");
-	cout << "**" << endl;
    }//end while loop
-
-    cout << "***" << endl;
 
     //instantiate a command object with commandTokens
     //push_back it onto commandObjects
@@ -157,11 +158,13 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         cout << "E" << endl;
         
         //TESTING BLOCK OPEN
+	/*
         cout << "Connector Object " << token << " was just created" << endl;
         cout << "Left Child = ";
 	leftChild->display();
         cout << "Right Child = ";
 	rightChild->display();
+	*/
         //TESTING BLOCK CLOSE
         
         //Push this new connector object onto connectorObjects
