@@ -23,7 +23,7 @@ bool Executable::execute(){
 	
 	char* exitValue = (char *)"exit";
 	char* inputValue = *args;
-	std::cout << inputValue << std::endl;
+	
         if(strcmp(inputValue, exitValue) == 0) {
                 exit(0);
         }
