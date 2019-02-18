@@ -9,6 +9,7 @@ Input::Input(std::string userInput){
 
 bool Input::execute(){//Here we parse the string and make a tree out of objects
     std::string newUserInput = "";
+    bool openQuote = false;
     for(int i = 0; i < this->userInput.size(); i++){//Handle the comments and adding spaces before semicolon
         if(this->userInput[i] == '#'){
             break;
@@ -42,15 +43,19 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     
     CommandLine* object;
     
+    char quoteChar = '"';
+    char *quoteCmp = &quoteChar;//new char[quoteString.length()+1];
+    //strcpy(quoteCmp, quoteString.s_str());
     
-    Executable* leftChild;//For outputting and testing purposes
-    Executable* rightChild;//For outputting and testing purposes
+    int commandTokenLength;
+    //Executable* leftChild;//For outputting and testing purposes
+    //Executable* rightChild;//For outputting and testing purposes
     
     
     while (token)
     {
         //If token is connector
-        if((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0)){
+        if(((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0)) && openQuote == false){
             //instantiate a command object with commandTokens
             object = new Executable(commandTokens,commandTokens.size());
             
@@ -95,7 +100,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             }
             
             //If commandObjects size == 2
-            if(commandObjects.size() == 2){
+            if(commandObjects.size() == 2){// && openQuote == false){//********************************************
                 //then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
                 if((strcmp(connectorTokens.at(0), orCmp) == 0)){
@@ -141,7 +146,29 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         //else token is command, then push_back onto commandTokens
         else{
             commandTokens.push_back(token);
-        }
+	    //cout << "BEFORE THE OPEN QUOTES CHECK" << endl;
+	    //cout << commandTokens.at(0)[0] << " ?= " << quoteCmp[0];
+ 	    //NEED TO CHECK THE BEGGINNING OF EEEVVERY TOKEN
+ 	    //cout << "SIZE OF COMMANDTOKENS = " << commandTokens.size() << endl;
+	
+	    
+	    //int tokenLength = strlen(commandTokens.at(1));
+	    //cout << "TOKEN LENGTH = " << tokenLength << endl;    
+	    	    
+
+	    //If the first character in the first element is a quote, then set openQuote = true
+	    for(int i = 0; i < commandTokens.size(); i++){	
+		commandTokenLength = strlen(commandTokens.at(i));
+		if(commandTokens.at(i)[0] == quoteCmp[0]){
+	    		//cout << "INSIDE OPEN QUOTES" << endl;
+			//cout << "commandTokens.at( " << i << ")[0] == " << commandTokens.at(i)[0] <<endl;
+			openQuote = true;
+	    	}//Else if the last character in the last element is a quote then set openQuote = false
+      		else if(commandTokens.at(i)[commandTokenLength]== quoteCmp[0]){
+			openQuote = false;
+		}
+	    }
+	}
         token = strtok(NULL," ");
    }//end while loop
     
@@ -165,7 +192,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     }
 
     //If commandObjects size == 2
-    if(commandObjects.size() == 2){
+   // cout << "AFTER THE WHILE LOOP THE VALUE OF OUR OPENQUOTE = " <<  openQuote << endl;
+    if(commandObjects.size() == 2){// && openQuote == false){
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
         //cout << "A" << endl;

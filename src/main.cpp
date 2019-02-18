@@ -17,6 +17,6 @@ int main() {
 	Input* object  = new Input(userInput);
 	object->execute();
 //	}
-	cout << "THIS IS THE END OF THE PROGRAM" << endl;
+//	cout << "THIS IS THE END OF THE PROGRAM" << endl;
 
 }
