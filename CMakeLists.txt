@@ -25,5 +25,15 @@ ADD_EXECUTABLE(test
     src/input.cpp
 )
 
+ADD_Executable(integration
+    src/integration.cpp
+    src/or.cpp
+    src/and.cpp
+    src/semicolon.cpp
+    src/executable.cpp
+    src/input.cpp
+    src/connectors.cpp
+)
+
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)

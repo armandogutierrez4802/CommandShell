@@ -1,4 +1,5 @@
 #include "../header/executable.h"
+#include <cstring>
 
 Executable::Executable(vector<char*> cmTokens, int numArguments){
 	this->cmTokens = cmTokens;
@@ -13,29 +14,37 @@ void Executable::display(){
 
 bool Executable::execute(){
 	char* args[numArguments+1];
-	
+	bool returnValue = true ;
 	for(int i = 0; i < numArguments; i++){
 		args[i] = cmTokens.at(i);
 	}
 	
 	args[numArguments] = NULL;
-		
+	
+	char* exitValue = "exit";
+        if((strcmp(args[0],args), exitValue) == 0) {
+                exit(0);
+        }
+	
 	pid_t pid = fork();
 	if(pid == -1){
 		perror("error in fork");
 		exit(EXIT_FAILURE);
 	} else if(pid == 0){//Child Process
-		if(execvp(args[0], args) == -1){	
+		if(execvp(args[0], args) == -1){
 			perror("error in execvp");
 			exit(EXIT_FAILURE);
 		}
 	} else if(pid > 0){//Parent Process
 		int status;
 		if(waitpid(pid,&status,0) == -1){//Pause Parent
-          		perror("Error in parent wait");
+			perror("Error in parent wait");
 		}
+		if(WEXITSTATUS(status) != 0) {
+          		returnValue = false;
+       		}
 	}
-	return true;
+	return returnValue;
 }
 
 
