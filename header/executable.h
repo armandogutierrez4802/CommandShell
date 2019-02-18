@@ -18,7 +18,6 @@ private:
 public:
 	Executable(vector<char*> cmTokens, int numArguments);
 	bool execute();
-	void display();//For testing purposes
 };
 
 #endif /* executable_h */
