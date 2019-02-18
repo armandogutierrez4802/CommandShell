@@ -18,7 +18,7 @@ In addition, this project will be implemented using the composite pattern as the
 * CommandLine
   * Serves as the primary interface that classes in the composite pattern inherit from. Implements the execute function that subclasses must implement.
 * Executable
-  * Handles the execution of commands such as: fork, execvp, waitpid, and exit.
+  * Handles the execution of commands such as: fork, execvp, waitpid, and exit. fork() is called and the corresponding pid is stored in variable "pid". If the pid value is -1, an error is thrown, and exit(EXIT_FAILURE) is called. A pid value of 0 indicates that the current process is a child process, and execvp is called on the command. If the return value of execvp is -1, then an error is thrown, and exit(EXIT_FAILURE) is called. If a value greater than 0 is detected, then the current process is a parent process, and waitpid() is called to pause the parent process. If exit(EXIT_FAILURE) has been called, then 
 * Connector
   * *And*\
 Has two private member variables: leftChild and rightChild (Base pointers). And handles two commands, in which the following command is executed only if the first command (leftChild) is successfully completed.
