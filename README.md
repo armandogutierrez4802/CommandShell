@@ -18,7 +18,7 @@ In addition, this project will be implemented using the composite pattern as the
 * CommandLine
   * Serves as the primary interface that classes in the composite pattern inherit from. Implements the execute function that subclasses must implement.
 * Executable
-  * Handles the execution of commands such as: fork, execvp, and waitpid.
+  * Handles the execution of commands such as: fork, execvp, waitpid, and exit.
 * Connector
   * *And*\
 Has two private member variables: leftChild and rightChild (Base pointers). And handles two commands, in which the following command is executed only if the first command (leftChild) is successfully completed.
@@ -27,7 +27,7 @@ Has two private member variables: leftChild and rightChild (Base pointers). Or h
   * *Semicolon*\
 Has two private member variables: leftChild and rightChild (Base pointers). Semicolon handles two commands, in which the following command is executed regardless if the first is successfully completed or fails.
 * Input
-  * Converts a user inputted string and parses the string, distinguishing between connectors and commands.
+  * Converts a user inputted string and parses the string, distinguishing between connectors and commands. A tree is then constructed using vectors of char pointers and CommandLine pointers. Execute is then called on the root node, executing the entire tree. 
 # Prototypes/Research
 The purpose of the prototype is to apply what we have researched and learned about the functions waitpid(), execvp() and fork(). The execvp() function takes in two arguments. The first of which is the name of the file that is going to be executed. Once the first argument is loaded into the caller's address space and over-writes the program, then the second argument will be provided to the program right before it executes. The fork() function creats an identical process to the one being ran. The two processes are called the Child and the Parent. These two processes will run simultaneously unless a wait() function is called. The waitpid() function, if called in the parent process, will cause the parent process to wait until the specified, usually once the child process is terminated. \
 These functions will be useful in our assignment because our connectors determine how two variables on either side of it will relate to one another. Depending on whether the connector is and &&, ||, or semicolon, we may or many not want/need to execute the parent process by the results of execution of the child process.
@@ -45,8 +45,7 @@ These functions will be useful in our assignment because our connectors determin
 ##### Unit and Integration tests:
 1. CommandLine Unit Test
 2. Executable Unit Test
-3. Input Unit Test
-4. Connector Unit Test and Integration Test
-5. And Unit Test
-6. Or Unit Test
-7. Semicolon Unit Test
+3. And Unit Test
+4. Or Unit Test
+5. Semicolon Unit Test
+6. Input Integration Test
