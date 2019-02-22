@@ -17,7 +17,7 @@ bool Executable::execute(){
 	char* args[numArguments+1];
 	bool returnValue = true ;
 	
-
+	/*
 	//Take out the quotes!
 	char  quoteChar = '"';
 	char* quoteCmp = &quoteChar;
@@ -41,6 +41,8 @@ bool Executable::execute(){
 			cout << "**Command Token at i = " << cmTokens.at(i) << endl;
 		}
 	}
+
+	*/
 
 	for(int i = 0; i < numArguments; i++){
 		args[i] = cmTokens.at(i);
