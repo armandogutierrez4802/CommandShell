@@ -14,14 +14,21 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         if(this->userInput[i] == '#'){
             break;
         } else{
-            if(this->userInput[i] == ';'){// && (i+1) != this->userInput.size()){
+            if(this->userInput[i] == ';' || this->userInput[i] == '"'){// && (i+1) != this->userInput.size()){
                 newUserInput += ' ';
             }
             newUserInput += this->userInput[i];
+	    
+	    if(this->userInput[i] == '"'){
+		newUserInput += " ";
+	    }
         }
     }
     
-    
+	//cout << "newUserInput = " << newUserInput << endl;
+
+     
+   
     //Now our new user input string accounts for comments, and now everything is separated by a space
     
     //Now we build our tree as we tokenize
@@ -47,16 +54,40 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     char *quoteCmp = &quoteChar;//new char[quoteString.length()+1];
     //strcpy(quoteCmp, quoteString.s_str());
     
+    string openParString = "(";
+    string closeParString = ")";
+    char* openParCmp = new char[openParString.length()+1];
+    char* closeParCmp = new char[closeParString.length()+1];
+    strcpy(openParCmp, openParString.c_str());
+    strcpy(closeParCmp, closeParString.c_str());
+
+
     int commandTokenLength;
     //Executable* leftChild;//For outputting and testing purposes
     //Executable* rightChild;//For outputting and testing purposes
-    
-    int count = 0;//For the quotes
+    int tokenLength;
     
     while (token)
     {
-        //If token is connector
-        if((((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0))) && openQuote == false){
+	tokenLength = strlen(token);
+
+	//If token is an Open Paranthesis
+	if(strcmp(token, openParCmp) == 0){
+	
+	}
+
+	 //If token is an Close Paranthesis
+	 if(strcmp(token, closeParCmp) == 0){
+	 
+	}
+	
+	//If token is a quote
+	if(strcmp(token, quoteCmp) == 0 && openQuote == false){
+		openQuote = true;
+	} else if (strcmp(token, quoteCmp) == 0 && openQuote == true){
+		openQuote = false;
+	}//If token is connector
+        else if((((strcmp(token, semiCmp)) == 0 || (strcmp(token, andCmp) == 0) || (strcmp(token, orCmp) == 0))) && openQuote == false){
             //instantiate a command object with commandTokens
             object = new Executable(commandTokens,commandTokens.size());
             
@@ -90,9 +121,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             }    
 	    */
             //TESTING BLOCK CLOSE
-	    
-            
-            
+	               
             
             
             //empty commandTokens
@@ -147,7 +176,21 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	}
         //else token is command, then push_back onto commandTokens
         else{
-            commandTokens.push_back(token);
+
+
+	    if(openQuote == true){
+		commandTokens.at(commandTokens.size()-1) += ' ';
+		for(int i = 0; i < tokenLength; i++){ 
+			commandTokens.at(commandTokens.size()-1) += token[i];	
+		}
+
+	    } else{
+            	commandTokens.push_back(token);
+	    }
+
+
+	    //--------------------OLD OPEN QUOTES BLOCK OPEN----------------------------------
+
 	    //cout << "BEFORE THE OPEN QUOTES CHECK" << endl;
 	    //cout << commandTokens.at(0)[0] << " ?= " << quoteCmp[0];
  	    //NEED TO CHECK THE BEGGINNING OF EEEVVERY TOKEN
@@ -177,18 +220,21 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
            */
 
 	
+	   /*
 	   //The above code simplified!!!!
-
 	   commandTokenLength = strlen(commandTokens.at(commandTokens.size()-1));
+	   cout << "CommandTokenLength = " << commandTokenLength << endl;
 	   if(commandTokens.at(0)[0] == quoteCmp[0]){
 		openQuote = true;
 	   }
-	   if(commandTokens.at(commandTokens.size()-1)[]
+	
+	   if(commandTokens.at(commandTokens.size()-1)[commandTokenLength] == quoteCmp[0]){
+		cout << "AAAHHHH" << endl;
+		openQuote = false;
+	   }
+	   */
 
-
-
-
-
+	   //--------------------OLD OPEN QUOTES BLOCK CLOSE----------------------------------
 
 
 	}
@@ -217,10 +263,10 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     //If commandObjects size == 2
    // cout << "AFTER THE WHILE LOOP THE VALUE OF OUR OPENQUOTE = " <<  openQuote << endl;
    	//**************check the last open quote here??? and then set it to false???
-	 if(commandObjects.size() == 2 && openQuote == false){
+	 if(commandObjects.size() == 2 && openQuote == false){//Do we need this openQuote check??
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
-        //cout << "A" << endl;
+        cout << "A" << endl;
         if((strcmp(connectorTokens.at(0), orCmp) == 0)){
             //cout << "B" << endl;
             object = new Or(commandObjects.front(),commandObjects.back());
