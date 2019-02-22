@@ -10,12 +10,14 @@
 using namespace std;
 int main() {
 	string userInput = "";
-//	int continue;
-//	while(continue){
-	cout << "$ ";
-	getline(cin,userInput);
-	Input* object  = new Input(userInput);
-	object->execute();
+
+	while(true) {
+		userInput = "";
+		cout << "$ ";
+		getline(cin,userInput);
+		Input* object  = new Input(userInput);
+		object->execute();
+	}
 //	}
 //	cout << "THIS IS THE END OF THE PROGRAM" << endl;
 

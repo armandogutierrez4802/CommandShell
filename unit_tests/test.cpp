@@ -7,8 +7,7 @@
 #include "../header/executable.h"
 #include "../header/input.h"
 
-TEST(ConnectorTests, AndTest) {
-	//First Test (valid,valid)
+TEST(AndTests, ValidValid) {
 	string firstCommandString = "ls";
         char* firstCommandCmp = new char[firstCommandString.length()+1];
         strcpy(firstCommandCmp, firstCommandString.c_str());
@@ -34,8 +33,9 @@ TEST(ConnectorTests, AndTest) {
 	CommandLine* firstAnd = new And(firstExecutable, secondExecutable);
 	
 	EXPECT_EQ(true, firstAnd->execute());
+}
 
-	//Second Test (valid,invalid)
+TEST(AndTests, ValidInvalid) {
 	string thirdCommandString = "ls";
         char* thirdCommandCmp = new char[thirdCommandString.length()+1];
         strcpy(thirdCommandCmp, thirdCommandString.c_str());
@@ -60,10 +60,11 @@ TEST(ConnectorTests, AndTest) {
 
         CommandLine* secondAnd = new And(thirdExecutable, fourthExecutable);
 
-	EXPECT_EQ(false, secondAnd->execute());
+        EXPECT_EQ(false, secondAnd->execute());
+}
 
-	//Third Test (invalid,valid)
-	string fifthCommandString = "l";
+TEST(AndTests, InvalidValid) {
+        string fifthCommandString = "l";
         char* fifthCommandCmp = new char[fifthCommandString.length()+1];
         strcpy(fifthCommandCmp, fifthCommandString.c_str());
 
@@ -88,9 +89,10 @@ TEST(ConnectorTests, AndTest) {
         CommandLine* thirdAnd = new And(fifthExecutable, sixthExecutable);
 
         EXPECT_EQ(false, thirdAnd->execute());
+}
 
-	//Fourth Test (invalid,invalid)
-	string seventhCommandString = "l";
+TEST(AndTests, InvalidInvalid) {
+        string seventhCommandString = "l";
         char* seventhCommandCmp = new char[seventhCommandString.length()+1];
         strcpy(seventhCommandCmp, seventhCommandString.c_str());
 
@@ -116,9 +118,7 @@ TEST(ConnectorTests, AndTest) {
 
         EXPECT_EQ(false, fourthAnd->execute());
 }
-
-TEST(ConnectorTests, SemicolonTest) {
-	//First Test (valid,valid)
+TEST(SemicolonTests, ValidValid) {
 	string firstCommandString = "ls";
         char* firstCommandCmp = new char[firstCommandString.length()+1];
         strcpy(firstCommandCmp, firstCommandString.c_str());
@@ -144,8 +144,9 @@ TEST(ConnectorTests, SemicolonTest) {
         CommandLine* firstSemicolon = new Semicolon(firstExecutable, secondExecutable);
 
         EXPECT_EQ(true, firstSemicolon->execute());
-	
-	//Second Test (valid,invalid)
+}
+
+TEST(SemicolonTests, ValidInvalid) {
 	string thirdCommandString = "ls";
         char* thirdCommandCmp = new char[thirdCommandString.length()+1];
         strcpy(thirdCommandCmp, thirdCommandString.c_str());
@@ -171,8 +172,9 @@ TEST(ConnectorTests, SemicolonTest) {
         CommandLine* secondSemicolon = new Semicolon(thirdExecutable, fourthExecutable);
 
         EXPECT_EQ(true, secondSemicolon->execute());
+}
 
-	//Third Test (invalid,valid)
+TEST(SemicolonTests, InvalidValid) {
 	string fifthCommandString = "l";
         char* fifthCommandCmp = new char[fifthCommandString.length()+1];
         strcpy(fifthCommandCmp, fifthCommandString.c_str());
@@ -198,8 +200,9 @@ TEST(ConnectorTests, SemicolonTest) {
         CommandLine* thirdSemicolon = new Semicolon(fifthExecutable, sixthExecutable);
 
         EXPECT_EQ(true, thirdSemicolon->execute());
+}
 
-	//Fourth Test (invalid,invalid)
+TEST(SemicolonTests, InvalidInvalid) {
 	string seventhCommandString = "l";
         char* seventhCommandCmp = new char[seventhCommandString.length()+1];
         strcpy(seventhCommandCmp, seventhCommandString.c_str());
@@ -227,8 +230,7 @@ TEST(ConnectorTests, SemicolonTest) {
         EXPECT_EQ(false, fourthSemicolon->execute());
 }
 
-TEST(ConnectorTests, OrTest) {
-	//First Test (valid,valid)
+TEST(OrTests, ValidValid) {
 	string firstCommandString = "ls";
         char* firstCommandCmp = new char[firstCommandString.length()+1];
         strcpy(firstCommandCmp, firstCommandString.c_str());
@@ -254,9 +256,10 @@ TEST(ConnectorTests, OrTest) {
         CommandLine* firstOr = new Or(firstExecutable, secondExecutable);
 
         EXPECT_EQ(true, firstOr->execute());
+}
 
-	//Second Test (valid,invalid)
-        string thirdCommandString = "ls";
+TEST(OrTests, ValidInvalid) {
+	string thirdCommandString = "ls";
         char* thirdCommandCmp = new char[thirdCommandString.length()+1];
         strcpy(thirdCommandCmp, thirdCommandString.c_str());
 
@@ -281,8 +284,9 @@ TEST(ConnectorTests, OrTest) {
         CommandLine* secondOr = new Or(thirdExecutable, fourthExecutable);
 
         EXPECT_EQ(true, secondOr->execute());
+}
 
-	//Third Test (invalid,valid)
+TEST(OrTests, InvalidValid) {
 	string fifthCommandString = "l";
         char* fifthCommandCmp = new char[fifthCommandString.length()+1];
         strcpy(fifthCommandCmp, fifthCommandString.c_str());
@@ -308,8 +312,9 @@ TEST(ConnectorTests, OrTest) {
         CommandLine* thirdOr = new Or(fifthExecutable, sixthExecutable);
 
         EXPECT_EQ(true, thirdOr->execute());
+}
 
-	//Fourth Test (invalid,invalid)
+TEST(OrTests, InvalidInvalid) {
 	string seventhCommandString = "l";
         char* seventhCommandCmp = new char[seventhCommandString.length()+1];
         strcpy(seventhCommandCmp, seventhCommandString.c_str());
@@ -337,7 +342,7 @@ TEST(ConnectorTests, OrTest) {
         EXPECT_EQ(false, fourthOr->execute());
 }
 
-TEST(CommandTests, OneCommand) {
+TEST(ExecutableTests, OneArgument) {
 	//First Test
 	string commandString = "ls";
 	char* commandCmp = new char[commandString.length()+1];
@@ -358,15 +363,27 @@ TEST(CommandTests, OneCommand) {
 	
 	char* secondTokenTwoCmp = new char[secondTokenTwoString.length()+1];
         strcpy(secondTokenTwoCmp, secondTokenTwoString.c_str());
+}
 
-	std::vector<char*> secondCommand;
-	secondCommand.push_back(secondTokenOneCmp);
-	secondCommand.push_back(secondTokenTwoCmp);
-	CommandLine* secondExecutable = new Executable(secondCommand,2);
+TEST(ExecutableTests, MultipleArguments) {
+	string secondTokenOneString = "echo";
+        string secondTokenTwoString = "hello";
 
-	EXPECT_EQ(true, secondExecutable->execute());
+        char* secondTokenOneCmp = new char[secondTokenOneString.length()+1];
+        strcpy(secondTokenOneCmp, secondTokenOneString.c_str());
 
-	//Third Test
+        char* secondTokenTwoCmp = new char[secondTokenTwoString.length()+1];
+        strcpy(secondTokenTwoCmp, secondTokenTwoString.c_str());
+
+        std::vector<char*> secondCommand;
+        secondCommand.push_back(secondTokenOneCmp);
+        secondCommand.push_back(secondTokenTwoCmp);
+        CommandLine* secondExecutable = new Executable(secondCommand,2);
+
+        EXPECT_EQ(true, secondExecutable->execute());
+}
+
+TEST(ExecutableTests, InvalidInput) {
 	string thirdTokenOneString = "ech";
         string thirdTokenTwoString = "hello";
 
