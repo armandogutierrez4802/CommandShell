@@ -160,6 +160,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             }
             				
 						//**** We run into problems here when vector size = 3 with the paranthesis object, echo C, and echo D
+						//	Only when our current token is closed parenthesis?? so maybe this needs to be a separate check
             //If commandObjects size == 2 ****** WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
             if(commandObjects.size() == 2){// && openQuote == false){//No need for this openQuote check b/c we wouldn't be in here if it was true
                 //then instantiate a connector by passing in the two commandObjects
