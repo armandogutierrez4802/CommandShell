@@ -89,6 +89,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     {
 	tokenLength = strlen(token);
 
+	/*
 	//If token is an Open Paranthesis
 	if(strcmp(token, openParCmp) == 0){
 	
@@ -98,7 +99,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	 if(strcmp(token, closeParCmp) == 0){
 	 
 	}
-	
+
 	//If token is a quote
 	if(strcmp(token, quoteCmp) == 0 && openQuote == false){
 		openQuote = true;
@@ -107,10 +108,14 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		openQuote = false;
 		//cout << "TOKEN IS SECOND QUOTE??? " << endl;
 	}
+	*/
 
-
-	//If token is connector
-        else if((strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
+	//If token is connector ******* IF OUR CONNECTOR IS AN OPEN PARENTHESIS, I THINK WE JUST PUSH IT ON THE CONNECTOR TOKENS
+        //****IF OUR TOKEN IS A CLOSED PARANTHESIS, DO WE EVEN NEED TO PUSH IT ON THE CONNECTOR TOKENS STACK??? I DO NOT THINK SO B/C WHEN WE MOVE ON TO THE NEXT CONNECTOR,
+        //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
+        //**** IF OPEN PARENTHESIS, THEN PUSH IT ON CONNECTOR TOKENS, IF CLOSED PARANTHESIS, THEN CREATE THE PARENTHESIS OBJECT
+        //**** KEEP IN MIND THAT AN OPEN PARANTHESIS IS ALWAYS FOLLOWED BY A COMMAND, CLOSED PARANTHESIS ARE ALWAYS FOLLOWED BY A CONNECTOR
+	if((strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
 		|| strcmp(token,openParCmp) == 0 || strcmp(token,closeParCmp) == 0) && openQuote == false){
             //instantiate a command object with commandTokens **** THIS DOES NOT WORK IF WE ARE AT || AND WE HAVE (echoo A && echo B) || (echo C && echo D)
             object = new Executable(commandTokens,commandTokens.size());//*** MAYBE ONLY DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
@@ -153,7 +158,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             while(commandTokens.size() != 0){
                 commandTokens.pop_back();
             }
-            
+            				
+						//**** We run into problems here when vector size = 3 with the paranthesis object, echo C, and echo D
             //If commandObjects size == 2 ****** WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
             if(commandObjects.size() == 2){// && openQuote == false){//No need for this openQuote check b/c we wouldn't be in here if it was true
                 //then instantiate a connector by passing in the two commandObjects
@@ -200,12 +206,15 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		//Push_back the connector on the connectorTokens
 		//LOL WAIT WHAT IS THIS???
 		//Oh ya this is if we are at a connector, so now we push it before looping again
-		connectorTokens.push_back(token);
-		
+		connectorTokens.push_back(token);//***** DO WE NEED TO DO THIS IF IT IS OUR CURRENT TOKEN IS A CLOSED PARANTHESIS? I DO NOT THINK SO(WRONG!)
+						//^^ ACTUALLY WE MAY NEED TO TO MAKE SURE THAT WE DO NOT CREATE ON OBJECT WHEN THE NEXT CURRENT TOKEN IS A CONNECTOR!!!
 	}
         //else token is command, then push_back onto commandTokens
         else{
-	    
+
+
+
+	    /*	    
 	    if(openQuote == true){
 		commandTokens.at(commandTokens.size()-1) += ' ';
 		cout << "commandTokens.at(commandTokens.size()-1) = " << commandTokens.at(commandTokens.size()-1) << endl;
@@ -214,7 +223,9 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		}
 		cout << "*commandTokens.at(commandTokens.size()-1) = " << commandTokens.at(commandTokens.size()-1) << endl;
 	    }
-	    
+	    */
+
+
             commandTokens.push_back(token);
 	    
 
