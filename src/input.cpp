@@ -89,26 +89,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     {
 	tokenLength = strlen(token);
 
-	/*
-	//If token is an Open Paranthesis
-	if(strcmp(token, openParCmp) == 0){
 	
-	}
-
-	 //If token is an Close Paranthesis
-	 if(strcmp(token, closeParCmp) == 0){
-	 
-	}
-
-	//If token is a quote
-	if(strcmp(token, quoteCmp) == 0 && openQuote == false){
-		openQuote = true;
-		//cout << "TOKEN IS FIRST QUOTE??? " << endl;
-	} else if (strcmp(token, quoteCmp) == 0 && openQuote == true){
-		openQuote = false;
-		//cout << "TOKEN IS SECOND QUOTE??? " << endl;
-	}
-	*/
 
 	//If token is connector ******* IF OUR CONNECTOR IS AN OPEN PARENTHESIS, I THINK WE JUST PUSH IT ON THE CONNECTOR TOKENS
         //****IF OUR TOKEN IS A CLOSED PARANTHESIS, DO WE EVEN NEED TO PUSH IT ON THE CONNECTOR TOKENS STACK??? I DO NOT THINK SO B/C WHEN WE MOVE ON TO THE NEXT CONNECTOR,
@@ -123,36 +104,10 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             								//***  IT SEEMS LIKE THE CREATION OF THE OBJECT ONLY HAPPENS WHEN THE PARENTHESIS ARE NOT IN CONNECTOR TOKENS
             	
             
-            //TESTING BLOCK OPEN
-	    //This is to tell us what command object we created
-            /*
-	    cout << "Command Object ";
-            for(int i = 0; i < commandTokens.size(); i++){
-                cout << commandTokens.at(i) << " ";
-            }
-            cout << "was just created" << endl;
-            */
-	    //TESTING BLOCK CLOSE
-            
             
             //push_back it onto commandObjects **** LOOK AT COMMENTS FOR PREVIOUS SECTION BECAUSE SAME APPLIES
             commandObjects.push_back(object);
-            
-            
-            //TESTING BLOCK OPEN
-	    //This is how we know if our ommand is on the left or right side of the connector
-            /*
-	    if(commandObjects.size() == 1){
-		cout << "We declared the left child" << endl;
-                leftChild = new Executable(commandTokens,commandTokens.size());
-            } else if(commandObjects.size() == 2){
-		cout << "We declared the right child" << endl;
-                rightChild = new Executable(commandTokens,commandTokens.size());
-            }    
-	    */
-            //TESTING BLOCK CLOSE
-	               
-            
+           
             
             //empty commandTokens
             while(commandTokens.size() != 0){
@@ -174,18 +129,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			//cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.front(),commandObjects.back());
                 }
-                
-                //TESTING BLOCK OPEN
-		/*
-                cout << "Connector Object " << token << " was just created" << endl;
-                cout << "Left Child = ";
-        	leftChild->display();
-		cout << endl;
-        	cout << "Right Child = ";       
-     	   	rightChild->display();
-		cout << endl;
-		*/
-                //TESTING BLOCK CLOSE
+
                 
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
@@ -214,69 +158,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 
 
 
-	    /*	    
-	    if(openQuote == true){
-		commandTokens.at(commandTokens.size()-1) += ' ';
-		cout << "commandTokens.at(commandTokens.size()-1) = " << commandTokens.at(commandTokens.size()-1) << endl;
-		for(int i = 0; i < tokenLength; i++){ 
-			commandTokens.at(commandTokens.size()-1) += token[i];	
-		}
-		cout << "*commandTokens.at(commandTokens.size()-1) = " << commandTokens.at(commandTokens.size()-1) << endl;
-	    }
-	    */
-
-
             commandTokens.push_back(token);
 	    
-
-
-	    //--------------------OLD OPEN QUOTES BLOCK OPEN----------------------------------
-
-	    //cout << "BEFORE THE OPEN QUOTES CHECK" << endl;
-	    //cout << commandTokens.at(0)[0] << " ?= " << quoteCmp[0];
- 	    //NEED TO CHECK THE BEGGINNING OF EEEVVERY TOKEN
- 	    //cout << "SIZE OF COMMANDTOKENS = " << commandTokens.size() << endl;
-	
-	    
-	    //int tokenLength = strlen(commandTokens.at(1));
-	    //cout << "TOKEN LENGTH = " << tokenLength << endl;    
-	    	    
-
-	    //If the first character in the first element is a quote, then set openQuote = true
-	    /*
-	    for(int i = 0; i < commandTokens.size(); i++){	
-		commandTokenLength = strlen(commandTokens.at(i));
-		cout<< "COMMAND TOKEN LENGTH = " << commandTokenLength << endl;
-		cout << "commandTokens.at(i)[commandTokenLength] =  " << commandTokens.at(i)[commandTokenLength-1] << endl;
-		if(commandTokens.at(i)[0] == quoteCmp[0]){
-	    		//cout << "INSIDE OPEN QUOTES" << endl;
-			//cout << "commandTokens.at( " << i << ")[0] == " << commandTokens.at(i)[0] <<endl;
-			openQuote = true;
-	    	}//Else if the last character in the last element is a quote then set openQuote = false
-      		else if(commandTokens.at(i)[commandTokenLength-1] == quoteCmp[0]){
-			cout << "DO I EVER GO IN HERE???" << endl;
-			openQuote = false;
-		}
-	    }
-           */
-
-	
-	   /*
-	   //The above code simplified!!!!
-	   commandTokenLength = strlen(commandTokens.at(commandTokens.size()-1));
-	   cout << "CommandTokenLength = " << commandTokenLength << endl;
-	   if(commandTokens.at(0)[0] == quoteCmp[0]){
-		openQuote = true;
-	   }
-	
-	   if(commandTokens.at(commandTokens.size()-1)[commandTokenLength] == quoteCmp[0]){
-		cout << "AAAHHHH" << endl;
-		openQuote = false;
-	   }
-	   */
-
-	   //--------------------OLD OPEN QUOTES BLOCK CLOSE----------------------------------
-
 
 	}
         token = strtok(NULL," ");
@@ -318,16 +201,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             //cout << "D" << endl;
             object = new Semicolon(commandObjects.front(),commandObjects.back());
         }
-        
-        //TESTING BLOCK OPEN
-	/*
-        cout << "Connector Object " << token << " was just created" << endl;
-        cout << "Left Child = ";
-	leftChild->display();
-        cout << "Right Child = ";
-	rightChild->display();
-	*/
-        //TESTING BLOCK CLOSE
+
         
         //Push this new connector object onto connectorObjects
         connectorObjects.push_back(object);
