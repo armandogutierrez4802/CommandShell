@@ -1,5 +1,5 @@
-#ifndef and_h
-#define and_h
+#ifndef parenthesis_h
+#define parenthesis_h
 
 #include "connectors.h"
 
@@ -10,4 +10,4 @@ public:
   
 };
 
-#endif /* and_h */
+#endif /* parenthesis_h */

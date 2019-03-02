@@ -7,6 +7,7 @@
 #include "or.h"
 #include "and.h"
 #include "semicolon.h"
+#include "parenthesis.h"
 #include <string>
 #include <string.h>
 #include <vector>
