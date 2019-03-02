@@ -19,14 +19,14 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 countParen--;
         }
     }
-
+cout << "1" << endl;
     if(countParen != 0){//Exit program if uneven parenthesis
 	cout << "Error: uneven number of parenthesis" << endl;
 	return false;
     }
 
     countParen = 0;//Set it back equal to zero in order to use it during tree construction
-
+cout << "2" << endl;
     for(int i = 0; i < this->userInput.size(); i++){//Handle the comments and adding spaces before semicolon & parenthesis
         if(this->userInput[i] == '#'){
             break;
@@ -42,7 +42,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	    }
         }
     }
-    
+cout << "3" << endl;    
 //	cout << "newUserInput = " << newUserInput << endl;
 
     
@@ -86,6 +86,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     int tokenLength;
 
     CommandLine* commandObjectTemp;//???This will be used if our command line ends with a closed paranthesis
+
+	cout << "1 - BEFORE WHILE LOOP" << endl;	
 
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
@@ -171,7 +173,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		if(strcmp(connectorTokens.back(), openParCmp) == 0){
 			connectorTokens.pop_back();
 		}
-
+            }
 		//Push_back the connector on the connectorTokens
 		//LOL WAIT WHAT IS THIS???
 		//Oh ya this is if we are at a connector, so now we push it before looping again
@@ -210,7 +212,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	 if(commandObjects.size() == 2){// *** Should we make this >= two??? ---> NO, I DON'T THINK SO, WE CAN PROBABLY HANDLE THIS IN THE WHILE LOOP
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
-        //cout << "A" << endl;
+ 	//cout << "A" << endl;       
         if((strcmp(connectorTokens.back(), orCmp) == 0)){// ****** AGAIN WE WILL PROBABLY HAVE TO CHANGE THIS TO CONNECTOR TOKENS.BACK()
             //cout << "B" << endl;
             object = new Or(commandObjects.front(),commandObjects.back());
@@ -251,8 +253,3 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     
 }
 
-
-
-
-
-}//????? This one fixes an error
