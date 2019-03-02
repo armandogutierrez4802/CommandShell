@@ -88,15 +88,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     CommandLine* commandObjectTemp;//???This will be used if our command line ends with a closed paranthesis
 
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
-    
     while (token)
     {
 	tokenLength = strlen(token);
-
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
 	}
-
 	//If token is connector ******* IF OUR CONNECTOR IS AN OPEN PARENTHESIS, I THINK WE JUST PUSH IT ON THE CONNECTOR TOKENS
         //****IF OUR TOKEN IS A CLOSED PARANTHESIS, DO WE EVEN NEED TO PUSH IT ON THE CONNECTOR TOKENS STACK??? I DO NOT THINK SO B/C WHEN WE MOVE ON TO THE NEXT CONNECTOR,
         //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
@@ -108,29 +105,22 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
 	    //IN THIS CASE ^^  WE JUST NEED TO PUSH THE CONNECTOR TOKEN, IN THIS CASE THE ||
             //***  IT SEEMS LIKE THE CREATION OF THE OBJECT ONLY HAPPENS WHEN THE PARENTHESIS ARE NOT IN CONNECTOR TOKENS
-            
-	    
+              
 	    //Wait... what if it is just one command in a paranthesis, like (echo A)
 	    // I forgot what this if statement below was for lmao
 	    //***** if(strcmp(connectorTokens.back(), closeParCmp) != 0 &&||?? strcmp(connectorTokens.back(), openParCmp) != 0){//I'M THINKING &&
-	    //** ^^Encapsulates next two lines of code..Maybe the little empty command token while loop
-	    						      
+	    //** ^^Encapsulates next two lines of code..Maybe the little empty command token while loop 						      
 	    object = new Executable(commandTokens,commandTokens.size());	
-            
-            
             //push_back it onto commandObjects **** LOOK AT COMMENTS FOR PREVIOUS SECTION BECAUSE SAME APPLIES
             commandObjects.push_back(object);
-           
             
             //empty commandTokens
             while(commandTokens.size() != 0){
                 commandTokens.pop_back();
             }
 
-
 	    //***Will probably need to instantiate commandObject temp with commandObject.back() here
-	    
-		
+	    	
 	   // maybe not-> FOR THE NEXT BLOCK, WE SHOULD DO THIS IF THE BACK OF CNT IS A CLOSED PARANTHESIS!! WE SHOULD POP THE PARANTHESIS FIRST AND THEN INSTANTIATE CONNECTOR
 
 						//**** We run into problems here when vector size = 3 with the paranthesis object, echo C, and echo D
