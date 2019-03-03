@@ -8,6 +8,11 @@
 Executable::Executable(vector<char*> cmTokens, int numArguments){
 	this->cmTokens = cmTokens;
 	this->numArguments = numArguments;
+	cout << "The elements in this commandObject are ";
+	for(int i = 0; i < numArguments; i++){
+		cout << cmTokens.at(i) << " ";
+	}
+	cout << endl;
 }
 
 bool Executable::execute(){
@@ -42,7 +47,7 @@ bool Executable::execute(){
 	*/
 
 	//TESTING BLOCK OPEN
-	cout << "The elements in this commandTokens objects are ";
+	cout << "The elements in my final tree commandObject are ";
 	for(int i = 0; i < numArguments; i++){
 		cout << cmTokens.at(i) << " ";
 	}
