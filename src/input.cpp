@@ -136,8 +136,8 @@ cout << "6" << endl;
 cout << "7" << endl;    
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
-//cout << connectorTokens.size() << endl;
-//cout << connectorTokens.back() << endl;               
+cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
+cout << "connectorTokens.back() = " <<  connectorTokens.back() << endl;               
 		if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
      			cout << "X" << endl;
 			object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
@@ -147,7 +147,7 @@ cout << "7" << endl;
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
 			cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
-                } else{// if(connectorTokens.size() != 0 && strcmp(commandTokens.back(),openParCmp) == 0){
+                } else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(),openParCmp) == 0){
 cout << "*" << endl;
 			object = commandObjects.back();
 cout << "**" << endl;		
@@ -178,6 +178,10 @@ cout << "12" << endl;
                 connectorObjects.pop_back();
                 //Pop connectorTokens ***** WILL PROBABLY KEEP HAVING TO POP BACK UNTIL WE REACH THE OPEN PARENTHESIS, WE WANT TO REMOVE THE OPEN PAREN BUT NOT WHATS BEFORE IT  
 cout << "13" << endl;
+
+cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
+cout << "commandObjects.size() = " << commandObjects.size() << endl;
+
 		while(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){
 			connectorTokens.pop_back();//*** WE MAY NEED TO POP CONNECTOR TOKENS UNTIL AN OPEN PARENTHESIS IS REACHED, THEN POP THE OPEN PARENTHESIS
 		}
@@ -187,6 +191,7 @@ cout << "13" << endl;
 		}
 		
 cout << "14" << endl;
+cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
 	
             }
 		//Push_back the connector on the connectorTokens
@@ -267,6 +272,6 @@ cout << "19" << endl;
 cout << "20" << endl;
     //We now have our entire tree in the first element of our commandObjects
     commandObjects.at(0)->execute();
-    
+cout << "21" << endl;   
 }
 
