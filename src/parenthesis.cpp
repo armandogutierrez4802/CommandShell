@@ -1,10 +1,12 @@
 #include "../header/parenthesis.h"
+#include <iostream>
 Parenthesis::Parenthesis(CommandLine* onlyChild) {
 	this->leftChild = onlyChild;
 }
         
 bool Parenthesis::execute(){
-	return (leftChild->execute());
+	cout << "my () child is -> " << leftChild << endl;
+	return leftChild->execute();
 }
 
 

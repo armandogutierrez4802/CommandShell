@@ -41,6 +41,16 @@ bool Executable::execute(){
 
 	*/
 
+	//TESTING BLOCK OPEN
+	cout << "The elements in this commandTokens objects are ";
+	for(int i = 0; i < numArguments; i++){
+		cout << cmTokens.at(i) << " ";
+	}
+	cout << endl;
+	
+	//TESTING BLOCK CLOSE
+
+
 	for(int i = 0; i < numArguments; i++){
 		args[i] = cmTokens.at(i);
 	}
