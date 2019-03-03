@@ -99,13 +99,13 @@ cout << "2" << endl;
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
 	}
-cout << "3" << endl;
+//cout << "3" << endl;
 	//If token is connector ******* IF OUR CONNECTOR IS AN OPEN PARENTHESIS, I THINK WE JUST PUSH IT ON THE CONNECTOR TOKENS
         //****IF OUR TOKEN IS A CLOSED PARANTHESIS, DO WE EVEN NEED TO PUSH IT ON THE CONNECTOR TOKENS STACK??? I DO NOT THINK SO B/C WHEN WE MOVE ON TO THE NEXT CONNECTOR,
         //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
         //**** IF OPEN PARENTHESIS, THEN PUSH IT ON CONNECTOR TOKENS, IF CLOSED PARANTHESIS, THEN CREATE THE PARENTHESIS OBJECT
         //**** KEEP IN MIND THAT AN OPEN PARANTHESIS IS COULD BE FOLLOWED BY ANOTHER OPEN PAR, AND CLOSED PARANTHESIS CAN ALSO BE FOLLOWED BY ANOTHER
-	/*else*/ if(strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
+	else if(strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
 					 || strcmp(token,closeParCmp) == 0){// && openQuote == false){
             //instantiate a command object with commandTokens **** THIS DOES NOT WORK IF WE ARE AT || AND WE HAVE (echoo A && echo B) || (echo C && echo D)
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
