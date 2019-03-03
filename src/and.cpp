@@ -2,8 +2,8 @@
 And::And(CommandLine* leftChild, CommandLine* rightChild) {
 	this->leftChild = leftChild;
 	this->rightChild = rightChild;
-	cout << "Left Child of && Connector = " << leftChild << endl;
-	cout << "Right Child of && Connector = " << rightChild << endl;
+	//cout << "Left Child of && Connector = " << leftChild << endl;
+	//cout << "Right Child of && Connector = " << rightChild << endl;
 }
         
 bool And::execute(){

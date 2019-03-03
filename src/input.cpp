@@ -135,7 +135,9 @@ cout << "6" << endl;
 						//**** We run into problems here when vector size = 3 with the paranthesis object, echo C, and echo D
 						//	Only when our current token is closed parenthesis?? so maybe this needs to be a separate check
             //**** YAAASS-->>> WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
-            if((commandObjects.size() >= 2 && strcmp(connectorTokens.back(),openParCmp) != 0) || strcmp(closeParCmp, token) == 0){//**** SEG FAULT W/ .back()????
+//            if((commandObjects.size() >= 2 && strcmp(connectorTokens.back(),openParCmp) != 0)||(strcmp(closeParCmp, token) == 0 && strcmp(connectorTokens.back(),closeParCmp) != 0)){
+	    if((strcmp(connectorTokens.back(),openParCmp)!=0&&strcmp(connectorTokens.back(),closeParCmp)!=0) && (commandObjects.size() >= 2 || strcmp(closeParCmp, token) == 0)){	
+//cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
 cout << "7" << endl;    //****^^^^^ >= 2 OR == 2???? May not matter i guess
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
@@ -197,9 +199,9 @@ cout << "commandObjects.size() = " << commandObjects.size() << endl;
 cout << "14" << endl;
 cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
 	
-            }//End big if(size ==2 || @ closes Paranthsis)
+            }//End big if( (x && y) || (z || w) )
 
-		//*** DO I NEED TO POP OFF THE FIRST CLOSED PARANTHESIS?? in (echo a && echo b) && (ceho c && echo d) 
+
 
 		//Push_back the connector on the connectorTokens
 		connectorTokens.push_back(token);//***** DO WE NEED TO DO THIS IF IT IS OUR CURRENT TOKEN IS A CLOSED PARANTHESIS? I DO NOT THINK SO(WRONG!)
@@ -253,7 +255,7 @@ cout << "17" << endl;
         	//then instantiate a connector by passing in the two commandObjects
         	//Use if elses to determine what kind of connector it is (this is connectorTokens)
  		
-		if(strcmp(connectorTokens.back(), closeParCmp) == 0){
+		while(strcmp(connectorTokens.back(), closeParCmp) == 0){
 			connectorTokens.pop_back();
 		}
 
@@ -293,15 +295,15 @@ cout << "OUTSIDE IF" << endl;
     	connectorTokens.pop_back();
     }
 cout << "20" << endl;
-
+/*
 cout << "CMT SIZE = " << commandTokens.size() << endl;
 cout << "CNT SIZE = " << connectorTokens.size() << endl;
 cout << "CMO SIZE = " << commandObjects.size() << endl;
 cout << "CNO SIZE = " << connectorObjects.size() << endl;
-
-cout << "MY TREE IS : " << commandObjects.at(0) << endl;
+*/
+//cout << "MY TREE IS : " << commandObjects.at(0) << endl;
     //We now have our entire tree in the first element of our commandObjects
     commandObjects.at(0)->execute();
-cout << "21" << endl;   
+//cout << "21" << endl;   
 }
 
