@@ -63,23 +63,41 @@ bool Executable::execute(){
 		
 		if(strcmp(args[1], "-e") == 0) {
 			if(stat(args[2], &buf) == -1) {
-                        	return false;
+                        	std::cout << "(False)" << std::endl;
+				return false;
                 	}
+			std::cout << "(True)" << std::endl;
 			return true;
 		} else if(strcmp(args[1], "-f") == 0) {
 			if(stat(args[2], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                         	return false;
                 	}
-			return ((buf.st_mode & S_IFMT) == S_IFREG);
+			if((buf.st_mode & S_IFMT) == S_IFREG) {
+				std::cout << "(True)" << std::endl;
+				return true;
+			} else {
+				std::cout << "(False)" << std::endl;
+				return false;
+			}
 		} else if(strcmp(args[1], "-d") == 0) {
 			if(stat(args[2], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                         	return false;
                 	}
-			return ((buf.st_mode & S_IFMT) == S_IFDIR);
+			if((buf.st_mode & S_IFMT) == S_IFDIR) {
+				std::cout << "(True)" << std::endl;
+				return true;
+			} else {
+				std::cout << "(False)" << std::endl;
+				return false;
+			}
 		} else {
 			if(stat(args[1], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                         	return false;
                 	}
+			std::cout << "(True)" << std::endl;
 			return true;
 		}
 	}
@@ -90,23 +108,41 @@ bool Executable::execute(){
 
 		if(strcmp(args[1], "-e") == 0) {
 			if(stat(args[2], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                                 return false;
                         }
+			std::cout << "(True)" << std::endl;
 			return true;	
 		} else if(strcmp(args[1], "-f") == 0) {
 			if(stat(args[2], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                                 return false;
                         }
-			return ((buf.st_mode & S_IFMT) == S_IFREG);
+			if((buf.st_mode & S_IFMT) == S_IFREG) {
+				std::cout << "(True)" << std::endl;
+				return true;
+			} else {
+				std::cout << "(False)" << std::endl;
+				return false;
+			}
 		} else if(strcmp(args[1], "-d") == 0) {
 			if(stat(args[2], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                                 return false;
                         }
-			return ((buf.st_mode & S_IFMT) == S_IFDIR);
+			if((buf.st_mode & S_IFMT) == S_IFDIR) {
+				std::cout << "(True)" << std::endl;
+				return true;
+			} else {
+				std::cout << "(False)" << std::endl;
+				return false;
+			}
 		} else {
 			if(stat(args[1], &buf) == -1) {
+				std::cout << "(False)" << std::endl;
                                 return false;
                         }
+			std::cout << "(True)" << std::endl;
 			return true;
 		}
 	}
