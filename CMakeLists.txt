@@ -10,6 +10,7 @@ ADD_EXECUTABLE(rshell
     src/or.cpp
     src/and.cpp
     src/semicolon.cpp
+    src/parenthesis.cpp
     src/executable.cpp
     src/input.cpp
     
@@ -21,6 +22,7 @@ ADD_EXECUTABLE(test
     src/or.cpp
     src/and.cpp
     src/semicolon.cpp
+    src/parenthesis.cpp
     src/executable.cpp
     src/input.cpp
 )
@@ -30,6 +32,7 @@ ADD_Executable(integration
     src/or.cpp
     src/and.cpp
     src/semicolon.cpp
+    src/parenthesis.cpp
     src/executable.cpp
     src/input.cpp
     src/connectors.cpp
