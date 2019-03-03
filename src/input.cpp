@@ -88,14 +88,17 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     CommandLine* commandObjectTemp;//???This will be used if our command line ends with a closed paranthesis
 
 	//cout << "1 - BEFORE WHILE LOOP" << endl;	
-
+cout << "1" << endl;
+	
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
     {
+cout << "2" << endl;
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
 	}
+cout << "3" << endl;
 	//If token is connector ******* IF OUR CONNECTOR IS AN OPEN PARENTHESIS, I THINK WE JUST PUSH IT ON THE CONNECTOR TOKENS
         //****IF OUR TOKEN IS A CLOSED PARANTHESIS, DO WE EVEN NEED TO PUSH IT ON THE CONNECTOR TOKENS STACK??? I DO NOT THINK SO B/C WHEN WE MOVE ON TO THE NEXT CONNECTOR,
         //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
@@ -107,7 +110,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
 	    //IN THIS CASE ^^  WE JUST NEED TO PUSH THE CONNECTOR TOKEN, IN THIS CASE THE ||
             //***  IT SEEMS LIKE THE CREATION OF THE OBJECT ONLY HAPPENS WHEN THE PARENTHESIS ARE NOT IN CONNECTOR TOKENS
-              
+cout << "4" << endl;  
 	    //Wait... what if it is just one command in a paranthesis, like (echo A)
 	    // I forgot what this if statement below was for lmao
 	    //***** if(strcmp(connectorTokens.back(), closeParCmp) != 0 &&||?? strcmp(connectorTokens.back(), openParCmp) != 0){//I'M THINKING &&
@@ -115,12 +118,12 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 	    object = new Executable(commandTokens,commandTokens.size());	
             //push_back it onto commandObjects **** LOOK AT COMMENTS FOR PREVIOUS SECTION BECAUSE SAME APPLIES
             commandObjects.push_back(object);
-
+cout << "5" << endl;
             //empty commandTokens
             while(commandTokens.size() != 0){
                 commandTokens.pop_back();
             }
-
+cout << "6" << endl;
 	    //***Will probably need to instantiate commandObject temp with commandObject.back() here
 	    	
 	   // maybe not-> FOR THE NEXT BLOCK, WE SHOULD DO THIS IF THE BACK OF CNT IS A CLOSED PARANTHESIS!! WE SHOULD POP THE PARANTHESIS FIRST AND THEN INSTANTIATE CONNECTOR
@@ -129,22 +132,22 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 						//	Only when our current token is closed parenthesis?? so maybe this needs to be a separate check
             //**** YAAASS-->>> WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
             if(commandObjects.size() == 2 || strcmp(closeParCmp, token) == 0){// ** CHECK THAT SIZE >= 2????? OR YAS ->* MAYBE I CAN LEAVE IT AS ==2 BUT || IF CURRENT TOKEN IS )
-             
+cout << "7" << endl;    
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
                 if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
-     			//cout << "X" << endl;
+     			cout << "X" << endl;
 			object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
-                    	//cout << "Y" << endl;
+                    	cout << "Y" << endl;
 			object = new And(commandObjects.at(commandObjects.size()-2),commandObjects.back());
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
-			//cout << "Z" << endl;
+			cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
                 } else if(connectorTokens.size() != 0 && strcmp(commandTokens.back(),openParCmp) == 0){
 			object = commandObjects.back();
 		}
-	
+cout << "8" << endl;
                 
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
@@ -152,14 +155,16 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 if(commandObjects.size() != 1){
                 	commandObjects.pop_back();
                 }
-	
+cout << "9" << endl;
 		commandObjects.pop_back();
-		
+cout << "10" << endl;
 		//****** WILL PROBABLY MAKE THE PARANETHESIS CONNECTOR HERE IF TOKEN IS A CLOSED PARENTHESIS
 		if(strcmp(token,closeParCmp) == 0){
+cout << "11" << endl;
 			parObject = new Parenthesis(connectorObjects.back());//This could be .at(0) too right lol
 			connectorObjects.pop_back();
 			connectorObjects.push_back(parObject);
+cout << "12" << endl;
 		}
 	
                 //Move the connector Object into the commandObject list.....*** i changed this next line to .back instead of .at(0). Not sure if that matters
@@ -167,8 +172,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 //Pop connector Object 
                 connectorObjects.pop_back();
                 //Pop connectorTokens ***** WILL PROBABLY KEEP HAVING TO POP BACK UNTIL WE REACH THE OPEN PARENTHESIS, WE WANT TO REMOVE THE OPEN PAREN BUT NOT WHATS BEFORE IT  
-			
-		
+cout << "13" << endl;
 		while(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){
 			connectorTokens.pop_back();//*** WE MAY NEED TO POP CONNECTOR TOKENS UNTIL AN OPEN PARENTHESIS IS REACHED, THEN POP THE OPEN PARENTHESIS
 		}
@@ -177,7 +181,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 			connectorTokens.pop_back();
 		}
 		
-	
+cout << "14" << endl;
 	
             }
 		//Push_back the connector on the connectorTokens
@@ -197,7 +201,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
    
 //cout << "AFTER WHILE" << endl;
 
-
+cout << "15" << endl;
 //  if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), closeParCmp) != 0){//********* THIS IS SUPER IMPORTANT TO KNOW HOW TO IMPLEMENT THE WHILE LOOP ABOVE
     //cout << "am i in here?" << endl;
     //We are always gauranteed to need to create a command object for our last command to execute
