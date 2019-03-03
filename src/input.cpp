@@ -88,13 +88,13 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     //CommandLine* commandObjectTemp;//???This will be used if our command line ends with a closed paranthesis
 
 	//cout << "1 - BEFORE WHILE LOOP" << endl;	
-cout << "1" << endl;
+//cout << "1" << endl;
 	
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
     {
-cout << "OUR CURRENT TOKEN IS: " << token << endl;
-cout << "2" << endl;
+//cout << "OUR CURRENT TOKEN IS: " << token << endl;
+//cout << "2" << endl;
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
@@ -111,7 +111,7 @@ cout << "2" << endl;
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
 	    //IN THIS CASE ^^  WE JUST NEED TO PUSH THE CONNECTOR TOKEN, IN THIS CASE THE ||
             //***  IT SEEMS LIKE THE CREATION OF THE OBJECT ONLY HAPPENS WHEN THE PARENTHESIS ARE NOT IN CONNECTOR TOKENS
-cout << "4" << endl;  
+//cout << "4" << endl;  
 	    //Wait... what if it is just one command in a paranthesis, like (echo A)
 	    // I forgot what this if statement below was for lmao
 	    //** I THINK THIS IF STATEMENT IS WRONG ->if(strcmp(connectorTokens.back(), closeParCmp) != 0 &&||?? strcmp(connectorTokens.back(), openParCmp) != 0){//I'M THINKING &&
@@ -120,14 +120,14 @@ cout << "4" << endl;
 		object = new Executable(commandTokens,commandTokens.size());	
             	//push_back it onto commandObjects **** LOOK AT COMMENTS FOR PREVIOUS SECTION BECAUSE SAME APPLIES
 		commandObjects.push_back(object);
-cout << "5" << endl;
+//cout << "5" << endl;
             	//empty commandTokens
             	while(commandTokens.size() != 0){
                 	commandTokens.pop_back();
             	}
 	    }	
 	
-cout << "6" << endl;
+//cout << "6" << endl;
 	    //-----------***********Will probably need to instantiate commandObject temp with commandObject.back() here
 	    	
 	   // maybe not-> FOR THE NEXT BLOCK, WE SHOULD DO THIS IF THE BACK OF CNT IS A CLOSED PARANTHESIS!! WE SHOULD POP THE PARANTHESIS FIRST AND THEN INSTANTIATE CONNECTOR
@@ -138,26 +138,21 @@ cout << "6" << endl;
 //            if((commandObjects.size() >= 2 && strcmp(connectorTokens.back(),openParCmp) != 0)||(strcmp(closeParCmp, token) == 0 && strcmp(connectorTokens.back(),closeParCmp) != 0)){
 	    if((strcmp(connectorTokens.back(),openParCmp)!=0&&strcmp(connectorTokens.back(),closeParCmp)!=0) && (commandObjects.size() >= 2 || strcmp(closeParCmp, token) == 0)){	
 //cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
-cout << "7" << endl;    //****^^^^^ >= 2 OR == 2???? May not matter i guess
+//cout << "7" << endl;    //****^^^^^ >= 2 OR == 2???? May not matter i guess
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
-cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
-cout << "connectorTokens.back() = " <<  connectorTokens.back() << endl;               
+//cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
+//cout << "connectorTokens.back() = " <<  connectorTokens.back() << endl;               
 		if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
-     			cout << "X" << endl;
+     			//cout << "X" << endl;
 			object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
-                    	cout << "Y" << endl;
+                    	//cout << "Y" << endl;
 			object = new And(commandObjects.at(commandObjects.size()-2),commandObjects.back());
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
-			cout << "Z" << endl;
+			//cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
-                } //else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(),openParCmp) == 0){
-cout << "*" << endl;
-//			object = commandObjects.back();// *** THIS LINE OF CODE IS REDUNDANT. LOOK ABOVE AT WHAT OBJECT IS //_*_*_*_*_*_* HERE IS THE PROBLEM
-cout << "**" << endl;		
-//		}
-cout << "8" << endl;
+                }
                 
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
@@ -165,16 +160,16 @@ cout << "8" << endl;
                 if(commandObjects.size() != 1){
                 	commandObjects.pop_back();
                 }
-cout << "9" << endl;
+//cout << "9" << endl;
 		commandObjects.pop_back();
-cout << "10" << endl;
+//cout << "10" << endl;
 		//****** WILL PROBABLY MAKE THE PARANETHESIS CONNECTOR HERE IF TOKEN IS A CLOSED PARENTHESIS
 		if(strcmp(token,closeParCmp) == 0){
-cout << "11" << endl;
+//cout << "11" << endl;
 			parObject = new Parenthesis(connectorObjects.back());//This could be .at(0) too right lol
 			connectorObjects.pop_back();
 			connectorObjects.push_back(parObject);
-cout << "12" << endl;
+//cout << "12" << endl;
 		}
 	
                 //Move the connector Object into the commandObject list.....*** i changed this next line to .back instead of .at(0). Not sure if that matters
@@ -182,10 +177,10 @@ cout << "12" << endl;
                 //Pop connector Object 
                 connectorObjects.pop_back();
                 //Pop connectorTokens ***** WILL PROBABLY KEEP HAVING TO POP BACK UNTIL WE REACH THE OPEN PARENTHESIS, WE WANT TO REMOVE THE OPEN PAREN BUT NOT WHATS BEFORE IT  
-cout << "13" << endl;
+//cout << "13" << endl;
 
-cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
-cout << "commandObjects.size() = " << commandObjects.size() << endl;
+//cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
+//cout << "commandObjects.size() = " << commandObjects.size() << endl;
 //*_*_*_*_*_*_*_*_*_*_* DOWN HERE!!!!!--------------------------------- MAYBE ONLY DO THESE TWO BLOCKS IF I AM AT A CLOSED PARANTHESIS OORRR ** MAKE WHILE AN IF **
 //	     if(strcmp(token, closeParCmp) == 0){//**DO I NEED THIS IF???
 		if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){//** AM I S8RE THESE ARE THE RIGHT CONDITIONS?!?!?!
@@ -196,8 +191,8 @@ cout << "commandObjects.size() = " << commandObjects.size() << endl;
 			connectorTokens.pop_back();
 		}
 //	     }
-cout << "14" << endl;
-cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
+//cout << "14" << endl;
+//cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
 	
             }//End big if( (x && y) || (z || w) )
 
@@ -216,17 +211,17 @@ cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
         token = strtok(NULL," ");
    }//end while loop
    
-cout << "AFTER WHILE" << endl;
+//cout << "AFTER WHILE" << endl;
 
-
+/*
 cout << "CMT SIZE = " << commandTokens.size() << endl;
 cout << "CNT SIZE = " << connectorTokens.size() << endl;
 cout << "CMO SIZE = " << commandObjects.size() << endl;
 cout << "CNO SIZE = " << connectorObjects.size() << endl;
+*/
 
 
-
-cout << "15" << endl;
+//cout << "15" << endl;
 //cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
 //cout << "is back of CNT == )? " << strcmp(connectorTokens.back(), closeParCmp) << endl;
 //cout << "MEH?" << endl;
@@ -240,14 +235,14 @@ cout << "15" << endl;
     object = new Executable(commandTokens,commandTokens.size());
     commandObjects.push_back(object);
    
-cout << "16" << endl;
+//cout << "16" << endl;
     //empty commandTokens
     while(commandTokens.size() != 0){
     	commandTokens.pop_back();
     }
   }
 
-cout << "17" << endl;
+//cout << "17" << endl;
     //***** IN THE CASE THAT OUR LINE ENDS WITH A CLOSED PARANTHESIS, 
     // WE SHOULD POP THE CLOSED PARENTHESIS, AND CREATE... whaaaa
     //If commandObjects size == 2 
@@ -270,7 +265,7 @@ cout << "17" << endl;
             	//cout << "D" << endl;
             	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         	}
-cout << "18" << endl;
+//cout << "18" << endl;
         	//Push this new connector object onto connectorObjects
         	connectorObjects.push_back(object);
         	//Empty the commandObjects vector
@@ -284,17 +279,17 @@ cout << "18" << endl;
 		//cout << " CNO SIZE = " << connectorObjects.size() << "**" << endl;
         	connectorObjects.pop_back();
     	}
-cout << "19" << endl;
+//cout << "19" << endl;
 //  }// **** END THE IF STATEMENT THAT CHECKS IF OUR CNT.BACK() IS A CLOSED ()
 
-cout << "OUTSIDE IF" << endl;
+//cout << "OUTSIDE IF" << endl;
     //cout << " CNT SIZE = " << connectorTokens.size() << "**" << endl;
     //Pop connectorTokens
     // *** POP BACK UNTIL EMPTY
     while(connectorTokens.size() != 0){
     	connectorTokens.pop_back();
     }
-cout << "20" << endl;
+//cout << "20" << endl;
 /*
 cout << "CMT SIZE = " << commandTokens.size() << endl;
 cout << "CNT SIZE = " << connectorTokens.size() << endl;
