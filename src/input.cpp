@@ -130,11 +130,11 @@ cout << "OUR TOKEN IS " << token << endl;
 						//	Only when our current token is closed parenthesis?? so maybe this needs to be a separate check
             //**** YAAASS-->>> WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
             if(commandObjects.size() == 2 || strcmp(closeParCmp, token) == 0){// ** CHECK THAT SIZE >= 2????? OR YAS ->* MAYBE I CAN LEAVE IT AS ==2 BUT || IF CURRENT TOKEN IS )
-                
+        cout << "*" << endl;        
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
                 if((strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
-                	//cout << "X" << endl; 
+                	cout << "X" << endl; 
 			object = new Or(commandObjects.at(commandObjects.size()-1),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
                 } else if((strcmp(connectorTokens.back(), andCmp) == 0)){
                     	//cout << "Y" << endl;
@@ -145,7 +145,7 @@ cout << "OUR TOKEN IS " << token << endl;
                 } else if(strcmp(commandTokens.back(),openParCmp) == 0){
 			object = commandObjects.back();
 		}
-
+	cout << "**" << endl;
                 
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
@@ -153,7 +153,7 @@ cout << "OUR TOKEN IS " << token << endl;
                 if(commandObjects.size() != 1){
                 	commandObjects.pop_back();
                 }
-		
+	cout << "***" << endl;
 		commandObjects.pop_back();
 		
 		//****** WILL PROBABLY MAKE THE PARANETHESIS CONNECTOR HERE IF TOKEN IS A CLOSED PARENTHESIS
@@ -162,25 +162,32 @@ cout << "OUR TOKEN IS " << token << endl;
 			connectorObjects.pop_back();
 			connectorObjects.push_back(parObject);
 		}
-		
+	cout << "****" << endl;
                 //Move the connector Object into the commandObject list.....*** i changed this next line to .back instead of .at(0). Not sure if that matters
                 commandObjects.push_back(connectorObjects.back());//**********If we are at a closed parenthesis than we need to push the new () object instead
                 //Pop connector Object 
                 connectorObjects.pop_back();
-                //Pop connectorTokens ***** WILL PROBABLY KEEP HAVING TO POP BACK UNTIL WE REACH THE OPEN PARENTHESIS, WE WANT TO REMOVE THE OPEN PAREN BUT NOT WHATS BEFORE IT
-                while(strcmp(connectorTokens.back(), openParCmp) != 0){
+                //Pop connectorTokens ***** WILL PROBABLY KEEP HAVING TO POP BACK UNTIL WE REACH THE OPEN PARENTHESIS, WE WANT TO REMOVE THE OPEN PAREN BUT NOT WHATS BEFORE IT  
+			
+		cout << "*****" << endl;
+		while(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){
+			cout << "6" << endl;
 			connectorTokens.pop_back();//*** WE MAY NEED TO POP CONNECTOR TOKENS UNTIL AN OPEN PARENTHESIS IS REACHED, THEN POP THE OPEN PARENTHESIS
 		}
-		if(strcmp(connectorTokens.back(), openParCmp) == 0){
+			
+		if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) == 0){
 			connectorTokens.pop_back();
 		}
+		
+	
+	
             }
 		//Push_back the connector on the connectorTokens
 		//LOL WAIT WHAT IS THIS???
 		//Oh ya this is if we are at a connector, so now we push it before looping again
 		connectorTokens.push_back(token);//***** DO WE NEED TO DO THIS IF IT IS OUR CURRENT TOKEN IS A CLOSED PARANTHESIS? I DO NOT THINK SO(WRONG!)
 						//^^ ACTUALLY WE MAY NEED TO TO MAKE SURE THAT WE DO NOT CREATE ON OBJECT WHEN THE NEXT CURRENT TOKEN IS A CONNECTOR!!!
-	cout << "*" << endl;
+	
 	}
         //else token is command, then push_back onto commandTokens
         else{
@@ -214,7 +221,7 @@ cout << "AFTER WHILE" << endl;
 
 cout << "??" << endl;
     //If commandObjects size == 2 
-	 if(commandObjects.size() == 2){// *** Should we make this >= two??? ---> NO, I DON'T THINK SO, WE CAN PROBABLY HANDLE THIS IN THE WHILE LOOP
+	if(commandObjects.size() == 2){// *** Should we make this >= two??? ---> NO, I DON'T THINK SO, WE CAN PROBABLY HANDLE THIS IN THE WHILE LOOP
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
  	//cout << "A" << endl;       
