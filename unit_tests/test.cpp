@@ -401,6 +401,411 @@ TEST(ExecutableTests, InvalidInput) {
         EXPECT_EQ(false, thirdExecutable->execute());
 }
 
+
+TEST(ExecutableTests, existTestValid) {
+	string tokenOneString = "test";
+	string tokenTwoString = "-e";
+	string tokenThreeString = "src/input.cpp";
+
+	char* tokenOneCmp = new char[tokenOneString.length()+1];
+	strcpy(tokenOneCmp, tokenOneString.c_str());
+
+	char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+	char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+	std::vector<char*> command;
+	command.push_back(tokenOneCmp);
+	command.push_back(tokenTwoCmp);
+	command.push_back(tokenThreeCmp);
+
+	CommandLine* executable = new Executable(command,3);
+
+	EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, existTestInvalid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "-e";
+        string tokenThreeString = "src/inpt.cpp";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, fileTestValid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "-f";
+        string tokenThreeString = "src/executable.cpp";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, fileTestInvalid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "-f";
+        string tokenThreeString = "src/";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, dirTestValid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "-d";
+        string tokenThreeString = "src/";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, dirTestInvalid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "-d";
+        string tokenThreeString = "src/executable.cpp";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, defaultTestValid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "src/";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+
+        CommandLine* executable = new Executable(command,2);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, defaultTestInvalid) {
+        string tokenOneString = "test";
+        string tokenTwoString = "sc/";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+        
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+
+        CommandLine* executable = new Executable(command,2);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, symExistTestValid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "-e";
+        string tokenThreeString = "src/input.cpp";
+	string tokenFourString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+	
+	char* tokenFourCmp = new char[tokenFourString.length()+1];
+	strcpy(tokenFourCmp, tokenFourString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+	command.push_back(tokenFourCmp);
+
+        CommandLine* executable = new Executable(command,4);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, symExistTestInvalid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "-e";
+        string tokenThreeString = "src/inpt.cpp";
+	string tokenFourString = "]";
+	
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+	char* tokenFourCmp = new char[tokenFourString.length()+1];
+	strcpy(tokenFourCmp, tokenFourString.c_str());
+        
+	std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+	command.push_back(tokenFourCmp);
+
+        CommandLine* executable = new Executable(command,4);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, symFileTestValid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "-f";
+        string tokenThreeString = "src/executable.cpp";
+	string tokenFourString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+	char* tokenFourCmp = new char[tokenFourString.length()+1];
+	strcpy(tokenFourCmp, tokenFourString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+	command.push_back(tokenFourCmp);
+
+        CommandLine* executable = new Executable(command,4);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, symFileTestInvalid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "-f";
+        string tokenThreeString = "src/";
+	string tokenFourString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+	char* tokenFourCmp = new char[tokenFourString.length()+1];
+	strcpy(tokenFourCmp, tokenFourString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+	command.push_back(tokenFourCmp);
+
+        CommandLine* executable = new Executable(command,4);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, symDirTestValid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "-d";
+        string tokenThreeString = "src/";
+	string tokenFourString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+	char* tokenFourCmp = new char[tokenFourString.length()+1];
+	strcpy(tokenFourCmp, tokenFourString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+	command.push_back(tokenFourCmp);
+
+        CommandLine* executable = new Executable(command,4);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, symDirTestInvalid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "-d";
+        string tokenThreeString = "src/executable.cpp";
+	string tokenFourString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+        char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+        strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+	char* tokenFourCmp = new char[tokenFourString.length()+1];
+	strcpy(tokenFourCmp, tokenFourString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+        command.push_back(tokenThreeCmp);
+	command.push_back(tokenFourCmp);
+
+        CommandLine* executable = new Executable(command,4);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
+TEST(ExecutableTests, symDefaultTestValid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "src/";
+	string tokenThreeString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+
+	char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+	strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+	command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(true, executable->execute());
+}
+
+TEST(ExecutableTests, symDefaultTestInvalid) {
+        string tokenOneString = "[";
+        string tokenTwoString = "sc/";
+	string tokenThreeString = "]";
+
+        char* tokenOneCmp = new char[tokenOneString.length()+1];
+        strcpy(tokenOneCmp, tokenOneString.c_str());
+
+        char* tokenTwoCmp = new char[tokenTwoString.length()+1];
+        strcpy(tokenTwoCmp, tokenTwoString.c_str());
+	
+	char* tokenThreeCmp = new char[tokenThreeString.length()+1];
+	strcpy(tokenThreeCmp, tokenThreeString.c_str());
+
+        std::vector<char*> command;
+        command.push_back(tokenOneCmp);
+        command.push_back(tokenTwoCmp);
+	command.push_back(tokenThreeCmp);
+
+        CommandLine* executable = new Executable(command,3);
+
+        EXPECT_EQ(false, executable->execute());
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
