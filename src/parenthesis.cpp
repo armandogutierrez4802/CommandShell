@@ -5,7 +5,7 @@ Parenthesis::Parenthesis(CommandLine* onlyChild) {
 }
         
 bool Parenthesis::execute(){
-	cout << "my () child is -> " << leftChild << endl;
+	//cout << "my () child is -> " << leftChild << endl;
 	return leftChild->execute();
 }
 
