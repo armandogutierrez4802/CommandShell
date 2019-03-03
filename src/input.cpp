@@ -216,13 +216,13 @@ cout << "15" << endl;
     object = new Executable(commandTokens,commandTokens.size());
     commandObjects.push_back(object);
    
-
+cout << "16" << endl;
     //empty commandTokens
     while(commandTokens.size() != 0){
     	commandTokens.pop_back();
     }
 
-
+cout << "17" << endl;
     //***** IN THE CASE THAT OUR LINE ENDS WITH A CLOSED PARANTHESIS, 
     // WE SHOULD POP THE CLOSED PARENTHESIS, AND CREATE... whaaaa
     //If commandObjects size == 2 
@@ -240,7 +240,7 @@ cout << "15" << endl;
             //cout << "D" << endl;
             object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         }
-        
+cout << "18" << endl;
         //Push this new connector object onto connectorObjects
         connectorObjects.push_back(object);
         //Empty the commandObjects vector
@@ -254,7 +254,7 @@ cout << "15" << endl;
 	//cout << " CNO SIZE = " << connectorObjects.size() << "**" << endl;
         connectorObjects.pop_back();
     }
-    
+cout << "19" << endl;
 //  }// **** END THE IF STATEMENT THAT CHECKS IF OUR CNT.BACK() IS A CLOSED ()
 
 //cout << "OUTSIDE IF" << endl;
@@ -264,8 +264,7 @@ cout << "15" << endl;
     while(connectorTokens.size() != 0){
     	connectorTokens.pop_back();
     }
-    //cout << "OOOOOOOHHHH" << endl;
-    //cout << "FINAL COMMAND OBJECTS SIZE = " << commandObjects.size() << endl;
+cout << "20" << endl;
     //We now have our entire tree in the first element of our commandObjects
     commandObjects.at(0)->execute();
     
