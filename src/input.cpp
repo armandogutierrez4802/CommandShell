@@ -92,7 +92,6 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
     {
-cout << "OUR TOKEN IS " << token << endl;
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
@@ -130,22 +129,22 @@ cout << "OUR TOKEN IS " << token << endl;
 						//	Only when our current token is closed parenthesis?? so maybe this needs to be a separate check
             //**** YAAASS-->>> WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
             if(commandObjects.size() == 2 || strcmp(closeParCmp, token) == 0){// ** CHECK THAT SIZE >= 2????? OR YAS ->* MAYBE I CAN LEAVE IT AS ==2 BUT || IF CURRENT TOKEN IS )
-        cout << "*" << endl;        
+             
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
-                if((strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
+                if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
                 	cout << "X" << endl; 
 			object = new Or(commandObjects.at(commandObjects.size()-1),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
-                } else if((strcmp(connectorTokens.back(), andCmp) == 0)){
+                } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
                     	//cout << "Y" << endl;
 			object = new And(commandObjects.at(commandObjects.size()-1),commandObjects.back());
-                } else if((strcmp(connectorTokens.back(), semiCmp) == 0)){
+                } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
 			//cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.at(commandObjects.size()-1),commandObjects.back());
-                } else if(strcmp(commandTokens.back(),openParCmp) == 0){
+                } else if(connectorTokens.size() != 0 && strcmp(commandTokens.back(),openParCmp) == 0){
 			object = commandObjects.back();
 		}
-	cout << "**" << endl;
+	
                 
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
@@ -153,7 +152,7 @@ cout << "OUR TOKEN IS " << token << endl;
                 if(commandObjects.size() != 1){
                 	commandObjects.pop_back();
                 }
-	cout << "***" << endl;
+	
 		commandObjects.pop_back();
 		
 		//****** WILL PROBABLY MAKE THE PARANETHESIS CONNECTOR HERE IF TOKEN IS A CLOSED PARENTHESIS
@@ -162,7 +161,7 @@ cout << "OUR TOKEN IS " << token << endl;
 			connectorObjects.pop_back();
 			connectorObjects.push_back(parObject);
 		}
-	cout << "****" << endl;
+	
                 //Move the connector Object into the commandObject list.....*** i changed this next line to .back instead of .at(0). Not sure if that matters
                 commandObjects.push_back(connectorObjects.back());//**********If we are at a closed parenthesis than we need to push the new () object instead
                 //Pop connector Object 
@@ -218,25 +217,22 @@ cout << "AFTER WHILE" << endl;
 
     //***** IN THE CASE THAT OUR LINE ENDS WITH A CLOSED PARANTHESIS, 
     // WE SHOULD POP THE CLOSED PARENTHESIS, AND CREATE... whaaaa
-
-cout << "??" << endl;
     //If commandObjects size == 2 
 	if(commandObjects.size() == 2){// *** Should we make this >= two??? ---> NO, I DON'T THINK SO, WE CAN PROBABLY HANDLE THIS IN THE WHILE LOOP
         //then instantiate a connector by passing in the two commandObjects
         //Use if elses to determine what kind of connector it is (this is connectorTokens)
  	//cout << "A" << endl;       
-        if((strcmp(connectorTokens.back(), orCmp) == 0)){// ****** AGAIN WE WILL PROBABLY HAVE TO CHANGE THIS TO CONNECTOR TOKENS.BACK()
+        if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){// ****** AGAIN WE WILL PROBABLY HAVE TO CHANGE THIS TO CONNECTOR TOKENS.BACK()
             //cout << "B" << endl;
             object = new Or(commandObjects.front(),commandObjects.back());
-        } else if((strcmp(connectorTokens.back(), andCmp) == 0)){
+        } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
             //cout << "C" << endl;
             object = new And(commandObjects.front(),commandObjects.back());
-        } else if((strcmp(connectorTokens.back(), semiCmp) == 0)){
+        } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
             //cout << "D" << endl;
             object = new Semicolon(commandObjects.front(),commandObjects.back());
         }
-
-cout << "?" << endl;        
+        
         //Push this new connector object onto connectorObjects
         connectorObjects.push_back(object);
         //Empty the commandObjects vector
