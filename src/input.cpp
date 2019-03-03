@@ -93,6 +93,7 @@ cout << "1" << endl;
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
     {
+cout << "OUR CURRENT TOKEN IS: " << token << endl;
 cout << "2" << endl;
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
@@ -104,7 +105,7 @@ cout << "3" << endl;
         //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
         //**** IF OPEN PARENTHESIS, THEN PUSH IT ON CONNECTOR TOKENS, IF CLOSED PARANTHESIS, THEN CREATE THE PARENTHESIS OBJECT
         //**** KEEP IN MIND THAT AN OPEN PARANTHESIS IS COULD BE FOLLOWED BY ANOTHER OPEN PAR, AND CLOSED PARANTHESIS CAN ALSO BE FOLLOWED BY ANOTHER
-	else if((strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
+	/*else*/ if((strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
 					 || strcmp(token,closeParCmp) == 0) && openQuote == false){
             //instantiate a command object with commandTokens **** THIS DOES NOT WORK IF WE ARE AT || AND WE HAVE (echoo A && echo B) || (echo C && echo D)
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
@@ -135,7 +136,9 @@ cout << "6" << endl;
 cout << "7" << endl;    
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
-                if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
+//cout << connectorTokens.size() << endl;
+//cout << connectorTokens.back() << endl;               
+		if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
      			cout << "X" << endl;
 			object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
@@ -144,8 +147,10 @@ cout << "7" << endl;
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
 			cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
-                } else if(connectorTokens.size() != 0 && strcmp(commandTokens.back(),openParCmp) == 0){
+                } else{// if(connectorTokens.size() != 0 && strcmp(commandTokens.back(),openParCmp) == 0){
+cout << "*" << endl;
 			object = commandObjects.back();
+cout << "**" << endl;		
 		}
 cout << "8" << endl;
                 
