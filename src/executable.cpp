@@ -44,12 +44,33 @@ bool Executable::execute(){
 	
 	args[numArguments] = NULL;
 	
+	//Check for exit command
 	char* exitValue = (char *)"exit";
 	char* inputValue = *args;
 	
         if(strcmp(inputValue, exitValue) == 0) {
                 exit(0);
         }
+	
+	/*
+	//Check for test command
+	char* testValue = (char *)"test";
+	
+	if(strcmp(args[0], testValue) == 0) {
+		struct stat buf;
+		if(stat(args[2], &buf) == -1) {
+			return false;	
+		}
+		
+		if(strcmp(args[1], "-f") == 0) {
+			return (buf.st_mode & S_IFMT) == S_IFREG);
+		} else if(strcmp(args[1], "-d") == 0) {
+			return (buf.st_mode & S_IFMT) == S_IFDIR);
+		} else {
+			return true;
+		}
+	}
+	*/
 	
 	pid_t pid = fork();
 	if(pid == -1){
