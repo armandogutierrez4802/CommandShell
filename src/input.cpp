@@ -133,14 +133,14 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
                 if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
-                	cout << "X" << endl; 
-			object = new Or(commandObjects.at(commandObjects.size()-1),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
+     			//cout << "X" << endl;
+			object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
                     	//cout << "Y" << endl;
-			object = new And(commandObjects.at(commandObjects.size()-1),commandObjects.back());
+			object = new And(commandObjects.at(commandObjects.size()-2),commandObjects.back());
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
 			//cout << "Z" << endl;
-                    	object = new Semicolon(commandObjects.at(commandObjects.size()-1),commandObjects.back());
+                    	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
                 } else if(connectorTokens.size() != 0 && strcmp(commandTokens.back(),openParCmp) == 0){
 			object = commandObjects.back();
 		}
@@ -168,9 +168,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 connectorObjects.pop_back();
                 //Pop connectorTokens ***** WILL PROBABLY KEEP HAVING TO POP BACK UNTIL WE REACH THE OPEN PARENTHESIS, WE WANT TO REMOVE THE OPEN PAREN BUT NOT WHATS BEFORE IT  
 			
-		cout << "*****" << endl;
+		
 		while(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){
-			cout << "6" << endl;
 			connectorTokens.pop_back();//*** WE MAY NEED TO POP CONNECTOR TOKENS UNTIL AN OPEN PARENTHESIS IS REACHED, THEN POP THE OPEN PARENTHESIS
 		}
 			
@@ -196,7 +195,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         token = strtok(NULL," ");
    }//end while loop
    
-cout << "AFTER WHILE" << endl;
+//cout << "AFTER WHILE" << endl;
 
 
 //  if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), closeParCmp) != 0){//********* THIS IS SUPER IMPORTANT TO KNOW HOW TO IMPLEMENT THE WHILE LOOP ABOVE
@@ -224,13 +223,13 @@ cout << "AFTER WHILE" << endl;
  	//cout << "A" << endl;       
         if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){// ****** AGAIN WE WILL PROBABLY HAVE TO CHANGE THIS TO CONNECTOR TOKENS.BACK()
             //cout << "B" << endl;
-            object = new Or(commandObjects.front(),commandObjects.back());
+            object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
             //cout << "C" << endl;
-            object = new And(commandObjects.front(),commandObjects.back());
+            object = new And(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
             //cout << "D" << endl;
-            object = new Semicolon(commandObjects.front(),commandObjects.back());
+            object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         }
         
         //Push this new connector object onto connectorObjects
