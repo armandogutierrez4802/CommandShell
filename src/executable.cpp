@@ -8,7 +8,7 @@
 Executable::Executable(vector<char*> cmTokens, int numArguments){
 	this->cmTokens = cmTokens;
 	this->numArguments = numArguments;
-	cout << "The elements in this commandObject are ";
+	cout << "The elements in this newly created Executable object are ";
 	for(int i = 0; i < numArguments; i++){
 		cout << cmTokens.at(i) << " ";
 	}
