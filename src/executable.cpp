@@ -29,10 +29,10 @@ bool Executable::execute(){
 
 
 	for(int i = 0; i < numArguments; i++){
-		if(strcmp(cmTokens.at(i),quoteCmp) != 0){
+//		if(strcmp(cmTokens.at(i),quoteCmp) != 0){
 //			cout << cmTokens.at(i) << " IS GETTING ADDED TO ARGS[]" << endl;
 			args[i] = cmTokens.at(i);
-		}
+//		}
 	}
 	
 	args[numArguments] = NULL;
