@@ -93,7 +93,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
     {
-cout << "OUR CURRENT TOKEN IS: " << token << endl;
+//cout << "OUR CURRENT TOKEN IS: " << token << endl;
 //cout << "2" << endl;
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
