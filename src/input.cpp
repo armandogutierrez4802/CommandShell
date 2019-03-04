@@ -11,6 +11,11 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     std::string newUserInput = "";
     bool openQuote = false;
     int countParen = 0;
+
+    if(this->userInput[0] == '#'){
+	return true;
+    }
+	
     for(int i = 0; i < this->userInput.size(); i++){//Checking that there are an even amount of parenthesis
 	if(userInput[i] == '('){
 		countParen++;
