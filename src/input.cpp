@@ -99,7 +99,7 @@ cout << "2" << endl;
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
 	}
-cout << "3" << endl;
+
 	//If token is connector ******* IF OUR CONNECTOR IS AN OPEN PARENTHESIS, I THINK WE JUST PUSH IT ON THE CONNECTOR TOKENS
         //****IF OUR TOKEN IS A CLOSED PARANTHESIS, DO WE EVEN NEED TO PUSH IT ON THE CONNECTOR TOKENS STACK??? I DO NOT THINK SO B/C WHEN WE MOVE ON TO THE NEXT CONNECTOR,
         //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
