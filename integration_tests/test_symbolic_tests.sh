@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INPUTS=('[ -e src/ ] && echo path exists' '[ -f src/input.cpp ] && echo file exists' '[ -d header/ ] && echo directory exists' '[ -e sr/ ] || echo invalid path' '[ -f header/test.h ] || echo invalid file' '[ -d heder/ ] || echo invalid directory' '[ src/ ] && echo path exists' '[ sr/ ] || echo invalid path')
+INPUTS=('[ -e ../src/ ] && echo path exists' '[ -f ../src/input.cpp ] && echo file exists' '[ -d ../header/ ] && echo directory exists' '[ -e ../sr/ ] || echo invalid path' '[ -f ../header/test.h ] || echo invalid file' '[ -d ../heder/ ] || echo invalid directory' '[ ../src/ ] && echo path exists' '[ ../sr/ ] || echo invalid path')
 
 .././integration ${INPUTS[7]}
 .././integration ${INPUTS[6]}
