@@ -806,6 +806,34 @@ TEST(ExecutableTests, symDefaultTestInvalid) {
         EXPECT_EQ(false, executable->execute());
 }
 
+TEST(ParenthesisTests, Valid) {
+        string firstCommandString = "ls";
+        char* firstCommandCmp = new char[firstCommandString.length()+1];
+        strcpy(firstCommandCmp, firstCommandString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,1);
+
+        CommandLine* paren = new Parenthesis(firstExecutable);
+
+        EXPECT_EQ(true, paren->execute());
+}
+
+TEST(ParenthesisTests, Invalid) {
+        string firstCommandString = "l";
+        char* firstCommandCmp = new char[firstCommandString.length()+1];
+        strcpy(firstCommandCmp, firstCommandString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,1);
+
+        CommandLine* paren = new Parenthesis(firstExecutable);
+
+        EXPECT_EQ(false, paren->execute());
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
