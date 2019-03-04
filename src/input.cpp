@@ -138,13 +138,21 @@ cout << "SIZE OF CONNECTOR TOKENS = " << connectorTokens.size() << endl;
 						//	Only when our current token is closed parenthesis?? so maybe this needs to be a separate check
             //**** YAAASS-->>> WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
 //            if((commandObjects.size() >= 2 && strcmp(connectorTokens.back(),openParCmp) != 0)||(strcmp(closeParCmp, token) == 0 && strcmp(connectorTokens.back(),closeParCmp) != 0)){
-	    if((commandObjects.size() >= 2 || strcmp(closeParCmp, token) == 0) && (strcmp(connectorTokens.back(),openParCmp)!=0&&strcmp(connectorTokens.back(),closeParCmp)!=0)){	
+	    if(((commandObjects.size() >= 2 || strcmp(closeParCmp, token) == 0) && (strcmp(connectorTokens.back(),openParCmp)!=0&&strcmp(connectorTokens.back(),closeParCmp)!=0))
+				|| (connectorTokens.size() != 0 && strcmp(connectorTokens.back(),openParCmp) == 0 && strcmp(closeParCmp, token) == 0)){	
 //cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
 cout << "7" << endl;    //****^^^^^ >= 2 OR == 2???? May not matter i guess
 		//then instantiate a connector by passing in the two commandObjects
                 //Hint: use if elses to determine what kind of connector it is (this is connectorTokens)
 //cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
 //cout << "connectorTokens.back() = " <<  connectorTokens.back() << endl;               
+		
+		if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(),openParCmp) == 0 && strcmp(closeParCmp, token) == 0){
+			connectorTokens.pop_back();
+		}	
+
+
+
 		if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
      			//cout << "X" << endl;
 			object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());//******For all these guys change .front() to .at(commandObjects.size()-1)
@@ -185,7 +193,7 @@ cout << "13" << endl;
 //cout << "commandObjects.size() = " << commandObjects.size() << endl;
 //*_*_*_*_*_*_*_*_*_*_* DOWN HERE!!!!!--------------------------------- MAYBE ONLY DO THESE TWO BLOCKS IF I AM AT A CLOSED PARANTHESIS OORRR ** MAKE WHILE AN IF **
 //	     if(strcmp(token, closeParCmp) == 0){//**DO I NEED THIS IF???
-		if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){//** AM I S8RE THESE ARE THE RIGHT CONDITIONS?!?!?!
+		if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), openParCmp) != 0){// || strcmp(connectorTokens.back(),closeParCmp)!=0)){
 			connectorTokens.pop_back();//*** WE MAY NEED TO POP CONNECTOR TOKENS UNTIL AN OPEN PARENTHESIS IS REACHED, THEN POP THE OPEN PARENTHESIS
 		}
 			
@@ -198,7 +206,8 @@ cout << "14" << endl;
 	
             }//End big if( (x && y) || (z || w) )
 
-
+	  
+	    
 cout << "14A" << endl;
 		//Push_back the connector on the connectorTokens
 		connectorTokens.push_back(token);//***** DO WE NEED TO DO THIS IF IT IS OUR CURRENT TOKEN IS A CLOSED PARANTHESIS? I DO NOT THINK SO(WRONG!)
@@ -213,8 +222,7 @@ cout << "14A" << endl;
         token = strtok(NULL," ");
    }//end while loop
    
-cout << "AFTER WHILE" << endl;
-
+cout << "***AFTER WHILE***" << endl;
 
 cout << "CMT SIZE = " << commandTokens.size() << endl;
 cout << "CNT SIZE = " << connectorTokens.size() << endl;
@@ -252,7 +260,8 @@ cout << "CNO SIZE = " << connectorObjects.size() << endl;
         	//then instantiate a connector by passing in the two commandObjects
         	//Use if elses to determine what kind of connector it is (this is connectorTokens)
  		
-		while(strcmp(connectorTokens.back(), closeParCmp) == 0){
+		//_*_*_*_*_*_*_*_*_*_*_* THIS IS WHAT FIXED THE LAST TEST CASE
+		while(strcmp(connectorTokens.back(), closeParCmp) == 0 || strcmp(connectorTokens.back(), openParCmp) == 0){
 			connectorTokens.pop_back();
 		}
 
