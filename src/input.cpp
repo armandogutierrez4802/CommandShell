@@ -129,7 +129,7 @@ cout << "5" << endl;
 	
 cout << "6" << endl;
 
-//cout << "SIZE OF CONNECTOR TOKENS = " << connectorTokens.size() << endl;
+cout << "SIZE OF CONNECTOR TOKENS = " << connectorTokens.size() << endl;
 	    //-----------***********Will probably need to instantiate commandObject temp with commandObject.back() here
 	    	
 	   // maybe not-> FOR THE NEXT BLOCK, WE SHOULD DO THIS IF THE BACK OF CNT IS A CLOSED PARANTHESIS!! WE SHOULD POP THE PARANTHESIS FIRST AND THEN INSTANTIATE CONNECTOR
@@ -139,7 +139,8 @@ cout << "6" << endl;
             //**** YAAASS-->>> WE ALSO NEED TO CHECK IF THE BACK OF THE CONNECTOR TOKENS IS ( OR NOT. THIS SHOULD HAPPEN WHEN ITS != OPEN PARENTHESIS
 //            if((commandObjects.size() >= 2 && strcmp(connectorTokens.back(),openParCmp) != 0)||(strcmp(closeParCmp, token) == 0 && strcmp(connectorTokens.back(),closeParCmp) != 0)){
 	    if(((commandObjects.size() >= 2 || strcmp(closeParCmp, token) == 0) && (strcmp(connectorTokens.back(),openParCmp)!=0&&strcmp(connectorTokens.back(),closeParCmp)!=0))
-				|| (connectorTokens.size() != 0 && strcmp(connectorTokens.back(),openParCmp) == 0 && strcmp(closeParCmp, token) == 0)){	
+				|| (connectorTokens.size() != 0 && strcmp(connectorTokens.back(),openParCmp) == 0 && strcmp(closeParCmp, token) == 0)
+				|| (connectorTokens.size() != 0 && strcmp(closeParCmp,connectorTokens.back()) == 0)){	
 //cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
 cout << "7" << endl;    //****^^^^^ >= 2 OR == 2???? May not matter i guess
 		//then instantiate a connector by passing in the two commandObjects
@@ -151,7 +152,9 @@ cout << "7" << endl;    //****^^^^^ >= 2 OR == 2???? May not matter i guess
 			connectorTokens.pop_back();
 		}	
 
-
+		if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), closeParCmp) == 0){
+			connectorTokens.pop_back();
+		}
 
 		if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){//********* THIS WILL PROBABLY HAVE TO CHANGE TO connectorTokens.back() ****
      			//cout << "X" << endl;
@@ -202,7 +205,7 @@ cout << "13" << endl;
 		}
 //	     }
 cout << "14" << endl;
-//cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
+cout << "connectorTokens.size() = " << connectorTokens.size() << endl;
 	
             }//End big if( (x && y) || (z || w) )
 
