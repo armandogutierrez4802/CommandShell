@@ -13,6 +13,10 @@ ADD_EXECUTABLE(rshell
     src/parenthesis.cpp
     src/executable.cpp
     src/input.cpp
+    src/inputRed.cpp
+    src/outputRed.cpp
+    src/doubleOutputRed.cpp
+    src/pipe.cpp
     
 )
 
@@ -25,6 +29,10 @@ ADD_EXECUTABLE(test
     src/parenthesis.cpp
     src/executable.cpp
     src/input.cpp
+    src/inputRed.cpp
+    src/outputRed.cpp
+    src/doubleOutputRed.cpp
+    src/pipe.cpp
 )
 
 ADD_Executable(integration
@@ -36,6 +44,10 @@ ADD_Executable(integration
     src/executable.cpp
     src/input.cpp
     src/connectors.cpp
+    src/inputRed.cpp
+    src/outputRed.cpp
+    src/doubleOutputRed.cpp
+    src/pipe.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

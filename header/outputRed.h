@@ -1,5 +1,5 @@
-#ifndef outputred_h
-#define outputred_h
+#ifndef outputRed_h
+#define outputRed_h
 
 #include "connectors.h"
 
@@ -10,4 +10,4 @@ public:
   
 };
 
-#endif /* outputred_h */
+#endif /* outputRed_h */

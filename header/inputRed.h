@@ -1,5 +1,5 @@
-#ifndef inputred_h
-#define inputred_h
+#ifndef inputRed_h
+#define inputRed_h
 
 #include "connectors.h"
 
@@ -10,4 +10,4 @@ public:
   
 };
 
-#endif /* inputred_h */
+#endif /* inputRed_h */

@@ -296,17 +296,27 @@ cout << "CNO SIZE = " << connectorObjects.size() << endl;
 			connectorTokens.pop_back();
 		}
 
-      
         	if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), orCmp) == 0)){// ****** AGAIN WE WILL PROBABLY HAVE TO CHANGE THIS TO CONNECTOR TOKENS.BACK()
-            	//cout << "B" << endl;
-            	object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+            		//cout << "B" << endl;
+            		object = new Or(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         	} else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), andCmp) == 0)){
-            	//cout << "C" << endl;
-            	object = new And(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+            		//cout << "C" << endl;
+            		object = new And(commandObjects.at(commandObjects.size()-2),commandObjects.back());
         	} else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
-            	//cout << "D" << endl;
-            	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
-        	} 
+            		//cout << "D" << endl;
+            		object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+        	} else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), inputRedCmp) == 0){
+                        object = new InputRed(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+                } else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), outputRedCmp) == 0){
+                        object = new OutputRed(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+                } else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), doubleOutputRedCmp) == 0){
+                        object = new DoubleOutputRed(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+                } else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), pipeCmp) == 0){
+                        object = new Pipe(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+                }
+
+
+
 //cout << "18" << endl;
         	//Push this new connector object onto connectorObjects
         	connectorObjects.push_back(object);

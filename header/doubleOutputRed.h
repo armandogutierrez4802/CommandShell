@@ -1,5 +1,5 @@
-#ifndef doubleoutputred_h
-#define doubleoutputred_h
+#ifndef doubleOutputRed_h
+#define doubleOutputRed_h
 
 #include "connectors.h"
 
@@ -10,4 +10,4 @@ public:
   
 };
 
-#endif /* doubleoutputred_h */
+#endif /* doubleOutputRed_h */
