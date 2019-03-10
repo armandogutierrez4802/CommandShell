@@ -8,6 +8,10 @@
 #include "and.h"
 #include "semicolon.h"
 #include "parenthesis.h"
+#include "inputRed.h"
+#include "outputRed.h"
+#include "doubleOutputRed.h"
+#include "pipe.h"
 #include <string>
 #include <string.h>
 #include <vector>

@@ -84,6 +84,21 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     strcpy(openParCmp, openParString.c_str());
     strcpy(closeParCmp, closeParString.c_str());
 
+   
+    string inputRedString = "<";
+    string outputRedString = ">";
+    string doubleOutputRedString = ">>";
+    char* inputRedCmp = new char[inputRedString.length()+1];
+    char* outputRedCmp = new char[outputRedString.length()+1];
+    char* doubleOutputRedCmp = new char[doubleOutputRedString.length()+1];
+    strcpy(inputRedCmp, inputRedString.c_str());
+    strcpy(outputRedCmp, outputRedString.c_str());
+    strcpy(doubleOutputRedCmp, doubleOutputRedString.c_str());
+
+    string pipeString = "|";
+    char* pipeCmp = new char[pipeString.length()+1];
+    strcpy(pipeCmp, pipeString.c_str());
+
 
     int commandTokenLength;
     //Executable* leftChild;//For outputting and testing purposes
@@ -91,8 +106,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
     int tokenLength;
 
     //CommandLine* commandObjectTemp;//???This will be used if our command line ends with a closed paranthesis
-
-	//cout << "1 - BEFORE WHILE LOOP" << endl;	
+//cout << "1 - BEFORE WHILE LOOP" << endl;	
 //cout << "1" << endl;
 	
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
@@ -111,7 +125,8 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
         //**** IF OPEN PARENTHESIS, THEN PUSH IT ON CONNECTOR TOKENS, IF CLOSED PARANTHESIS, THEN CREATE THE PARENTHESIS OBJECT
         //**** KEEP IN MIND THAT AN OPEN PARANTHESIS IS COULD BE FOLLOWED BY ANOTHER OPEN PAR, AND CLOSED PARANTHESIS CAN ALSO BE FOLLOWED BY ANOTHER
 	else if(strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
-					 || strcmp(token,closeParCmp) == 0){// && openQuote == false){
+					 || strcmp(token,closeParCmp) == 0 || strcmp(token,inputRedCmp) == 0 || strcmp(token,outputRedCmp) == 0
+					 || strcmp(token, doubleOutputRedCmp) == 0 || strcmp(token,pipeCmp) == 0){
             //instantiate a command object with commandTokens **** THIS DOES NOT WORK IF WE ARE AT || AND WE HAVE (echoo A && echo B) || (echo C && echo D)
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
 	    //IN THIS CASE ^^  WE JUST NEED TO PUSH THE CONNECTOR TOKEN, IN THIS CASE THE ||
@@ -131,7 +146,7 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 	commandTokens.pop_back();
             	}
 	    }	
-	
+
 //cout << "6" << endl;
 
 //cout << "SIZE OF CONNECTOR TOKENS = " << connectorTokens.size() << endl;
@@ -170,8 +185,16 @@ bool Input::execute(){//Here we parse the string and make a tree out of objects
                 } else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
 			//cout << "Z" << endl;
                     	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
-                }
-                
+                } else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), inputRedCmp) == 0){
+			object = new InputRed(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+		} else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), outputRedCmp) == 0){
+			object = new OutputRed(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+		} else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), doubleOutputRedCmp) == 0){
+			object = new DoubleOutputRed(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+                } else if(connectorTokens.size() != 0 && strcmp(connectorTokens.back(), pipeCmp) == 0){
+			object = new Pipe(commandObjects.at(commandObjects.size()-2),commandObjects.back());
+		}
+
                 //Push this new connector object onto connectorObjects
                 connectorObjects.push_back(object);
                 //Empty the commandObjects vector ... *** Should this stay two pop backs??? *Leaning towards yes
@@ -283,7 +306,7 @@ cout << "CNO SIZE = " << connectorObjects.size() << endl;
         	} else if(connectorTokens.size() != 0 && (strcmp(connectorTokens.back(), semiCmp) == 0)){
             	//cout << "D" << endl;
             	object = new Semicolon(commandObjects.at(commandObjects.size()-2),commandObjects.back());
-        	}
+        	} 
 //cout << "18" << endl;
         	//Push this new connector object onto connectorObjects
         	connectorObjects.push_back(object);
