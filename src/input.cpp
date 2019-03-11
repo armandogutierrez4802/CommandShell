@@ -350,7 +350,7 @@ cout << "CNO SIZE = " << connectorObjects.size() << endl;
 */
 //cout << "MY TREE IS : " << commandObjects.at(0) << endl;
     //We now have our entire tree in the first element of our commandObjects
-    commandObjects.at(0)->execute();
+    commandObjects.at(0)->execute(0,1);
 //cout << "21" << endl;   
 }
 

@@ -16,5 +16,5 @@ int main(int argv, char** argc) {
         }
 	std::cout << "Input: " << input << std::endl;
 	Input *object = new Input(input);
-	object->execute();
+	object->execute(0,1);
 }

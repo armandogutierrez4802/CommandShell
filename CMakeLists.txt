@@ -35,7 +35,7 @@ ADD_EXECUTABLE(test
     src/pipe.cpp
 )
 
-ADD_Executable(integration
+ADD_EXECUTABLE(integration
     src/integration.cpp
     src/or.cpp
     src/and.cpp
