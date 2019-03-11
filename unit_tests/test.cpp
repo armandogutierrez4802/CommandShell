@@ -32,7 +32,7 @@ TEST(AndTests, ValidValid) {
 
 	CommandLine* firstAnd = new And(firstExecutable, secondExecutable);
 	
-	EXPECT_EQ(true, firstAnd->execute());
+	EXPECT_EQ(true, firstAnd->execute(0,1));
 }
 
 TEST(AndTests, ValidInvalid) {
@@ -60,7 +60,7 @@ TEST(AndTests, ValidInvalid) {
 
         CommandLine* secondAnd = new And(thirdExecutable, fourthExecutable);
 
-        EXPECT_EQ(false, secondAnd->execute());
+        EXPECT_EQ(false, secondAnd->execute(0,1));
 }
 
 TEST(AndTests, InvalidValid) {
@@ -88,7 +88,7 @@ TEST(AndTests, InvalidValid) {
 
         CommandLine* thirdAnd = new And(fifthExecutable, sixthExecutable);
 
-        EXPECT_EQ(false, thirdAnd->execute());
+        EXPECT_EQ(false, thirdAnd->execute(0,1));
 }
 
 TEST(AndTests, InvalidInvalid) {
@@ -116,7 +116,7 @@ TEST(AndTests, InvalidInvalid) {
 
         CommandLine* fourthAnd = new And(seventhExecutable, eighthExecutable);
 
-        EXPECT_EQ(false, fourthAnd->execute());
+        EXPECT_EQ(false, fourthAnd->execute(0,1));
 }
 TEST(SemicolonTests, ValidValid) {
 	string firstCommandString = "ls";
@@ -143,7 +143,7 @@ TEST(SemicolonTests, ValidValid) {
 
         CommandLine* firstSemicolon = new Semicolon(firstExecutable, secondExecutable);
 
-        EXPECT_EQ(true, firstSemicolon->execute());
+        EXPECT_EQ(true, firstSemicolon->execute(0,1));
 }
 
 TEST(SemicolonTests, ValidInvalid) {
@@ -171,7 +171,7 @@ TEST(SemicolonTests, ValidInvalid) {
 
         CommandLine* secondSemicolon = new Semicolon(thirdExecutable, fourthExecutable);
 
-        EXPECT_EQ(true, secondSemicolon->execute());
+        EXPECT_EQ(true, secondSemicolon->execute(0,1));
 }
 
 TEST(SemicolonTests, InvalidValid) {
@@ -199,7 +199,7 @@ TEST(SemicolonTests, InvalidValid) {
 
         CommandLine* thirdSemicolon = new Semicolon(fifthExecutable, sixthExecutable);
 
-        EXPECT_EQ(true, thirdSemicolon->execute());
+        EXPECT_EQ(true, thirdSemicolon->execute(0,1));
 }
 
 TEST(SemicolonTests, InvalidInvalid) {
@@ -227,7 +227,7 @@ TEST(SemicolonTests, InvalidInvalid) {
 
         CommandLine* fourthSemicolon = new Semicolon(seventhExecutable, eighthExecutable);
 
-        EXPECT_EQ(false, fourthSemicolon->execute());
+        EXPECT_EQ(false, fourthSemicolon->execute(0,1));
 }
 
 TEST(OrTests, ValidValid) {
@@ -255,7 +255,7 @@ TEST(OrTests, ValidValid) {
 
         CommandLine* firstOr = new Or(firstExecutable, secondExecutable);
 
-        EXPECT_EQ(true, firstOr->execute());
+        EXPECT_EQ(true, firstOr->execute(0,1));
 }
 
 TEST(OrTests, ValidInvalid) {
@@ -283,7 +283,7 @@ TEST(OrTests, ValidInvalid) {
 
         CommandLine* secondOr = new Or(thirdExecutable, fourthExecutable);
 
-        EXPECT_EQ(true, secondOr->execute());
+        EXPECT_EQ(true, secondOr->execute(0,1));
 }
 
 TEST(OrTests, InvalidValid) {
@@ -311,7 +311,7 @@ TEST(OrTests, InvalidValid) {
 
         CommandLine* thirdOr = new Or(fifthExecutable, sixthExecutable);
 
-        EXPECT_EQ(true, thirdOr->execute());
+        EXPECT_EQ(true, thirdOr->execute(0,1));
 }
 
 TEST(OrTests, InvalidInvalid) {
@@ -339,7 +339,7 @@ TEST(OrTests, InvalidInvalid) {
 
         CommandLine* fourthOr = new Or(seventhExecutable, eighthExecutable);
 
-        EXPECT_EQ(false, fourthOr->execute());
+        EXPECT_EQ(false, fourthOr->execute(0,1));
 }
 
 TEST(ExecutableTests, OneArgument) {
@@ -352,7 +352,7 @@ TEST(ExecutableTests, OneArgument) {
 	firstCommand.push_back(commandCmp);
 	CommandLine* firstExecutable = new Executable(firstCommand,1);
 
-	EXPECT_EQ(true, firstExecutable->execute());
+	EXPECT_EQ(true, firstExecutable->execute(0,1));
 	
 	//Second Test
 	string secondTokenOneString = "echo";
@@ -380,7 +380,7 @@ TEST(ExecutableTests, MultipleArguments) {
         secondCommand.push_back(secondTokenTwoCmp);
         CommandLine* secondExecutable = new Executable(secondCommand,2);
 
-        EXPECT_EQ(true, secondExecutable->execute());
+        EXPECT_EQ(true, secondExecutable->execute(0,1));
 }
 
 TEST(ExecutableTests, InvalidInput) {
@@ -398,7 +398,7 @@ TEST(ExecutableTests, InvalidInput) {
         thirdCommand.push_back(thirdTokenTwoCmp);
         CommandLine* thirdExecutable = new Executable(thirdCommand,2);
 
-        EXPECT_EQ(false, thirdExecutable->execute());
+        EXPECT_EQ(false, thirdExecutable->execute(0,1));
 }
 
 
@@ -423,7 +423,7 @@ TEST(ExecutableTests, existTestValid) {
 
 	CommandLine* executable = new Executable(command,3);
 
-	EXPECT_EQ(true, executable->execute());
+	EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, existTestInvalid) {
@@ -447,7 +447,7 @@ TEST(ExecutableTests, existTestInvalid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, fileTestValid) {
@@ -471,7 +471,7 @@ TEST(ExecutableTests, fileTestValid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, fileTestInvalid) {
@@ -495,7 +495,7 @@ TEST(ExecutableTests, fileTestInvalid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, dirTestValid) {
@@ -519,7 +519,7 @@ TEST(ExecutableTests, dirTestValid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, dirTestInvalid) {
@@ -543,7 +543,7 @@ TEST(ExecutableTests, dirTestInvalid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, defaultTestValid) {
@@ -562,7 +562,7 @@ TEST(ExecutableTests, defaultTestValid) {
 
         CommandLine* executable = new Executable(command,2);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, defaultTestInvalid) {
@@ -581,7 +581,7 @@ TEST(ExecutableTests, defaultTestInvalid) {
 
         CommandLine* executable = new Executable(command,2);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symExistTestValid) {
@@ -610,7 +610,7 @@ TEST(ExecutableTests, symExistTestValid) {
 
         CommandLine* executable = new Executable(command,4);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symExistTestInvalid) {
@@ -639,7 +639,7 @@ TEST(ExecutableTests, symExistTestInvalid) {
 
         CommandLine* executable = new Executable(command,4);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symFileTestValid) {
@@ -668,7 +668,7 @@ TEST(ExecutableTests, symFileTestValid) {
 
         CommandLine* executable = new Executable(command,4);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symFileTestInvalid) {
@@ -697,7 +697,7 @@ TEST(ExecutableTests, symFileTestInvalid) {
 
         CommandLine* executable = new Executable(command,4);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symDirTestValid) {
@@ -726,7 +726,7 @@ TEST(ExecutableTests, symDirTestValid) {
 
         CommandLine* executable = new Executable(command,4);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symDirTestInvalid) {
@@ -755,7 +755,7 @@ TEST(ExecutableTests, symDirTestInvalid) {
 
         CommandLine* executable = new Executable(command,4);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symDefaultTestValid) {
@@ -779,7 +779,7 @@ TEST(ExecutableTests, symDefaultTestValid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(true, executable->execute());
+        EXPECT_EQ(true, executable->execute(0,1));
 }
 
 TEST(ExecutableTests, symDefaultTestInvalid) {
@@ -803,7 +803,7 @@ TEST(ExecutableTests, symDefaultTestInvalid) {
 
         CommandLine* executable = new Executable(command,3);
 
-        EXPECT_EQ(false, executable->execute());
+        EXPECT_EQ(false, executable->execute(0,1));
 }
 
 TEST(ParenthesisTests, Valid) {
@@ -817,7 +817,7 @@ TEST(ParenthesisTests, Valid) {
 
         CommandLine* paren = new Parenthesis(firstExecutable);
 
-        EXPECT_EQ(true, paren->execute());
+        EXPECT_EQ(true, paren->execute(0,1));
 }
 
 TEST(ParenthesisTests, Invalid) {
@@ -831,7 +831,7 @@ TEST(ParenthesisTests, Invalid) {
 
         CommandLine* paren = new Parenthesis(firstExecutable);
 
-        EXPECT_EQ(false, paren->execute());
+        EXPECT_EQ(false, paren->execute(0,1));
 }
 
 int main(int argc, char **argv) {
