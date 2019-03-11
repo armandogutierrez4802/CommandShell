@@ -5,4 +5,4 @@ Connectors::Connectors(){
 	//this->rightChild = rightChild;
 }
 
- bool Connectors::execute(){}
+ bool Connectors::execute(int in, int out){}

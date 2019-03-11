@@ -5,6 +5,6 @@ DoubleOutputRed::DoubleOutputRed(CommandLine* leftChild, CommandLine* rightChild
 	this->rightChild = rightChild;
 }
         
-bool DoubleOutputRed::execute(){
+bool DoubleOutputRed::execute(int in, int out){
 	return true;
 }

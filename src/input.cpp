@@ -7,7 +7,7 @@ Input::Input(std::string userInput){
     this->userInput = userInput;
 }
 
-bool Input::execute(){//Here we parse the string and make a tree out of objects
+bool Input::execute(int in, int out){//Here we parse the string and make a tree out of objects
     std::string newUserInput = "";
     bool openQuote = false;
     int countParen = 0;

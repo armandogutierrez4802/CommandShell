@@ -4,9 +4,9 @@ Parenthesis::Parenthesis(CommandLine* onlyChild) {
 	this->leftChild = onlyChild;
 }
         
-bool Parenthesis::execute(){
+bool Parenthesis::execute(int in, int out){
 	//cout << "my () child is -> " << leftChild << endl;
-	return leftChild->execute();
+	return leftChild->execute(in,out);
 }
 
 

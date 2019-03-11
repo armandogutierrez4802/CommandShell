@@ -5,6 +5,6 @@ InputRed::InputRed(CommandLine* leftChild, CommandLine* rightChild) {
 	this->rightChild = rightChild;
 }
         
-bool InputRed::execute(){
+bool InputRed::execute(int in, int out){
 	return true;
 }

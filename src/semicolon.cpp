@@ -5,9 +5,9 @@ Semicolon::Semicolon(CommandLine* leftChild, CommandLine* rightChild) {
 	this->rightChild = rightChild;
 }
         
-bool Semicolon::execute(){
-	leftChild->execute();
-	if(rightChild->execute()){
+bool Semicolon::execute(int in, int out){
+	leftChild->execute(in,out);
+	if(rightChild->execute(in,out)){
 		return true;
 	} else{
 		return false;

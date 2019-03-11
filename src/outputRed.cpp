@@ -5,6 +5,6 @@ OutputRed::OutputRed(CommandLine* leftChild, CommandLine* rightChild) {
 	this->rightChild = rightChild;
 }
         
-bool OutputRed::execute(){
+bool OutputRed::execute(int in, int out){
 	return true;
 }

@@ -16,7 +16,7 @@ int main() {
 		cout << "$ ";
 		getline(cin,userInput);
 		Input* object  = new Input(userInput);
-		object->execute();
+		object->execute(0,1);
 	}
 //	}
 //	cout << "THIS IS THE END OF THE PROGRAM" << endl;
