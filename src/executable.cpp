@@ -142,6 +142,16 @@ bool Executable::execute(){
 		perror("error in fork");
 		exit(EXIT_FAILURE);
 	} else if(pid == 0){//Child Process
+
+		if(dup2(in,0) == -1){
+			perror("Error in dup2 input");
+			return false;
+		}
+		if(dup2(out,1) == -1){
+			perror("Error in dup2 output");
+			return false;
+		}
+		
 		if(execvp(args[0], args) == -1){
 			perror("error in execvp");
 			exit(EXIT_FAILURE);
