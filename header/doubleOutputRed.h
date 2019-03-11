@@ -6,7 +6,7 @@
 class DoubleOutputRed : public Connectors  {
 public:
 	DoubleOutputRed(CommandLine* leftChild, CommandLine* rightChild);
-        bool execute();
+        bool execute(int in, int out);
   
 };
 

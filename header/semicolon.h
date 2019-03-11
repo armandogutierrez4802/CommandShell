@@ -6,7 +6,7 @@
 class Semicolon: public Connectors  {
 public:
 	Semicolon(CommandLine* leftChild, CommandLine* rightChild);
-        bool execute();
+        bool execute(int in, int out);
 
 };
 

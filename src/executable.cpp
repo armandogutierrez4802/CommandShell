@@ -20,7 +20,7 @@ Executable::Executable(vector<char*> cmTokens, int numArguments){
 	*/
 }
 
-bool Executable::execute(){
+bool Executable::execute(int in, int out){
 	char* args[numArguments+1];
 	bool returnValue = true ;
 	

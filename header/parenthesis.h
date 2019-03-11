@@ -6,7 +6,7 @@
 class Parenthesis: public Connectors  {
 public:
 	Parenthesis(CommandLine* onlyChild);
-        bool execute();
+        bool execute(int in, int out);
   
 };
 

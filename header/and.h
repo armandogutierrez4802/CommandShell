@@ -6,7 +6,7 @@
 class And: public Connectors  {
 public:
 	And(CommandLine* leftChild, CommandLine* rightChild);
-        bool execute();
+        bool execute(int in, int out);
   
 };
 

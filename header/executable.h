@@ -17,7 +17,7 @@ private:
 	int numArguments;
 public:
 	Executable(vector<char*> cmTokens, int numArguments);
-	bool execute();
+	bool execute(int in, int out);
 };
 
 #endif /* executable_h */

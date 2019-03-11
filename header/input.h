@@ -27,7 +27,7 @@ private:
 	vector<CommandLine*> connectorObjects;
 public:
 	Input(std::string userInput);
-        bool execute();
+        bool execute(int in, int out);
 };
 
 #endif /* input_h */
