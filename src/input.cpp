@@ -136,9 +136,12 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
 	    // I forgot what this if statement below was for lmao
 	    //** I THINK THIS IF STATEMENT IS WRONG ->if(strcmp(connectorTokens.back(), closeParCmp) != 0 &&||?? strcmp(connectorTokens.back(), openParCmp) != 0){//I'M THINKING &&
 	    //** ^^Encapsulates next two lines of code..Maybe the little empty command token while loop 						      
-	    if(commandTokens.size() != 0){	
+	    if(commandTokens.size() != 0){	//############# AFTER THIS NEXT LINE SHOULD I DO object->setFileName(commandTokens.back()); ##########
 		object = new Executable(commandTokens,commandTokens.size());	
-            	//push_back it onto commandObjects **** LOOK AT COMMENTS FOR PREVIOUS SECTION BECAUSE SAME APPLIES
+    		
+		object->setFileName(commandTokens.back());//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			
+	       	//push_back it onto commandObjects **** LOOK AT COMMENTS FOR PREVIOUS SECTION BECAUSE SAME APPLIES
 		commandObjects.push_back(object);
 //cout << "5" << endl;
             	//empty commandTokens
@@ -273,7 +276,8 @@ cout << "CNO SIZE = " << connectorObjects.size() << endl;
     //push_back it onto commandObjects`
     // ***** WE ONLY NEED TO DO THIS IF COMMAND OBJECTS SIZE IS NOT 2....OR *** YAAAS -->>> IF OUR COMMAND TOKENS IS NOT EMPTY
   if(commandTokens.size() != 0){  //**Create a command object if we have stuff in our CMT
-    object = new Executable(commandTokens,commandTokens.size());
+    object = new Executable(commandTokens,commandTokens.size()); //############# AFTER THIS LINE SHOULD I DO object->setFileName(commandTokens.back()); ##########
+    object->setFileName(commandTokens.back());//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     commandObjects.push_back(object);
    
 //cout << "16" << endl;

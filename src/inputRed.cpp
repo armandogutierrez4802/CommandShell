@@ -8,7 +8,7 @@ InputRed::InputRed(CommandLine* leftChild, CommandLine* rightChild) {
 bool InputRed::execute(int in, int out){
 	string inputFile = rightChild->getFileName();
 	in = open(inputFile.c_str(),O_RDONLY);
-
+	
 	return leftChild->execute(in,1);
 }
 
