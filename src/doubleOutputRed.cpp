@@ -12,10 +12,3 @@ bool DoubleOutputRed::execute(int in, int out){
     	return leftChild->execute(0,out);
 }
 
-void setFileName(char* file){
-
-}
-
-string getFileName(){
-
-}
