@@ -6,7 +6,8 @@ using namespace std;
 class CommandLine {
 public:
     virtual bool execute(int in, int out) = 0;
-    //virtual string stringify(){};
+    virtual void setFileName(){};
+    virtual string getFileName(){};
 };
 
 #endif /* commandLine_h */
