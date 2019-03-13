@@ -6,9 +6,7 @@
 class InputRed : public Connectors  {
 public:
 	InputRed(CommandLine* leftChild, CommandLine* rightChild);
-        bool execute(int in, int out);
-	void setFileName(char* file);
-        string getFileName();  
+        bool execute(int in, int out);  
 };
 
 #endif /* inputRed_h */
