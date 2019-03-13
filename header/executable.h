@@ -15,10 +15,11 @@ class Executable: public CommandLine  {
 private:
 	vector<char*> cmTokens;
 	int numArguments;
+	string fileName;
 public:
 	Executable(vector<char*> cmTokens, int numArguments);
 	bool execute(int in, int out);
-	void setFileName();
+	void setFileName(char* file);
     	string getFileName();
 };
 
