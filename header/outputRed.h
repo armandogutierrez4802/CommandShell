@@ -7,8 +7,6 @@ class OutputRed : public Connectors  {
 public:
 	OutputRed(CommandLine* leftChild, CommandLine* rightChild);
         bool execute(int in, int out);
-	void setFileName(char * file);
-        string getFileName(); 
 };
 
 #endif /* outputRed_h */
