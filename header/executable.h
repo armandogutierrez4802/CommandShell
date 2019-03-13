@@ -18,6 +18,8 @@ private:
 public:
 	Executable(vector<char*> cmTokens, int numArguments);
 	bool execute(int in, int out);
+	void setFileName();
+    	string getFileName();
 };
 
 #endif /* executable_h */
