@@ -20,6 +20,14 @@ Executable::Executable(vector<char*> cmTokens, int numArguments){
 	*/
 }
 
+void Executable::setFileName(char* file){
+	this->fileName = string(file);
+}
+
+string Executable::getFileName(){
+	return this->fileName;
+}
+
 bool Executable::execute(int in, int out){
 	char* args[numArguments+1];
 	bool returnValue = true ;
