@@ -12,10 +12,3 @@ bool InputRed::execute(int in, int out){
 	return leftChild->execute(in,1);
 }
 
-void setFileName(char* file){
-
-}
-
-string getFileName(){
-
-}
