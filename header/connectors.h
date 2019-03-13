@@ -17,9 +17,7 @@ protected:
 public:
 	Connectors();
         //Connectors(CommandLine* leftChild, CommandLine* rightChild);
-	bool execute(int in, int out);
-	virtual void setFileName(char * file){};
-	virtual string getFileName(){};   
+	bool execute(int in, int out);  
 };
 
 #endif /* connectors_h */
