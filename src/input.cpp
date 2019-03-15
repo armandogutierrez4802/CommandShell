@@ -36,13 +36,13 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
         if(this->userInput[i] == '#'){
             break;
         } else{
-            if(this->userInput[i] == ';' || this->userInput[i] == '"' || this->userInput[i] == '(' || this->userInput[i] == ')'){
+            if(this->userInput[i] == ';' || this->userInput[i] == '"' || this->userInput[i] == '(' || this->userInput[i] == ')'|| this->userInput[i] == '<'){
                 newUserInput += ' ';
             }
 	    
             newUserInput += this->userInput[i];
 	    
-	    if(this->userInput[i] == '"' || this->userInput[i] == '(' || this->userInput[i] == ')'){
+	    if(this->userInput[i] == '"' || this->userInput[i] == '(' || this->userInput[i] == ')' || this->userInput[i] == '<'){
 		newUserInput += " ";	
 	    }
         }
