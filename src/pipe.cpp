@@ -14,27 +14,27 @@ bool Pipe::execute(int in, int out){
 		return false;
 	}
 	
-	cout << "PIPE A" << endl;
+	//cout << "PIPE A" << endl;
 
 	if(leftChild->execute(in,fd[1]) == false){
 		return false;
 	}
 
-	cout << "PIPE B" << endl;
+	//cout << "PIPE B" << endl;
 
 	close(fd[1]);
 
-	cout << "PIPE C" << endl;
+	//cout << "PIPE C" << endl;
 
 	if(rightChild->execute(fd[0],out) == false){
 		return false;
 	}
 
-	cout << "PIPE D" << endl;
+	//cout << "PIPE D" << endl;
 
 	close(fd[0]);
 	
-	cout << "End of pipe" << endl;
+	//cout << "End of pipe" << endl;
 
 	return true;
 }
