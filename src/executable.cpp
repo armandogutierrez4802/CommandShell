@@ -145,26 +145,39 @@ bool Executable::execute(int in, int out){
 		}
 	}
 
+	cout << "RIGHT BEFORE FORKING" << endl;
+	
+	
 	pid_t pid = fork();
 	if(pid == -1){
 		perror("error in fork");
 		exit(EXIT_FAILURE);
 	} else if(pid == 0){//Child Process
-
+		
+		cout << "Beginning child process" << endl;
+		
 		if(dup2(in,0) == -1){
 			perror("Error in dup2 input");
 			return false;
 		}
+		cout << "After first dup2 check" << endl;
+		
 		if(dup2(out,1) == -1){
 			perror("Error in dup2 output");
 			return false;
 		}
 		
+		cout << "After second dup2 check" << endl;
+		
 		if(execvp(args[0], args) == -1){
 			perror("error in execvp");
 			exit(EXIT_FAILURE);
 		}
+		
+		cout << "End of child process" << endl;
+		
 	} else if(pid > 0){//Parent Process
+		cout << "Begin parent process" << endl;
 		int status;
 		if(waitpid(pid,&status,0) == -1){//Pause Parent
 			perror("Error in parent wait");
