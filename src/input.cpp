@@ -346,15 +346,15 @@ cout << "CNO SIZE = " << connectorObjects.size() << endl;
     	connectorTokens.pop_back();
     }
 //cout << "20" << endl;
-
+/*
 cout << "CMT SIZE = " << commandTokens.size() << endl;
 cout << "CNT SIZE = " << connectorTokens.size() << endl;
 cout << "CMO SIZE = " << commandObjects.size() << endl;
 cout << "CNO SIZE = " << connectorObjects.size() << endl;
-
+*/
 //cout << "MY TREE IS : " << commandObjects.at(0) << endl;
     //We now have our entire tree in the first element of our commandObjects
     commandObjects.at(0)->execute(0,1);
-cout << "21" << endl;   
+//cout << "21" << endl;   
 }
 
