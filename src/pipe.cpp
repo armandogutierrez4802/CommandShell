@@ -6,7 +6,11 @@ Pipe::Pipe(CommandLine* leftChild, CommandLine* rightChild) {
 }
         
 bool Pipe::execute(int in, int out){
-	cout << "Beginning of Pipe" << endl;
+	//cout << "Beginning of Pipe" << endl;
+	
+	int originalIn = dup(0);
+	int originalOut = dup(1);
+
 	int fd[2];
 
 	if(pipe(fd) == -1){
@@ -21,7 +25,8 @@ bool Pipe::execute(int in, int out){
 	}
 
 	//cout << "PIPE B" << endl;
-
+	
+	dup2(originalOut,1);
 	close(fd[1]);
 
 	//cout << "PIPE C" << endl;
@@ -31,7 +36,7 @@ bool Pipe::execute(int in, int out){
 	}
 
 	//cout << "PIPE D" << endl;
-
+	dup2(originalIn,0);
 	close(fd[0]);
 	
 	//cout << "End of pipe" << endl;

@@ -9,7 +9,7 @@ bool InputRed::execute(int in, int out){
 	string inputFile = rightChild->getFileName();
 	in = open(inputFile.c_str(),O_RDONLY);
 	
-	if(leftChild->execute(in,1)){
+	if(leftChild->execute(in,out)){
 		close(in);
 		return true;
 	}else{

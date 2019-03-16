@@ -59,6 +59,17 @@ bool Executable::execute(int in, int out){
 	else if(strcmp(args[0], testValue) == 0) {
 		struct stat buf;
 		
+		if(dup2(in,0) == -1){
+			perror("Error in dup2 input");
+			return false;
+		}
+		//cout << "After first dup2 check" << endl;
+				
+		if(dup2(out,1) == -1){
+			perror("Error in dup2 output");		
+			return false;
+		}
+
 		if(strcmp(args[1], "-e") == 0) {
 			if(stat(args[2], &buf) == -1) {
                         	std::cout << "(False)" << std::endl;
@@ -103,7 +114,18 @@ bool Executable::execute(int in, int out){
 	//Test for symbolic test command
 	else if(strcmp(args[0], leftBracket) == 0 ) {
 		struct stat buf;
-
+		
+		if(dup2(in,0) == -1){
+			perror("Error in dup2 input");
+			return false;
+		}
+		//cout << "After first dup2 check" << endl;
+				
+		if(dup2(out,1) == -1){	
+			perror("Error in dup2 output");
+			return false;
+		}
+		
 		if(strcmp(args[1], "-e") == 0) {
 			if(stat(args[2], &buf) == -1) {
 				std::cout << "(False)" << std::endl;
@@ -145,7 +167,7 @@ bool Executable::execute(int in, int out){
 		}
 	}
 
-	cout << "RIGHT BEFORE FORKING" << endl;
+	//cout << "RIGHT BEFORE FORKING" << endl;
 	
 	
 	pid_t pid = fork();

@@ -6,9 +6,15 @@ Parenthesis::Parenthesis(CommandLine* onlyChild) {
 }
         
 bool Parenthesis::execute(int in, int out){
-	cout << "my () child is -> " << leftChild << endl;
-	return leftChild->execute(in,out);
+	//cout << "my () in = " << in << endl;
+	//cout << "my () out = " << out << endl;
+	if(leftChild->execute(in,out)){
+		//cout << "After () execute true" << endl;
+		return true;
+	} else{
+		//cout << "After () execute false" << endl;
+		return false;
+	}
+
 }
-
-
 
