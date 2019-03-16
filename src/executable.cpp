@@ -167,7 +167,7 @@ bool Executable::execute(int in, int out){
 			return false;
 		}
 		
-		cout << "After second dup2 check" << endl;
+//		cout << "After second dup2 check" << endl;
 		
 		if(execvp(args[0], args) == -1){
 			perror("error in execvp");
