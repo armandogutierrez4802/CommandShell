@@ -6,6 +6,7 @@
 #include "../header/semicolon.h"
 #include "../header/executable.h"
 #include "../header/input.h"
+#include <fstream>
 
 TEST(AndTests, ValidValid) {
 	string firstCommandString = "ls";
@@ -834,7 +835,193 @@ TEST(ParenthesisTests, Invalid) {
         EXPECT_EQ(false, paren->execute(0,1));
 }
 
+TEST(OutputRedTests, execute) {
+        string firstCommandTokenOneString = "echo";
+        string firstCommandTokenTwoString = "hello";
+
+        char* firstCommandTokenOneCmp = new char[firstCommandTokenOneString.length()+1];
+        strcpy(firstCommandTokenOneCmp, firstCommandTokenOneString.c_str());
+
+        char* firstCommandTokenTwoCmp = new char[firstCommandTokenTwoString.length()+1];
+        strcpy(firstCommandTokenTwoCmp, firstCommandTokenTwoString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandTokenOneCmp);
+        firstCommand.push_back(firstCommandTokenTwoCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,2);
+  
+        string secondCommandTokenOneString = "output.txt";
+
+        char* secondCommandTokenOneCmp = new char[secondCommandTokenOneString.length()+1];
+        strcpy(secondCommandTokenOneCmp, secondCommandTokenOneString.c_str());
+
+        std::vector<char*> secondCommand;
+        secondCommand.push_back(secondCommandTokenOneCmp);
+        CommandLine* secondExecutable = new Executable(secondCommand,1);
+
+        secondExecutable->setFileName(secondCommandTokenOneCmp);
+        CommandLine* output = new OutputRed(firstExecutable, secondExecutable);
+
+        output->execute(0,1);
+
+        ifstream s("output.txt");
+        string out((istreambuf_iterator<char>(s)), (istreambuf_iterator<char>()));
+        EXPECT_EQ("hello\n", out);
+
+        output->execute(0,1);
+}
+
+
+TEST(DoubleOutputRedTests, execute) {
+	string firstCommandTokenOneString = "echo";
+	string firstCommandTokenTwoString = "hello";
+
+        char* firstCommandTokenOneCmp = new char[firstCommandTokenOneString.length()+1];
+        strcpy(firstCommandTokenOneCmp, firstCommandTokenOneString.c_str());
+
+	char* firstCommandTokenTwoCmp = new char[firstCommandTokenTwoString.length()+1];
+        strcpy(firstCommandTokenTwoCmp, firstCommandTokenTwoString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandTokenOneCmp);
+	firstCommand.push_back(firstCommandTokenTwoCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,2);
+
+        string secondCommandTokenOneString = "output.txt";
+
+        char* secondCommandTokenOneCmp = new char[secondCommandTokenOneString.length()+1];
+        strcpy(secondCommandTokenOneCmp, secondCommandTokenOneString.c_str());
+
+        std::vector<char*> secondCommand;
+        secondCommand.push_back(secondCommandTokenOneCmp);
+        CommandLine* secondExecutable = new Executable(secondCommand,1);
+
+	secondExecutable->setFileName(secondCommandTokenOneCmp);
+        CommandLine* output = new DoubleOutputRed(firstExecutable, secondExecutable);
+       
+	output->execute(0,1);
+
+	ifstream s("output.txt");
+	string out((istreambuf_iterator<char>(s)), (istreambuf_iterator<char>()));
+	EXPECT_EQ("hello\nhello\n", out);
+}
+
+TEST(InputRedTests, execute) {
+	string firstCommandTokenOneString = "cat";
+
+        char* firstCommandTokenOneCmp = new char[firstCommandTokenOneString.length()+1];
+        strcpy(firstCommandTokenOneCmp, firstCommandTokenOneString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandTokenOneCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,1);
+
+        string secondCommandTokenOneString = "names.txt";
+
+        char* secondCommandTokenOneCmp = new char[secondCommandTokenOneString.length()+1];
+        strcpy(secondCommandTokenOneCmp, secondCommandTokenOneString.c_str());
+
+        std::vector<char*> secondCommand;
+        secondCommand.push_back(secondCommandTokenOneCmp);
+        CommandLine* secondExecutable = new Executable(secondCommand,1);
+
+        secondExecutable->setFileName(secondCommandTokenOneCmp);
+        CommandLine* input = new InputRed(firstExecutable, secondExecutable);
+	testing::internal::CaptureStdout();
+        input->execute(0,1);
+        string out = testing::internal::GetCapturedStdout();
+
+        EXPECT_EQ("Armando Gutierrez, 861213968, aguti037@ucr.edu\nNhat Nguyen, 862119873, nnguy176@ucr.edu\n", out);
+}
+
+TEST(PipeTests, upperToLower) {
+	string firstCommandTokenOneString = "cat";
+	string firstCommandTokenTwoString = "names.txt";
+
+        char* firstCommandTokenOneCmp = new char[firstCommandTokenOneString.length()+1];
+        strcpy(firstCommandTokenOneCmp, firstCommandTokenOneString.c_str());
+
+	char* firstCommandTokenTwoCmp = new char[firstCommandTokenTwoString.length()+1];
+        strcpy(firstCommandTokenTwoCmp, firstCommandTokenTwoString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandTokenOneCmp);
+	firstCommand.push_back(firstCommandTokenTwoCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,2);
+
+        string secondCommandTokenOneString = "tr";
+	string secondCommandTokenTwoString = "A-Z";
+	string secondCommandTokenThreeString = "a-z";
+
+        char* secondCommandTokenOneCmp = new char[secondCommandTokenOneString.length()+1];
+        strcpy(secondCommandTokenOneCmp, secondCommandTokenOneString.c_str());
+
+	char* secondCommandTokenTwoCmp = new char[secondCommandTokenTwoString.length()+1];
+        strcpy(secondCommandTokenTwoCmp, secondCommandTokenTwoString.c_str());
+
+	char* secondCommandTokenThreeCmp = new char[secondCommandTokenThreeString.length()+1];
+        strcpy(secondCommandTokenThreeCmp, secondCommandTokenThreeString.c_str());
+
+        std::vector<char*> secondCommand;
+        secondCommand.push_back(secondCommandTokenOneCmp);
+	secondCommand.push_back(secondCommandTokenTwoCmp);
+	secondCommand.push_back(secondCommandTokenThreeCmp);
+        CommandLine* secondExecutable = new Executable(secondCommand,3);
+        
+	secondExecutable->setFileName(secondCommandTokenOneCmp);
+	CommandLine* pipe = new Pipe(firstExecutable, secondExecutable);
+	testing::internal::CaptureStdout();
+        pipe->execute(0,1);
+        string out = testing::internal::GetCapturedStdout();
+
+        EXPECT_EQ("armando gutierrez, 861213968, aguti037@ucr.edu\nnhat nguyen, 862119873, nnguy176@ucr.edu\n", out);
+}
+
+TEST(PipeTests, lowerToUpper) {
+	string firstCommandTokenOneString = "cat";
+        string firstCommandTokenTwoString = "names.txt";
+
+        char* firstCommandTokenOneCmp = new char[firstCommandTokenOneString.length()+1];
+        strcpy(firstCommandTokenOneCmp, firstCommandTokenOneString.c_str());
+
+        char* firstCommandTokenTwoCmp = new char[firstCommandTokenTwoString.length()+1];
+        strcpy(firstCommandTokenTwoCmp, firstCommandTokenTwoString.c_str());
+
+        std::vector<char*> firstCommand;
+        firstCommand.push_back(firstCommandTokenOneCmp);
+        firstCommand.push_back(firstCommandTokenTwoCmp);
+        CommandLine* firstExecutable = new Executable(firstCommand,2);
+
+        string secondCommandTokenOneString = "tr";
+        string secondCommandTokenTwoString = "a-z";
+        string secondCommandTokenThreeString = "A-Z";
+
+        char* secondCommandTokenOneCmp = new char[secondCommandTokenOneString.length()+1];
+        strcpy(secondCommandTokenOneCmp, secondCommandTokenOneString.c_str());
+
+        char* secondCommandTokenTwoCmp = new char[secondCommandTokenTwoString.length()+1];
+        strcpy(secondCommandTokenTwoCmp, secondCommandTokenTwoString.c_str());
+
+        char* secondCommandTokenThreeCmp = new char[secondCommandTokenThreeString.length()+1];
+        strcpy(secondCommandTokenThreeCmp, secondCommandTokenThreeString.c_str());
+
+        std::vector<char*> secondCommand;
+        secondCommand.push_back(secondCommandTokenOneCmp);
+        secondCommand.push_back(secondCommandTokenTwoCmp);
+        secondCommand.push_back(secondCommandTokenThreeCmp);
+        CommandLine* secondExecutable = new Executable(secondCommand,3);
+
+        secondExecutable->setFileName(secondCommandTokenOneCmp);
+        CommandLine* pipe = new Pipe(firstExecutable, secondExecutable);
+        testing::internal::CaptureStdout();
+        pipe->execute(0,1);
+        string out = testing::internal::GetCapturedStdout();
+
+        EXPECT_EQ("ARMANDO GUTIERREZ, 861213968, AGUTI037@UCR.EDU\nNHAT NGUYEN, 862119873, NNGUY176@UCR.EDU\n", out);
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+
