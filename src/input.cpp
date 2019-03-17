@@ -112,8 +112,21 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
     CommandLine* parObject;//This is used if our current token is closed () to move our connector over to CMO
     while (token)
     {
-//cout << "OUR CURRENT TOKEN IS: " << token << endl;
-//cout << "2" << endl;
+
+	cout << "TOKEN = " << token << endl;
+	cout << "My value for open quote BEFORE = " << openQuote << endl;
+
+	if(strcmp(token,quoteCmp) == 0){
+		cout << "AM I IN HERE?" << endl;
+		if(openQuote){
+			openQuote = false;
+		} else{
+			openQuote = true;
+		}
+	}
+
+	cout << "OpenQuote AFTER = " << openQuote << endl;
+
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
 		connectorTokens.push_back(token);
@@ -124,9 +137,9 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
         //	WON'T OUR PARANTHESIS OBJECT ALREADY BE IN COMMAND OBJECTS???
         //**** IF OPEN PARENTHESIS, THEN PUSH IT ON CONNECTOR TOKENS, IF CLOSED PARANTHESIS, THEN CREATE THE PARENTHESIS OBJECT
         //**** KEEP IN MIND THAT AN OPEN PARANTHESIS IS COULD BE FOLLOWED BY ANOTHER OPEN PAR, AND CLOSED PARANTHESIS CAN ALSO BE FOLLOWED BY ANOTHER
-	else if(strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
+	else if(openQuote == false && (strcmp(token, semiCmp) == 0 || strcmp(token, andCmp) == 0 || strcmp(token, orCmp) == 0 
 					 || strcmp(token,closeParCmp) == 0 || strcmp(token,inputRedCmp) == 0 || strcmp(token,outputRedCmp) == 0
-					 || strcmp(token, doubleOutputRedCmp) == 0 || strcmp(token,pipeCmp) == 0){
+					 || strcmp(token, doubleOutputRedCmp) == 0 || strcmp(token,pipeCmp) == 0)){
             //instantiate a command object with commandTokens **** THIS DOES NOT WORK IF WE ARE AT || AND WE HAVE (echoo A && echo B) || (echo C && echo D)
             //*** YAAAASSSS--->>> DO THIS IF THE BACK OF CONNECTOR TOKENS IS NOT A CLOSED PARANTHESIS
 	    //IN THIS CASE ^^  WE JUST NEED TO PUSH THE CONNECTOR TOKEN, IN THIS CASE THE ||
@@ -250,8 +263,10 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
 	}
         //else token is command, then push_back onto commandTokens
         else{
-	//cout << "2 - JUST PUSHED A COMMAND TOKEN" << endl;
-            commandTokens.push_back(token);
+	
+	    if(strcmp(token, quoteCmp) != 0){		
+        	  commandTokens.push_back(token);
+	    }
 	}
         token = strtok(NULL," ");
    }//end while loop
