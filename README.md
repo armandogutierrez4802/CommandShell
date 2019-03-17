@@ -10,15 +10,16 @@ This project involves implementing a RShell, a basic command shell written in C+
 3. Execute commands using fork, execvp, waitpid.
 4. Handles additional commands such as test.
 5. Able to account for quotes and precedence.
+6. Is able to perform input redirection, output redirection, and piping.
 
 In addition, this project will be implemented using the composite pattern as the core design principle.
 
 # Diagram
-![UML Diagram](https://github.com/cs100/assignment-cs_100_aa_assignment_1/blob/master/Images/Assignment_3_UML.png)
+![UML Diagram](https://github.com/cs100/assignment-cs_100_aa_assignment_1/blob/master/Images/Assignment_4_UML.png)
 
 # Classes
 * CommandLine
-  * Serves as the primary interface that classes in the composite pattern inherit from. Implements the execute function that subclasses must implement.
+  * Serves as the primary interface that classes in the composite pattern inherit from. Implements the execute function that subclasses must implement. Two functions called setFileName and getFileName to handle input/output redirection.
 * Executable
   * Handles the execution of commands such as: fork, execvp, waitpid, test, and exit. fork() is called and the corresponding pid is stored in variable "pid". If the pid value is -1, an error is thrown, and exit(EXIT_FAILURE) is called. A pid value of 0 indicates that the current process is a child process, and execvp is called on the command. If the return value of execvp is -1, then an error is thrown, and exit(EXIT_FAILURE) is called. If a value greater than 0 is detected, then the current process is a parent process, and waitpid() is called to pause the parent process. If exit(EXIT_FAILURE) has been called, then the return value is set to false.
 * Connector
@@ -30,6 +31,14 @@ Has two private member variables: leftChild and rightChild (Base pointers). Or h
 Has two private member variables: leftChild and rightChild (Base pointers). Semicolon handles two commands, in which the following command is executed regardless if the first is successfully completed or fails.
   * *Parenthesis*\
 Has one private member variable leftChild (Base pointer). Parenthesis handles one command, in which leftChild contains the subtree of the expression enclosed by parenthesis. 
+  * *InputRed*\
+Has two private member variables: leftChild and rightChild (Base pointers). Input handles two commands, in which RightChild is inputted into LeftChild.
+  * *OutputRed*\
+Has two private member variables: leftChild and rightChild (Base pointers). OutputRed handles two commands, in which the leftChild is written into RightChild.
+  * *DoubleOutputRed*\
+Has two private member variables: leftChild and rightChild (Base pointers). DoubleOutput handles two commands, in which the leftChild is appended into RightChild.
+  * *Pipe*\
+Has two private member variables: leftChild and rightChild (Base pointers). Pipe handles two commands, in which the output of LeftChild is inputted into RightChild.
 * Input
   * Converts a user inputted string and parses the string, distinguishing between connectors, commands, quotes, and parenthesis. A tree is then constructed using vectors of char pointers and CommandLine pointers. Execute is then called on the root node, executing the entire tree. 
 # Prototypes/Research
@@ -39,19 +48,28 @@ These functions will be useful in our assignment because our connectors determin
 # Development and Testing Roadmap
 ### Tasks to be completed:
 ##### Class implementations:
-1. CommandLine
-2. Executable
-3. Input
-4. Connector
-5. And
-6. Or
-7. Semicolon
-8. Parenthesis
+1.  CommandLine
+2.  Executable
+3.  Input
+4.  Connector
+5.  And
+6.  Or
+7.  Semicolon
+8.  Parenthesis
+9.  DoubleOutputRed
+10. OutputRed
+11. InputRed
+12. Pipe
+
 ##### Unit and Integration tests:
-1. CommandLine Unit Test
-2. Executable Unit Test
-3. And Unit Test
-4. Or Unit Test
-5. Semicolon Unit Test
-6. Input Integration Test
-7. Parenthesis Integration Test
+1.  CommandLine Unit Test
+2.  Executable Unit Test
+3.  And Unit Test
+4.  Or Unit Test
+5.  Semicolon Unit Test
+6.  Input Integration Test
+7.  Parenthesis Integration Test
+8.  DoubeOutputRed Unit Test
+9.  OutputRed Unit Test
+10. InputRed Unit Test
+11. Pipe Unit Test
