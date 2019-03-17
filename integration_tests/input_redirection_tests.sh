@@ -1,9 +1,9 @@
 #!/bin/sh
 
 INPUTS=(
-'' 
-'' 
-''
+'cat < ../names.txt' 
+'cat < ../README.md' 
+'cat < ../CMakeLists.txt'
 )
 
 .././integration ${INPUTS[2]}
