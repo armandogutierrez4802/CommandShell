@@ -118,7 +118,7 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
 	//cout << "My value for open quote BEFORE = " << openQuote << endl;
 
 	if(strcmp(token,quoteCmp) == 0){
-		cout << "AM I IN HERE?" << endl;
+//		cout << "AM I IN HERE?" << endl;
 		if(openQuote){
 			openQuote = false;
 		} else{
