@@ -73,10 +73,11 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
     
     CommandLine* object;
     
-    char quoteChar = '"';
-    char *quoteCmp = &quoteChar;//new char[quoteString.length()+1];
-    //strcpy(quoteCmp, quoteString.s_str());
-    
+    string quoteString = "";
+    quoteString += '"';
+    char* quoteCmp = new char[quoteString.length()+1];
+    strcpy(quoteCmp, quoteString.c_str());
+
     string openParString = "(";
     string closeParString = ")";
     char* openParCmp = new char[openParString.length()+1];
