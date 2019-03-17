@@ -114,8 +114,8 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
     while (token)
     {
 
-	cout << "TOKEN = " << token << endl;
-	cout << "My value for open quote BEFORE = " << openQuote << endl;
+	//cout << "TOKEN = " << token << endl;
+	//cout << "My value for open quote BEFORE = " << openQuote << endl;
 
 	if(strcmp(token,quoteCmp) == 0){
 		cout << "AM I IN HERE?" << endl;
@@ -126,7 +126,7 @@ bool Input::execute(int in, int out){//Here we parse the string and make a tree 
 		}
 	}
 
-	cout << "OpenQuote AFTER = " << openQuote << endl;
+	//cout << "OpenQuote AFTER = " << openQuote << endl;
 
 	tokenLength = strlen(token);
 	if(strcmp(token,openParCmp) == 0){//If token is an open parenthesis, push it on the CNT
